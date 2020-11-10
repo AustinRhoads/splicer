@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_032927) do
+ActiveRecord::Schema.define(version: 2020_11_10_001918) do
 
   create_table "arms", force: :cascade do |t|
     t.string "name"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 2020_11_07_032927) do
     t.integer "counter"
     t.integer "recoil"
     t.integer "speed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "identities", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -105,7 +113,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_032927) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password_digest"
+    t.string "uid"
+    t.string "provider"
     t.integer "experience_points", default: 0
     t.integer "level", default: 1
     t.datetime "created_at", precision: 6, null: false
