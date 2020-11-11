@@ -1,8 +1,11 @@
-<h1><%= @monster.name %></h1>
-
+<h1><%= @monster.name.capitalize %></h1>
+<h2>HP: <%= @monster.hp %></h2>
 <% @monster.specs.each do |spec| %>
 <p><%= spec[0].capitalize %>: <%= spec[1] %></p>
 <% end %>
+
+
+<%= link_to "Euthanize", "/monsters/#{@monster.id}/destroy", data: {confirm: "Are you sure you want to kill this creature whom you have frivolously given life to without concern for the moral implications?"} %>
 
 
 

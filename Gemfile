@@ -30,6 +30,12 @@ gem 'jbuilder', '~> 2.7'
  gem 'activerecord-session_store'
  gem 'dotenv-rails'
  gem 'omniauth-identity'
+
+
+ # custom confirm popups
+# gem 'sweet-alert'
+# gem 'sweet-alert-confirm'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

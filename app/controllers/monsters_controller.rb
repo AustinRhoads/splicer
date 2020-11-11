@@ -44,6 +44,9 @@ class MonstersController < ApplicationController
 
 
   def destroy
+    @monster = Monster.find(params[:id])
+    @monster.destroy
+    redirect_to user_path(current_user), notice: "#{@monster.name} has been euthinized"
   end
 
   def monster_params

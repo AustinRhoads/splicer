@@ -1,2 +1,5 @@
 <h1><%= @user.name %></h1>
 <p><%= link_to "Splice some Genes",  new_monster_path %></p>
+<% @user.monsters.each do |monster| %>
+<div><%= link_to monster.name.capitalize, monster_path(monster) %> HP: <%= monster.hp %></div>
+<% end %>
