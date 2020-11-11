@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 # before_action :login_required, only: [:show, :edit, :update, :destroy]
  skip_before_action :verify_authenticity_token, :only => :create
   def index
+    @users = User.all
   end
 
   def new

@@ -26,7 +26,7 @@ class Monster < ApplicationRecord
       self.counter = self.head.counter + self.arm.counter + self.leg.counter + self.back.counter
       self.speed = self.head.speed + self.arm.speed + self.leg.speed + self.back.speed
       self.recoil = self.head.recoil + self.arm.recoil + self.leg.recoil + self.back.recoil
-      {:dex => self.dexterity, :atk => self.attack, :def => self.counter, :sp => self.speed, :rec => self.recoil}
+      {:dexterity => self.dexterity, :attack => self.attack, :defense => self.counter, :speed => self.speed, :recoil => self.recoil}
     end
 
 

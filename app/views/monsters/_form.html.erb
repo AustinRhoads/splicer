@@ -1,0 +1,31 @@
+<%= form_for(@monster) do |f| %>
+
+<div class = "field" >
+<p>What shall the name of this beast be?</p><br>
+<%= f.text_field :name %><br>
+</div>
+
+<div class = "field" >
+<p>Choose the creature's head</p>
+    <%= f.collection_select :head_id, @heads, :id, :name %>
+</div>
+
+<%= f.hidden_field :user_id, :value => current_user.id %>
+
+<div class = "field" >
+<p>Choose the creature's arms</p>
+    <%= f.collection_select :arm_id, @arms, :id, :name %>
+</div>
+
+<div class = "field" >
+<p>Choose the creature's legs</p>
+    <%= f.collection_select :leg_id, @legs, :id, :name %>
+</div>
+
+<div class = "field" >
+<p>Choose the creature's backside</p>
+    <%= f.collection_select :back_id, @backs, :id, :name %>
+</div>
+
+<%= f.submit "SPLICE GENES!!!!" %>
+<% end %>
