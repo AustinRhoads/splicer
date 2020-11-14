@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :email
       t.string :uid
+      t.integer :battle_party_id
       t.string :provider
       t.integer :experience_points, default: 0
       t.integer :level, default: 1

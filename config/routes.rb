@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'battle_parties/new'
+  get 'battle_parties/create'
+  get 'battle_parties/show'
+  get 'battle_parties/edit'
+  get 'battle_parties/update'
+  get 'battle_parties/destroy'
   resources :battles
 root 'welcome#home'
 

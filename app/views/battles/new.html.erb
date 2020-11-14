@@ -1,5 +1,13 @@
 <h1>New Battle</h1>
-
+<h2>Choose your battle party</h2>
+<h3>Recomended battle party: </h3>
+<ul>    
+    <% current_user.battle_party.monsters.each do |monster| %>
+        <li><%= monster.name.capitalize %> HP: <%= monster.hp %></li>
+    <% end %>
+</ul>
 <%= render 'form', battle: @battle %>
 
-<%= link_to 'Back', battles_path %>
+
+
+

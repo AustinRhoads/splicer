@@ -18,6 +18,7 @@ class CreateMonsters < ActiveRecord::Migration[6.0]
       t.integer :recoil, default: 0
       t.integer :speed, default: 0
       t.integer :charger, default: 0
+      t.integer :battle_party_id
       t.timestamps
     end
   end

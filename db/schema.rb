@@ -37,10 +37,9 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
   end
 
   create_table "battle_parties", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_battle_parties_on_user_id"
   end
 
   create_table "battle_users", force: :cascade do |t|
@@ -125,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
     t.integer "recoil", default: 0
     t.integer "speed", default: 0
     t.integer "charger", default: 0
+    t.integer "battle_party_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["arm_id"], name: "index_monsters_on_arm_id"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
     t.string "name"
     t.string "email"
     t.string "uid"
+    t.integer "battle_party_id"
     t.string "provider"
     t.integer "experience_points", default: 0
     t.integer "level", default: 1
@@ -147,5 +148,4 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "battle_parties", "users"
 end

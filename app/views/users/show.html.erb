@@ -3,3 +3,5 @@
 <% @user.monsters.each do |monster| %>
 <div><%= link_to monster.name.capitalize, monster_path(monster) %> HP: <%= monster.hp %></div>
 <% end %>
+
+<%= link_to "BATTLE", new_battle_path %>

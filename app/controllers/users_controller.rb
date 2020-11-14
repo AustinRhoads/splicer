@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     
      @user = User.create(user_params)
      if @user
-      binding.pry
       session[:user_id] = @user.id
       redirect_to user_path(@user) 
      else
@@ -28,6 +27,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if current_user == @user
+      @user.set_top_three_as_battle_party
       render :show
     else
       redirect_to '/'
