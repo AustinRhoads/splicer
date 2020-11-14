@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :battles
 root 'welcome#home'
 
  get '/signup' => 'users#new'

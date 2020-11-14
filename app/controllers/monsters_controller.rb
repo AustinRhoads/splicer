@@ -18,7 +18,6 @@ class MonstersController < ApplicationController
 
   def create
     @monster = Monster.create(monster_params)
-    
     if @monster.save
       redirect_to monster_path(@monster)
     else

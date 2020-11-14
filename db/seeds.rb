@@ -53,3 +53,22 @@
 #]
 #
 #MONSTER_MASH.each {|monster| Monster.create(monster).save}
+
+FAST_ATTACKS = [
+{:name => "Acid Rain", :damage_points => 5, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Fire Ball", :damage_points => 5, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Tackle", :damage_points => 5, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Air Cut", :damage_points => 5, :element => "air", :weakness_element => "earth", :strength_element => "water" }
+]
+
+FAST_ATTACKS.each {|fast_a| FastAttack.create(fast_a).save} 
+
+CHARGED_ATTACKS = [
+{:name => "Tsunami Wall", :damage_points =>  99, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Calcination", :damage_points => 89, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Ground Quake", :damage_points => 88, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Hurri-Pain", :damage_points => 75, :element => "air", :weakness_element => "earth", :strength_element => "water" }
+
+]
+
+CHARGED_ATTACKS.each {|charged_a| ChargedAttack.create(charged_a).save}

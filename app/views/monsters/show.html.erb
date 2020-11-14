@@ -1,5 +1,7 @@
 <h1><%= @monster.name.capitalize %></h1>
 <h2>HP: <%= @monster.hp %></h2>
+<h2>Fast Attack: <%= @monster.fast_attack.name %> damage: <%= @monster.fast_attack.damage_points %> </h2>
+<h2>Charged Attack: <%= @monster.charged_attack.name %> damage: <%= @monster.charged_attack.damage_points %> </h2>
 <% @monster.specs.each do |spec| %>
 <p><%= spec[0].capitalize %>: <%= spec[1] %></p>
 <% end %>

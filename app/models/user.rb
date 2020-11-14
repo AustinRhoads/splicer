@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
     has_many :monsters
-   # has_secure_password
+    has_many :battle_users
+    has_many :battles, through: :battle_users
+  
+   
 
 
 
