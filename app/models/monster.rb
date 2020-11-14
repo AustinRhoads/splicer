@@ -43,7 +43,7 @@ class Monster < ApplicationRecord
     end
 
     def use_charged_attack(opponent)
-        if rand(1..20) + self.attack >= 10 + opponent.counter 
+        if (rand(1..20) + self.attack >= 10 + opponent.counter ) && self.charged? == true
             opponent.current_hp -= self.charged_attack.damage_points
             self.current_hp -= opponent.recoil
         else
