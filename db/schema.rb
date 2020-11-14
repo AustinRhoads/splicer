@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_211721) do
+ActiveRecord::Schema.define(version: 2020_11_14_031851) do
 
   create_table "arms", force: :cascade do |t|
     t.string "name"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2020_11_13_211721) do
     t.integer "speed"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "battle_parties", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_battle_parties_on_user_id"
   end
 
   create_table "battle_users", force: :cascade do |t|
@@ -140,4 +147,5 @@ ActiveRecord::Schema.define(version: 2020_11_13_211721) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "battle_parties", "users"
 end

@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
     has_many :monsters
     has_many :battle_users
     has_many :battles, through: :battle_users
+    has_many :battle_parties
   
    
 
