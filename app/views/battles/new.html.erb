@@ -6,6 +6,7 @@
         <li><%= monster.name.capitalize %> HP: <%= monster.hp %></li>
     <% end %>
 </ul>
+<%= link_to "Change your battle party", edit_user_battle_party_path(current_user, current_user.battle_party) %>
 <%= render 'form', battle: @battle %>
 
 

@@ -1,18 +1,8 @@
 Rails.application.routes.draw do
-  get 'battle_parties/new'
-  get 'battle_parties/create'
-  get 'battle_parties/show'
-  get 'battle_parties/edit'
-  get 'battle_parties/update'
-  get 'battle_parties/destroy'
-  resources :battles
 root 'welcome#home'
 
  get '/signup' => 'users#new'
  post '/signup' => 'users#create'
-# 
-# get '/signin', to: 'sessions#new' 
-# post '/signin', to: 'sessions#create' 
 
 
   get '/auth/google_oauth2/callback' => 'sessions#create'
@@ -25,11 +15,14 @@ root 'welcome#home'
   get "/logout" => "sessions#destroy", :as => :logout
   get "/auth/failure" => "sessions#failure"
 
-
+  resources :battles
+  
   resources :identities
-resources :monsters, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :monsters, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   get '/monsters/:id/destroy' => 'monsters#destroy' 
-resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+  resources :battle_parties
+end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
