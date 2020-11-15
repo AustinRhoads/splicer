@@ -1,5 +1,20 @@
-<h1>BattleParties#edit</h1>
-<p>Find me in app/views/battle_parties/edit.html.erb</p>
-<% @battle_party.monsters.each do |m| %>
-<%= m.name %>
-<% end %>
+<h1>Battle Party</h1>
+<table>
+<tr>
+<td>Name</td>
+<td>HP</td>
+<td>Element</td>
+</tr>
+    <% @battle_party.monsters.each do |m| %>
+        <tr>
+        <td><%= m.name %></td>
+        <td><%= m.hp %></td>
+        <td><%= m.element %></td>
+        </tr>
+    <% end %>
+</table>
+
+<%= form_for @battle_party, :url => "/users/#{current_user.id}/battle_parties/#{@battle_party.id}" do |f| %>
+    <%= f.collection_check_boxes :monster_ids, current_user.monsters, :id, :name%><br>
+    <%= f.submit "This is my battle party" %>
+ <% end %>

@@ -15,6 +15,7 @@ class BattlesController < ApplicationController
   # GET /battles/new
   def new
     @battle = Battle.new
+    @battle_party = current_user.battle_party
   end
 
   # GET /battles/1/edit
