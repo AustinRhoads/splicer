@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
-  #helper_method :current_user
+ 
   before_action :set_user, only: [:show]
-# before_action :login_required, only: [:show, :edit, :update, :destroy]
- skip_before_action :verify_authenticity_token, :only => :create
+  before_action :check_login
+  skip_before_action :check_login, :only => :create
+
+
   def index
     @users = User.all
   end
@@ -27,7 +29,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if current_user == @user
-      @user.set_top_three_as_battle_party
+     
       render :show
     else
       redirect_to '/'
@@ -46,6 +48,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :height, :happiness, :nausea, :tickets, :admin, :password)
+    params.require(:user).permit(:name, :height, :happiness, :nausea, :tickets, :admin, :password, :npc)
   end
 end

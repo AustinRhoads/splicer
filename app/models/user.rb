@@ -30,12 +30,11 @@ class User < ActiveRecord::Base
     end
 
     def set_top_three_as_battle_party
-     #   if self.monsters.count >= 3 && self.battle_party == nil
-        self.battle_party ||=
+        if self.monsters.count >= 3 && self.battle_party == nil
             battle_party = self.build_battle_party
             battle_party.monsters <<  self.monsters.sort_by {|monster| monster.hp}.reverse![0..2]
             battle_party.save
-      #  end
+        end
     end
 
     EXP_LEVELS = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]

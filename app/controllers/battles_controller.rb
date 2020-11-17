@@ -1,45 +1,46 @@
 class BattlesController < ApplicationController
+  before_action :check_login
   before_action :set_battle, only: [:show, :edit, :update, :destroy]
+  include ActionController::Live
 
-  # GET /battles
-  # GET /battles.json
+
   def index
     @battles = Battle.all
   end
 
-  # GET /battles/1
-  # GET /battles/1.json
+
   def show
+    @player_one = @battle.player_one
+    @player_two = @battle.player_two
   end
 
-  # GET /battles/new
+
   def new
     @battle = Battle.new
-    @battle_party = current_user.battle_party
+    @user = current_user
+    @battle_party = @user.battle_party
   end
 
-  # GET /battles/1/edit
+
   def edit
   end
 
-  # POST /battles
-  # POST /battles.json
   def create
     @battle = Battle.new(battle_params)
+    @npc = (User.where(:npc => true, :level => @battle.level)).sample
+    @npc.set_top_three_as_battle_party
 
-    respond_to do |format|
-      if @battle.save
-        format.html { redirect_to @battle, notice: 'Battle was successfully created.' }
-        format.json { render :show, status: :created, location: @battle }
-      else
-        format.html { render :new }
-        format.json { render json: @battle.errors, status: :unprocessable_entity }
-      end
+    if @battle.save
+      @player_one = BattleUser.create(:user_id => current_user.id, :battle_id => @battle.id)
+      @player_two = BattleUser.create(:user_id => @npc.id, :battle_id => @battle.id)
+      @battle.save
+      redirect_to battle_path(@battle)
+    else
+      redirect_to new_battle_path
     end
+
   end
 
-  # PATCH/PUT /battles/1
-  # PATCH/PUT /battles/1.json
   def update
     respond_to do |format|
       if @battle.update(battle_params)
@@ -63,13 +64,12 @@ class BattlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_battle
       @battle = Battle.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+  
     def battle_params
-      params.fetch(:battle, {})
+      params.require(:battle).permit(:level)
     end
 end

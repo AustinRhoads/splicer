@@ -15,7 +15,7 @@ root 'welcome#home'
   get "/logout" => "sessions#destroy", :as => :logout
   get "/auth/failure" => "sessions#failure"
 
-  resources :battles
+  resources :battles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   
   resources :identities
   resources :monsters, only: [:index, :show, :new, :create, :edit, :update, :destroy]

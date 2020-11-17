@@ -1,17 +1,8 @@
-<%= form_with(model: battle, local: true) do |form| %>
-  <% if battle.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(battle.errors.count, "error") %> prohibited this battle from being saved:</h2>
+<%= form_for @battle do |f| %>
 
-      <ul>
-        <% battle.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= f.hidden_field :level, :value => current_user.level %>
 
   <div class="actions">
-    <%= form.submit  "BEGIN BATTLE"%>
+    <%= f.submit  "BEGIN BATTLE"%>
   </div>
 <% end %>

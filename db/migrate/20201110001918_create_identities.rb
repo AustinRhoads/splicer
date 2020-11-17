@@ -4,6 +4,7 @@ class CreateIdentities < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :email
       t.string :password_digest
+      t.boolean :npc, default: false
       t.timestamps
     end
   end

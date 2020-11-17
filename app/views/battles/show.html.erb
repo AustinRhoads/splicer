@@ -1,4 +1,23 @@
-<p id="notice"><%= notice %></p>
+<h1>Fight</h1>
 
+<h2><%= @player_one.name %> VS. <%= @player_two.name %></h2>
+<div class = "grid-container">
+<% @player_one.battle_party.monsters.each do |monster| %>
+    <div class = "grid-item">
+    <p><%= monster.name %></p>
+    <p><%= monster.current_hp %></p>
+<button type = "button" class = "quick attack" action = <% monster.use_fast_attack(@player_two.battle_party.monsters.first) %> ><%= monster.fast_attack.name %></button>
+    </div>
+<% end %>
+</div>
 
+<div class = "grid-container">
+<% @player_two.battle_party.monsters.each do |monster| %>
+    <div class = "grid-item">
+    <p><%= monster.name %></p>
+    <p><%= monster.hp %></p>
+<button type = "button" class = "quick attack" ><%= monster.fast_attack.name %></button>
+    </div>
+<% end %>
+</div>
 

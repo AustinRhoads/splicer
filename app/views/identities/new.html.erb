@@ -33,6 +33,11 @@
         <%= password_field_tag :password_confirmation %>
     </div>
 
+    <div class="field">
+    <%= label_tag :npc %><br>
+    <%= check_box_tag :npc, checked = true %>
+    </div>
+
     <div class="actions"><%= submit_tag "Signup" %></div>
 
    <% end %>

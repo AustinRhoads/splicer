@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
   end
 
   create_table "battles", force: :cascade do |t|
+    t.integer "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
     t.string "name"
     t.string "email"
     t.string "password_digest"
+    t.boolean "npc", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -142,6 +144,8 @@ ActiveRecord::Schema.define(version: 2020_11_14_031851) do
     t.string "uid"
     t.integer "battle_party_id"
     t.string "provider"
+    t.boolean "npc", default: false
+    t.boolean "admin"
     t.integer "experience_points", default: 0
     t.integer "level", default: 1
     t.datetime "created_at", precision: 6, null: false
