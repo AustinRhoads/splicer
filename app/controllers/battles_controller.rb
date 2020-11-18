@@ -12,6 +12,7 @@ class BattlesController < ApplicationController
   def show
     @player_one = @battle.player_one
     @player_two = @battle.player_two
+
   end
 
 

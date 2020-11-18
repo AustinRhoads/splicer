@@ -21,3 +21,8 @@
 <% end %>
 </div>
 
+    <p hidden id = "playerOneData"><%= @player_one.to_json %></p>
+    <p hidden id = "playerOneMonsters"><%= @player_one.battle_party.monsters.to_json %></p>
+    <p hidden id = "playerTwoData"><%= @player_two.to_json %></p>
+    <p hidden id = "playerTwoMonsters"><%= @player_two.battle_party.monsters.to_json %></p>
+<%= javascript_pack_tag 'battles.js' %>
