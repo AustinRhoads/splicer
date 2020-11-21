@@ -108,7 +108,7 @@ console.log(player_two_monster.monster.name);
 
 };
 
-
+/**/ */
 
 function set_players(){
    var one_monster = JSON.parse(document.querySelector(".one_tagged_in p#monster").innerText);
