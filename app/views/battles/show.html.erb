@@ -1,28 +1,112 @@
 <h1>Fight</h1>
 
 
-<div class = "grid container">
+<div class = "grid-container">
 <h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 <% @player_one.battle_party.monsters.each_with_index do |monster, index| %>
-    <div class = "item_<%= index + 2 %>">
-    <p><%= monster.name %></p>
-    <p><%= monster.current_hp %></p>
-<button type = "button" class = "quick attack" onclick = <%= monster.use_fast_attack(@player_two.battle_party.monsters.first) %> ><%= monster.fast_attack.name %></button>
-    </div>
+    <% if index == 0 %>
+        <div class = "grid item_<%= index + 2 %> one_tagged_in"  >
+        <p hidden id = "monster" ><%= monster.to_json %></p>
+        <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
+        <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
+            <h1 class = "hp monster_<%= index + 1 %>"></h1>
+            <p><%= monster.name %></p>
+            <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button>
+        </div>
+    <% else %>
+
+        <div class = "grid item_<%= index + 2 %>" value = <%= [:monster => monster, :fast_attack => monster.fast_attack, :charged_attack => monster.charged_attack].to_json %>>
+             <h1 class = "hp monster_<%= index + 1 %>"></h1>
+             <p><%= monster.name %></p>
+             <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button>
+        </div>
+    <% end %>
 <% end %>
 
 <% @player_two.battle_party.monsters.each_with_index do |monster, index| %>
-    <div class = "item_<%= index + 5 %>">
-    <p><%= monster.name %></p>
-    <p><%= monster.current_hp %></p>
-<button type = "button" class = "quick attack" ><%= monster.fast_attack.name %></button>
-    </div>
+    <% if index == 0 %>
+        <div class = "grid item_<%= index + 5 %> two_tagged_in" value = <%= [:monster => monster, :fast_attack => monster.fast_attack, :charged_attack => monster.charged_attack].to_json %>>
+        <h1 class = "hp monster_<%= index + 4 %>"></h1>
+            <p><%= monster.name %></p>
+            <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button>
+        </div>
+
+    <% else %>
+        <div class = "grid item_<%= index + 5 %>" value = <%= [:monster => monster, :fast_attack => monster.fast_attack, :charged_attack => monster.charged_attack].to_json %>>
+        <h1 class = "hp monster_<%= index + 4 %>"></h1>
+            <p><%= monster.name %></p>
+            <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button>
+        </div>
+    <% end %>
 <% end %>
 </div>
 
+
+<!-- javascript variables -->
+
+<!-- player one -->
+
     <p hidden id = "playerOneData"><%= @player_one.to_json %></p>
     <p hidden id = "playerOneMonsters"><%= @player_one.battle_party.monsters.to_json %></p>
+
+<!-- each monster, there hp and attack -->
+
+<!-- monster one -->
+
+    <p hidden id = "playerOneMonsterOne"><%= @player_one.battle_party.monsters[0].to_json %></p>
+    <p hidden id = "playerOneMonsterOneSpecs"><%= @player_one.battle_party.monsters[0].specs.to_json %></p>
+    <p hidden id = "playerOneMonsterOneFastAttack"><%= @player_one.battle_party.monsters[0].fast_attack.to_json %></p>
+    <p hidden id = "playerOneMonsterOneChargedAttack"><%= @player_one.battle_party.monsters[0].charged_attack.to_json %></p>
+    <p hidden id = "playerOneMonsterOneHp"><%= @player_one.battle_party.monsters[0].current_hp.to_json %></p>
+
+<!-- monster two -->
+
+    <p hidden id = "playerOneMonsterTwo"><%= @player_one.battle_party.monsters[1].to_json %></p>
+    <p hidden id = "playerOneMonsterTwoSpecs"><%= @player_one.battle_party.monsters[1].specs.to_json %></p>
+    <p hidden id = "playerOneMonsterTwoFastAttack"><%= @player_one.battle_party.monsters[1].fast_attack.to_json %></p>
+    <p hidden id = "playerOneMonsterTwoChargedAttack"><%= @player_one.battle_party.monsters[1].charged_attack.to_json %></p>
+    <p hidden id = "playerOneMonsterTwoHp"><%= @player_one.battle_party.monsters[1].current_hp.to_json %></p>
+
+<!-- monster three -->   
+
+    <p hidden id = "playerOneMonsterThree"><%= @player_one.battle_party.monsters[2].to_json %></p>
+    <p hidden id = "playerOneMonsterThreeSpecs"><%= @player_one.battle_party.monsters[2].specs.to_json %></p>
+    <p hidden id = "playerOneMonsterThreeFastAttack"><%= @player_one.battle_party.monsters[2].fast_attack.to_json %></p>
+    <p hidden id = "playerOneMonsterThreeChargedAttack"><%= @player_one.battle_party.monsters[2].charged_attack.to_json %></p>
+    <p hidden id = "playerOneMonsterThreeHp"><%= @player_one.battle_party.monsters[2].current_hp.to_json %></p>
+
+<!-- player two -->
+
     <p hidden id = "playerTwoData"><%= @player_two.to_json %></p>
     <p hidden id = "playerTwoMonsters"><%= @player_two.battle_party.monsters.to_json %></p>
+    
+<!-- each monster and there hp and attack -->
+
+<!-- monster one -->
+
+    <p hidden id = "playerTwoMonsterOne"><%= @player_two.battle_party.monsters[0].to_json %></p>
+    <p hidden id = "playerTwoMonsterOneSpecs"><%= @player_two.battle_party.monsters[0].specs.to_json %></p>
+    <p hidden id = "playerTwoMonsterOneFastAttack"><%= @player_two.battle_party.monsters[0].fast_attack.to_json %></p>
+    <p hidden id = "playerTwoMonsterOneChargedAttack"><%= @player_two.battle_party.monsters[0].charged_attack.to_json %></p>
+    <p hidden id = "playerTwoMonsterOneHp"><%= @player_two.battle_party.monsters[0].current_hp.to_json %></p>
+
+
+<!-- monster two -->
+    <p hidden id = "playerTwoMonsterTwo"><%= @player_two.battle_party.monsters[1].to_json %></p>
+    <p hidden id = "playerTwoMonsterTwoSpecs"><%= @player_two.battle_party.monsters[1].specs.to_json %></p>
+    <p hidden id = "playerTwoMonsterTwoFastAttack"><%= @player_two.battle_party.monsters[1].fast_attack.to_json %></p>
+    <p hidden id = "playerTwoMonsterTwoChargedAttack"><%= @player_two.battle_party.monsters[1].charged_attack.to_json %></p>
+    <p hidden id = "playerTwoMonsterTwoHp"><%= @player_two.battle_party.monsters[1].current_hp.to_json %></p>
+
+<!-- monster three -->   
+
+    <p hidden id = "playerTwoMonsterThree"><%= @player_two.battle_party.monsters[2].to_json %></p>
+    <p hidden id = "playerTwoMonsterThreeSpecs"><%= @player_two.battle_party.monsters[2].specs.to_json %></p>
+    <p hidden id = "playerTwoMonsterThreeFastAttack"><%= @player_two.battle_party.monsters[2].fast_attack.to_json %></p>
+    <p hidden id = "playerTwoMonsterThreeChargedAttack"><%= @player_two.battle_party.monsters[2].charged_attack.to_json %></p>
+    <p hidden id = "playerTwoMonsterThreeHp"><%= @player_two.battle_party.monsters[2].current_hp.to_json %></p>
+    
+
+
 <%= javascript_pack_tag 'battles.js' %>
 <%= stylesheet_link_tag "battles.css" %>
