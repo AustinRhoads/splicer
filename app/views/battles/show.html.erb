@@ -56,63 +56,43 @@
 <!-- player one -->
 
     <p hidden id = "playerOneData"><%= @player_one.to_json %></p>
-    <p hidden id = "playerOneMonsters"><%= @player_one.battle_party.monsters.to_json %></p>
+
 
 <!-- each monster, there hp and attack -->
 
 <!-- monster one -->
 
-    <p hidden id = "playerOneMonsterOne"><%= @player_one.battle_party.monsters[0].to_json %></p>
-    <p hidden id = "playerOneMonsterOneSpecs"><%= @player_one.battle_party.monsters[0].specs.to_json %></p>
-    <p hidden id = "playerOneMonsterOneFastAttack"><%= @player_one.battle_party.monsters[0].fast_attack.to_json %></p>
-    <p hidden id = "playerOneMonsterOneChargedAttack"><%= @player_one.battle_party.monsters[0].charged_attack.to_json %></p>
+
     <p hidden id = "playerOneMonsterOneHp"><%= @player_one.battle_party.monsters[0].current_hp.to_json %></p>
 
 <!-- monster two -->
 
-    <p hidden id = "playerOneMonsterTwo"><%= @player_one.battle_party.monsters[1].to_json %></p>
-    <p hidden id = "playerOneMonsterTwoSpecs"><%= @player_one.battle_party.monsters[1].specs.to_json %></p>
-    <p hidden id = "playerOneMonsterTwoFastAttack"><%= @player_one.battle_party.monsters[1].fast_attack.to_json %></p>
-    <p hidden id = "playerOneMonsterTwoChargedAttack"><%= @player_one.battle_party.monsters[1].charged_attack.to_json %></p>
+ 
     <p hidden id = "playerOneMonsterTwoHp"><%= @player_one.battle_party.monsters[1].current_hp.to_json %></p>
 
 <!-- monster three -->   
 
-    <p hidden id = "playerOneMonsterThree"><%= @player_one.battle_party.monsters[2].to_json %></p>
-    <p hidden id = "playerOneMonsterThreeSpecs"><%= @player_one.battle_party.monsters[2].specs.to_json %></p>
-    <p hidden id = "playerOneMonsterThreeFastAttack"><%= @player_one.battle_party.monsters[2].fast_attack.to_json %></p>
-    <p hidden id = "playerOneMonsterThreeChargedAttack"><%= @player_one.battle_party.monsters[2].charged_attack.to_json %></p>
+
     <p hidden id = "playerOneMonsterThreeHp"><%= @player_one.battle_party.monsters[2].current_hp.to_json %></p>
 
 <!-- player two -->
 
     <p hidden id = "playerTwoData"><%= @player_two.to_json %></p>
-    <p hidden id = "playerTwoMonsters"><%= @player_two.battle_party.monsters.to_json %></p>
+
     
 <!-- each monster and there hp and attack -->
 
 <!-- monster one -->
-
-    <p hidden id = "playerTwoMonsterOne"><%= @player_two.battle_party.monsters[0].to_json %></p>
-    <p hidden id = "playerTwoMonsterOneSpecs"><%= @player_two.battle_party.monsters[0].specs.to_json %></p>
-    <p hidden id = "playerTwoMonsterOneFastAttack"><%= @player_two.battle_party.monsters[0].fast_attack.to_json %></p>
-    <p hidden id = "playerTwoMonsterOneChargedAttack"><%= @player_two.battle_party.monsters[0].charged_attack.to_json %></p>
     <p hidden id = "playerTwoMonsterOneHp"><%= @player_two.battle_party.monsters[0].current_hp.to_json %></p>
 
 
 <!-- monster two -->
-    <p hidden id = "playerTwoMonsterTwo"><%= @player_two.battle_party.monsters[1].to_json %></p>
-    <p hidden id = "playerTwoMonsterTwoSpecs"><%= @player_two.battle_party.monsters[1].specs.to_json %></p>
-    <p hidden id = "playerTwoMonsterTwoFastAttack"><%= @player_two.battle_party.monsters[1].fast_attack.to_json %></p>
-    <p hidden id = "playerTwoMonsterTwoChargedAttack"><%= @player_two.battle_party.monsters[1].charged_attack.to_json %></p>
+
     <p hidden id = "playerTwoMonsterTwoHp"><%= @player_two.battle_party.monsters[1].current_hp.to_json %></p>
 
 <!-- monster three -->   
 
-    <p hidden id = "playerTwoMonsterThree"><%= @player_two.battle_party.monsters[2].to_json %></p>
-    <p hidden id = "playerTwoMonsterThreeSpecs"><%= @player_two.battle_party.monsters[2].specs.to_json %></p>
-    <p hidden id = "playerTwoMonsterThreeFastAttack"><%= @player_two.battle_party.monsters[2].fast_attack.to_json %></p>
-    <p hidden id = "playerTwoMonsterThreeChargedAttack"><%= @player_two.battle_party.monsters[2].charged_attack.to_json %></p>
+
     <p hidden id = "playerTwoMonsterThreeHp"><%= @player_two.battle_party.monsters[2].current_hp.to_json %></p>
     
 
