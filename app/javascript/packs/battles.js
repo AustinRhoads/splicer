@@ -111,11 +111,14 @@ function tagIn(){
 
 function useAttack(){
 
+    var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
+    var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
+
     set_players();
 
-    if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 4 + player_two.monster.counter){
-        player_one.monster.hp -=   1;
-        player_two.monster.hp -=  1;
+    if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
+        two_hp -=  player_one.fast_attack.damage_points;
+        one_hp -=  player_two.monster.recoil;
 
         console.log("hit");
     
@@ -125,9 +128,12 @@ function useAttack(){
     };
 
 
-    console.log(player_one.monster.hp);
+    console.log(one_hp);
 
-    console.log(player_two.monster.hp);
+    console.log(two_hp);
+
+    document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
 
  
     set_hp();
