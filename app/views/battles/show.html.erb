@@ -5,7 +5,7 @@
 <h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 <% @player_one.battle_party.monsters.each_with_index do |monster, index| %>
     <% if index == 0 %>
-        <div class = "grid item_<%= index + 2 %> one_tagged_in"  >
+        <div class = "grid item_<%= index + 2 %> one_tagged_in" >
         <p hidden id = "monster" ><%= monster.to_json %></p>
         <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
         <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
@@ -15,7 +15,10 @@
         </div>
     <% else %>
 
-        <div class = "grid item_<%= index + 2 %>" value = <%= [:monster => monster, :fast_attack => monster.fast_attack, :charged_attack => monster.charged_attack].to_json %>>
+        <div class = "grid item_<%= index + 2 %>" >
+        <p hidden id = "monster" ><%= monster.to_json %></p>
+        <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
+        <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
              <h1 class = "hp monster_<%= index + 1 %>"></h1>
              <p><%= monster.name %></p>
              <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button>
@@ -25,14 +28,20 @@
 
 <% @player_two.battle_party.monsters.each_with_index do |monster, index| %>
     <% if index == 0 %>
-        <div class = "grid item_<%= index + 5 %> two_tagged_in" value = <%= [:monster => monster, :fast_attack => monster.fast_attack, :charged_attack => monster.charged_attack].to_json %>>
+        <div class = "grid item_<%= index + 5 %> two_tagged_in" >
+        <p hidden id = "monster" ><%= monster.to_json %></p>
+        <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
+        <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
         <h1 class = "hp monster_<%= index + 4 %>"></h1>
             <p><%= monster.name %></p>
             <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button>
         </div>
 
     <% else %>
-        <div class = "grid item_<%= index + 5 %>" value = <%= [:monster => monster, :fast_attack => monster.fast_attack, :charged_attack => monster.charged_attack].to_json %>>
+        <div class = "grid item_<%= index + 5 %>">
+        <p hidden id = "monster" ><%= monster.to_json %></p>
+        <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
+        <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
         <h1 class = "hp monster_<%= index + 4 %>"></h1>
             <p><%= monster.name %></p>
             <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button>
