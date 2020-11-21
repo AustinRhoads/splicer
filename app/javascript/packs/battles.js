@@ -92,19 +92,13 @@ function tagIn(){
  };
 
 
+ var player_one_monster = {};
+ var player_two_monster = {};
+
 
 function useAttack(){
-    var one_monster = JSON.parse(document.querySelector(".one_tagged_in p#monster").innerText);
-    var one_fast_attack = JSON.parse(document.querySelector(".one_tagged_in p#fast_attack").innerText);
-    var one_charged_attack = JSON.parse(document.querySelector(".one_tagged_in p#charged_attack").innerText);
+    set_players();
 
-    var player_one_monster = {monster : one_monster, fast_attack : one_fast_attack, charged_attack : one_charged_attack};
-
-    var two_monster = JSON.parse(document.querySelector(".two_tagged_in p#monster").innerText);
-    var two_fast_attack = JSON.parse(document.querySelector(".two_tagged_in p#fast_attack").innerText);
-    var two_charged_attack = JSON.parse(document.querySelector(".two_tagged_in p#charged_attack").innerText);
-
-    var player_two_monster = {monster : two_monster, fast_attack : two_fast_attack, charged_attack : two_charged_attack};
 
 console.log(player_one_monster.monster.name);
 
@@ -112,6 +106,22 @@ console.log(player_one_monster.monster.name);
 console.log(player_two_monster.monster.name);
 
 
+};
+
+
+
+function set_players(){
+   var one_monster = JSON.parse(document.querySelector(".one_tagged_in p#monster").innerText);
+   var one_fast_attack = JSON.parse(document.querySelector(".one_tagged_in p#fast_attack").innerText);
+   var one_charged_attack = JSON.parse(document.querySelector(".one_tagged_in p#charged_attack").innerText);
+
+    player_one_monster = {monster : one_monster, fast_attack : one_fast_attack, charged_attack : one_charged_attack};
+
+   var two_monster = JSON.parse(document.querySelector(".two_tagged_in p#monster").innerText);
+   var two_fast_attack = JSON.parse(document.querySelector(".two_tagged_in p#fast_attack").innerText);
+   var two_charged_attack = JSON.parse(document.querySelector(".two_tagged_in p#charged_attack").innerText);
+
+    player_two_monster = {monster : two_monster, fast_attack : two_fast_attack, charged_attack : two_charged_attack};
 };
 
 
