@@ -71,6 +71,7 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
  two_three_hp.textContent = playerTwoMonsterThreeHp; 
 set_players();
  set_hp();
+ charger_check();
 };
 
 
@@ -90,7 +91,7 @@ var button = document.querySelectorAll(".one_tagged_in button");
 
 function tagIn(){
     var buttons = document.querySelectorAll(".one_tagged_in button");
-    console.log(button);
+   
     buttons.forEach(function(el){
         el.classList.add("hide_button");
     });
@@ -102,10 +103,15 @@ function tagIn(){
   let temp = this.classList.toggle("one_tagged_in");
   
   var buttons = document.querySelectorAll(".one_tagged_in button");
+  /*
   buttons.forEach(function(el){
     el.classList.remove("hide_button");
 });
+*/
+  buttons[0].classList.remove("hide_button");
   buttons[0].addEventListener("click", useAttack);
+ 
+  charger_check();
  };
 
 
@@ -113,37 +119,58 @@ function tagIn(){
  var player_two = {};
  var one_tagged_in_hp = document.querySelector("div.one_tagged_in h1.hp");
  var two_tagged_in_hp = document.querySelector("div.two_tagged_in h1.hp");
-
+ var charger = 0;
 
 function useAttack(){
-
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
-
     set_players();
-
     if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
         two_hp -=  player_one.fast_attack.damage_points;
         one_hp -=  player_two.monster.recoil;
-
         console.log("hit");
-    
+        charger += 1
     } else {
         console.log("miss");
-
     };
-
-
-    console.log(one_hp);
-
-    console.log(two_hp);
-
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
-
- 
+    document.querySelector("div.one_tagged_in p#charger").textContent = charger;
+    charger_check();
     set_hp();
+};
 
+function useChargedAttack(){
+    var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
+    var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
+    set_players();
+    if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
+        two_hp -=  player_one.charged_attack.damage_points;
+        one_hp -=  player_two.monster.recoil;
+        console.log("hit");
+        
+    } else {
+        console.log("miss");
+    };
+    charger = 0;
+    document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("div.one_tagged_in p#charger").textContent = charger;
+    var button = document.querySelector(".one_tagged_in button.charged");
+    button.classList.add("hide_button");
+};
+
+
+
+function charger_check(){
+    var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
+    var button = document.querySelector(".one_tagged_in button.charged");
+if (charge_meter >= 15){
+   
+   console.log(button) 
+    button.classList.remove("hide_button");
+    button.addEventListener("click", useChargedAttack);
+};
 };
 
 /**/ 
@@ -166,6 +193,6 @@ function set_players(){
 };
 
 function set_hp(){
-console.log("here tit is");
+console.log("");
 };
 
