@@ -1,5 +1,5 @@
 <h1>Fight</h1>
-
+<h2 id = "hello">here i am</h2>
 
 <div class = "grid-container">
 <h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
@@ -12,6 +12,8 @@
             <h1 class = "hp monster_<%= index + 1 %>"></h1>
             <p><%= monster.name %></p>
             <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button>
+            <button type = "button" class = "charged attack" ><%= monster.charged_attack.name %></button>
+            <p hidden id = "charger"></p>
         </div>
     <% else %>
 
@@ -22,6 +24,8 @@
              <h1 class = "hp monster_<%= index + 1 %>"></h1>
              <p><%= monster.name %></p>
              <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button>
+             <button type = "button" class = "charged attack hide_button" ><%= monster.charged_attack.name %></button>
+             <p hidden id = "charger"></p>
         </div>
     <% end %>
 <% end %>
@@ -35,6 +39,8 @@
         <h1 class = "hp monster_<%= index + 4 %>"></h1>
             <p><%= monster.name %></p>
             <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button>
+            <button type = "button" class = "charged attack" ><%= monster.charged_attack.name %></button>
+            <p hidden id = "charger"></p>
         </div>
 
     <% else %>
@@ -44,7 +50,9 @@
         <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
         <h1 class = "hp monster_<%= index + 4 %>"></h1>
             <p><%= monster.name %></p>
-            <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button>
+            <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button><br>
+            <button type = "button" class = "charged attack hide_button" ><%= monster.charged_attack.name %></button>
+            <p hidden id = "charger"></p>
         </div>
     <% end %>
 <% end %>
@@ -99,3 +107,4 @@
 
 <%= javascript_pack_tag 'battles.js' %>
 <%= stylesheet_link_tag "battles.css" %>
+<script></script>

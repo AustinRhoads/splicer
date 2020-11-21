@@ -86,20 +86,26 @@ for(let x = 0; x < 3; x++){
 
 };
 
-var button = document.querySelector(".one_tagged_in button");
+var button = document.querySelectorAll(".one_tagged_in button");
 
 function tagIn(){
-    var button = document.querySelector(".one_tagged_in button");
-    button.classList.add("hide_button");
+    var buttons = document.querySelectorAll(".one_tagged_in button");
+    console.log(button);
+    buttons.forEach(function(el){
+        el.classList.add("hide_button");
+    });
+
   monsterBoxes.forEach(function(el){
       el.classList.remove("one_tagged_in");
 
   });
   let temp = this.classList.toggle("one_tagged_in");
   
-  var button = document.querySelector(".one_tagged_in button");
-  button.classList.remove("hide_button");
-  button.addEventListener("click", useAttack);
+  var buttons = document.querySelectorAll(".one_tagged_in button");
+  buttons.forEach(function(el){
+    el.classList.remove("hide_button");
+});
+  buttons[0].addEventListener("click", useAttack);
  };
 
 
