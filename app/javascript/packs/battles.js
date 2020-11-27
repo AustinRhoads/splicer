@@ -255,8 +255,11 @@ function declare_winner(){
     if (div == ones){
         var tester = "<% @player_one.gain_exp(#{winning_exp}) %>";
         var div_2 = document.querySelector("div.one_tagged_in");
+        var banner = document.querySelector("h2.item_1");
+        banner.textContent = "You Won!!!!!";
         
         div_2.classList.add("winner");
+
         
         console.log("You Won!")
     } else {

@@ -14,6 +14,12 @@ class Battle < ApplicationRecord
         @player_two ||= self.users.where(:npc => true).first
     end
 
-    
+    def winning_exp 
+        ((self.player_two.monsters[0].hp + self.player_two.monsters[1].hp + self.player_two.monsters[2].hp)/9) * self.player_two.level 
+    end
+
+    def losing_exp
+        self.player_one.level * 15 
+    end
 
 end
