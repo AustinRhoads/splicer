@@ -14,4 +14,6 @@ class Battle < ApplicationRecord
         @player_two ||= self.users.where(:npc => true).first
     end
 
+    
+
 end

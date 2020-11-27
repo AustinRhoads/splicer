@@ -59,6 +59,8 @@ var one_three_hp = document.querySelector("h1.hp.monster_3");
  one_two_hp.textContent = playerOneMonsterTwoHp; 
  one_three_hp.textContent = playerOneMonsterThreeHp; 
 
+
+var playerTwo = JSON.parse(document.querySelector("#playerTwoData").innerText);
 var playerTwoMonsterOneHp = JSON.parse(document.querySelector("#playerTwoMonsterOneHp").innerText);
 var playerTwoMonsterTwoHp = JSON.parse(document.querySelector("#playerTwoMonsterTwoHp").innerText);
 var playerTwoMonsterThreeHp = JSON.parse(document.querySelector("#playerTwoMonsterThreeHp").innerText);
@@ -69,8 +71,9 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
  two_one_hp.textContent = playerTwoMonsterOneHp; 
  two_two_hp.textContent = playerTwoMonsterTwoHp; 
  two_three_hp.textContent = playerTwoMonsterThreeHp; 
-set_players();
- set_hp();
+ var winning_exp = Math.ceil(((playerTwoMonsterOneHp + playerTwoMonsterTwoHp + playerTwoMonsterThreeHp)/9) * playerTwo["level"]);
+ console.log(winning_exp);
+ set_players();
  charger_check();
 };
 
@@ -83,35 +86,31 @@ var monsterBoxes = document.querySelectorAll("div.grid");
 
 for(let x = 0; x < 3; x++){
      monsterBoxes[x].addEventListener("click", tagIn);
-    
-
 };
 
-var button = document.querySelectorAll(".one_tagged_in button");
+
 
 function tagIn(){
     var buttons = document.querySelectorAll(".one_tagged_in button");
-   
-    buttons.forEach(function(el){
-        el.classList.add("hide_button");
-    });
+    
+        buttons.forEach(function(el){
+            el.classList.add("hide_button");
+        });
 
-  monsterBoxes.forEach(function(el){
-      el.classList.remove("one_tagged_in");
+      monsterBoxes.forEach(function(el){
+          el.classList.remove("one_tagged_in");
 
-  });
-  let temp = this.classList.toggle("one_tagged_in");
+      });
+
+     this.classList.add("one_tagged_in");
+    
+    var buttons = document.querySelectorAll(".one_tagged_in button");
+
+
+      buttons[0].classList.remove("hide_button");
+      buttons[0].addEventListener("click", useAttack);
   
-  var buttons = document.querySelectorAll(".one_tagged_in button");
-  /*
-  buttons.forEach(function(el){
-    el.classList.remove("hide_button");
-});
-*/
-  buttons[0].classList.remove("hide_button");
-  buttons[0].addEventListener("click", useAttack);
- 
-  charger_check();
+    charger_check();
  };
 
 
@@ -121,10 +120,14 @@ function tagIn(){
  var two_tagged_in_hp = document.querySelector("div.two_tagged_in h1.hp");
  var charger = 0;
 
+
+
+
 function useAttack(){
+    if(check_game_status() != "game over"){
+    set_players();
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
-    set_players();
     if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
         two_hp -=  player_one.fast_attack.damage_points;
         one_hp -=  player_two.monster.recoil;
@@ -137,28 +140,35 @@ function useAttack(){
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
     document.querySelector("div.one_tagged_in p#charger").textContent = charger;
     charger_check();
-    set_hp();
+    check_if_fainted();
+    
+};
 };
 
+
+
+
 function useChargedAttack(){
+    if (check_game_status() != "game over"){
+    set_players();
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
-    set_players();
-    if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
         two_hp -=  player_one.charged_attack.damage_points;
         one_hp -=  player_two.monster.recoil;
-        console.log("hit");
-        
-    } else {
-        console.log("miss");
-    };
     charger = 0;
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
     document.querySelector("div.one_tagged_in p#charger").textContent = charger;
     var button = document.querySelector(".one_tagged_in button.charged");
     button.classList.add("hide_button");
+    
+    check_if_fainted();
+    
+    };
 };
+
+
+
 
 
 
@@ -173,10 +183,13 @@ if (charge_meter >= 15){
 };
 };
 
+
+
+
 /**/ 
 
 function set_players(){
-
+    if (check_game_status() != "game over"){
    var playerOne = JSON.parse(document.querySelector("#playerOneData").innerText);
    var one_monster = JSON.parse(document.querySelector(".one_tagged_in p#monster").innerText);
    var one_fast_attack = JSON.parse(document.querySelector(".one_tagged_in p#fast_attack").innerText);
@@ -190,9 +203,63 @@ function set_players(){
    var two_charged_attack = JSON.parse(document.querySelector(".two_tagged_in p#charged_attack").innerText);
 
     player_two = {player : playerTwo, monster : two_monster, fast_attack : two_fast_attack, charged_attack : two_charged_attack};
+    };
 };
 
-function set_hp(){
-console.log("");
+
+
+function check_if_fainted() {
+    var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
+    var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
+    if (one_hp <= 0 ){
+       let div = document.querySelector("div.one_tagged_in");
+       div.parentNode.removeChild(div);
+       
+        if (document.querySelectorAll("div.onesy").length != 0){
+       document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
+       document.querySelector("div.one_tagged_in p#charger").textContent = 0;
+        };
+       
+    };
+    if (two_hp <= 0 ){
+       let div =  document.querySelector("div.two_tagged_in");
+       div.parentNode.removeChild(div);
+       
+        if(document.querySelectorAll("div.twosy").length != 0){
+            document.querySelectorAll("div.twosy")[0].classList.add("two_tagged_in");
+            document.querySelector("div.two_tagged_in p#charger").textContent = 0;
+        };
+    };
+    check_game_status();
 };
 
+
+
+
+function check_game_status(){
+        let ones = document.querySelectorAll("div.onesy").length;
+        let twos = document.querySelectorAll("div.twosy").length;
+    if(ones == 0 || twos == 0){
+        declare_winner();
+    return "game over";
+
+};
+};
+
+function declare_winner(){
+    let ones = document.querySelectorAll("div.onesy").length;
+    let twos = document.querySelectorAll("div.twosy").length;
+
+    div = Math.max(ones, twos);
+    
+    if (div == ones){
+        var tester = "<% @player_one.gain_exp(#{winning_exp}) %>";
+        var div_2 = document.querySelector("div.one_tagged_in");
+        
+        div_2.classList.add("winner");
+        
+        console.log("You Won!")
+    } else {
+        console.log("Good Effort!")
+    };
+};
