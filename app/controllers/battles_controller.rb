@@ -21,6 +21,7 @@ class BattlesController < ApplicationController
     @battle = Battle.new
     @user = current_user
     @battle_party = @user.battle_party
+   battle_ready
   end
 
 
@@ -72,10 +73,18 @@ class BattlesController < ApplicationController
     end
 
     def player_one_check
-      if current_user != @battle.player_one
+      if current_user != @battle.player_one 
         redirect_to user_path(current_user)
       end
     end
+
+    def battle_ready
+      if @user.monsters.count < 3
+        flash[:alert] = "You need at least three monsters to battle."
+        redirect_to user_path(@user)
+      end
+    end
+
   
     def battle_params
       params.require(:battle).permit(:level, :user_won)
