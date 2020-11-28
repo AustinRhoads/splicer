@@ -12,9 +12,7 @@ class BattlesController < ApplicationController
   def show
     @player_one = @battle.player_one
     @player_two = @battle.player_two
-    if current_user != @player_one
-      redirect_to user_path(current_user)
-    end
+    player_one_check
 
   end
 
@@ -47,7 +45,7 @@ class BattlesController < ApplicationController
   end
 
   def update
-
+    player_one_check
     @user = @battle.player_one
     if  ActiveModel::Type::Boolean.new.cast(battle_params[:user_won]) == true
       @points = @battle.winning_exp
@@ -73,6 +71,11 @@ class BattlesController < ApplicationController
       @battle = Battle.find(params[:id])
     end
 
+    def player_one_check
+      if current_user != @battle.player_one
+        redirect_to user_path(current_user)
+      end
+    end
   
     def battle_params
       params.require(:battle).permit(:level, :user_won)
