@@ -12,6 +12,9 @@ class BattlesController < ApplicationController
   def show
     @player_one = @battle.player_one
     @player_two = @battle.player_two
+    if current_user != @player_one
+      redirect_to user_path(current_user)
+    end
 
   end
 
@@ -44,15 +47,16 @@ class BattlesController < ApplicationController
   end
 
   def update
-  
+
+    @user = @battle.player_one
     if  ActiveModel::Type::Boolean.new.cast(battle_params[:user_won]) == true
       @points = @battle.winning_exp
     else
       @points = @battle.losing_exp
     end
-    
-    current_user.gain_experience(@points)
-    current_user.save
+
+    @user.gain_experience(@points)
+    @user.save
     @battle.update(battle_params)
     redirect_to user_path(current_user)
   end
