@@ -253,16 +253,26 @@ function declare_winner(){
     div = Math.max(ones, twos);
     
     if (div == ones){
-        var tester = "<% @player_one.gain_exp(#{winning_exp}) %>";
         var div_2 = document.querySelector("div.one_tagged_in");
         var banner = document.querySelector("h2.item_1");
         banner.textContent = "You Won!!!!!";
-        
+   
+        var user_won = document.querySelector("input#battle_user_won");
+        user_won.value = true;
+
         div_2.classList.add("winner");
 
         
-        console.log("You Won!")
+        console.log("You Won!");
     } else {
-        console.log("Good Effort!")
+        var banner = document.querySelector("h2.item_1");
+        banner.textContent = "Good Effort!";
+        console.log("Good Effort!");
     };
+
+
+    var leave = document.querySelector(".destroy");
+    leave.classList.add("hide_button");
+    var get_exp = document.querySelector(".get_exp");
+    get_exp.classList.remove("hide_button");
 };

@@ -24,6 +24,7 @@ class BattlesController < ApplicationController
 
 
   def edit
+    
   end
 
   def create
@@ -43,15 +44,17 @@ class BattlesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
-      if @battle.update(battle_params)
-        format.html { redirect_to @battle, notice: 'Battle was successfully updated.' }
-        format.json { render :show, status: :ok, location: @battle }
-      else
-        format.html { render :edit }
-        format.json { render json: @battle.errors, status: :unprocessable_entity }
-      end
+  
+    if  ActiveModel::Type::Boolean.new.cast(battle_params[:user_won]) == true
+      @points = @battle.winning_exp
+    else
+      @points = @battle.losing_exp
     end
+    
+    current_user.gain_experience(@points)
+    current_user.save
+    @battle.update(battle_params)
+    redirect_to user_path(current_user)
   end
 
   # DELETE /battles/1
@@ -68,6 +71,6 @@ class BattlesController < ApplicationController
 
   
     def battle_params
-      params.require(:battle).permit(:level)
+      params.require(:battle).permit(:level, :user_won)
     end
 end

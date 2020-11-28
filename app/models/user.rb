@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
     def gain_experience(exp)
         self.experience_points = self.experience_points + exp
+        self.enough_xp_for_level_up
     end
 
     def level_up

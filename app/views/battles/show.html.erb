@@ -59,7 +59,11 @@
 </div>
 
 <%= link_to "Leave Battle", "/battles/#{@battle.id}/destroy", class: "destroy" %>
-<%= link_to "claim experience points", edit_battle_path(@battle),  class: "get_exp hide_button" %>
+
+<%= form_for @battle, :url => { :action => "update" },  html: {class: "get_exp hide_button"}  do |f| %>
+<%= f.hidden_field :user_won %>
+<%= f.submit "Claim Experience Points" %>
+<% end %>
 
 
 <!-- javascript variables -->
