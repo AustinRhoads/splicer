@@ -114,6 +114,8 @@ function tagIn(){
       buttons[0].addEventListener("click", useAttack);
       charger_check();
     };
+
+    
      
  };
 
@@ -214,16 +216,17 @@ function set_players(){
 
 
 function check_if_fainted() {
+    if (check_game_status() == "game on"){
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if (one_hp <= 0 ){
        let div = document.querySelector("div.one_tagged_in");
        div.parentNode.removeChild(div);
        
-     /*  if(document.querySelectorAll("div.onesy").length != 0){ */
+       if(document.querySelectorAll("div.onesy").length != 0){ 
         document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
         document.querySelector("div.one_tagged_in p#charger").textContent = 0;
-        /*];*/ 
+       };
     };
     if (two_hp <= 0 ){
        let div =  document.querySelector("div.two_tagged_in");
@@ -235,7 +238,8 @@ function check_if_fainted() {
         };
      
     };
-    document.querySelectorAll("div.onesy")[0].click();
+};
+  
     check_game_status();
 };
 
@@ -249,6 +253,8 @@ function check_game_status(){
         declare_winner();
     return "game over";
 
+} else {
+    return "game on"
 };
 };
 
@@ -307,7 +313,7 @@ var npcCharger = 0;
 
 function npcUseAttack(){
     
-    if(check_game_status() != "game over"){
+    if(check_game_status() == "game on" && readyPlayerOne() == true){
     
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
@@ -317,6 +323,8 @@ function npcUseAttack(){
         console.log("hit");
         
         npcCharger += .5 + player_two.player.level/3;
+    } else if (check_game_status() == "game on" && readyPlayerOne() == false){
+        npcUseAttack();
     } else {
         console.log("miss");
     };
@@ -333,8 +341,8 @@ function npcUseAttack(){
 
 
 function npcUseChargedAttack(){
-    if (check_game_status() != "game over"){
-    set_players();
+    if (check_game_status() == "game on"){
+    
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
         one_hp -=  player_two.charged_attack.damage_points;
@@ -361,11 +369,11 @@ function npcUseChargedAttack(){
 
 function npc_charger_check(){
     var npc_charge_meter =  document.querySelector("div.two_tagged_in p#charger").textContent;
-    var button = document.querySelector(".two_tagged_in button.charged");
+   /* var button = document.querySelector(".two_tagged_in button.charged"); */
    
 if (npc_charge_meter >= (player_two.charged_attack.damage_points/6)){
-    button.classList.remove("hide_button");
-    button.addEventListener("click", npcUseChargedAttack);
+    
+     npcUseChargedAttack();
 };
 };
 
@@ -377,12 +385,20 @@ function npcFight() {         //  create a loop function
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
                                //  your code here
       npcUseAttack();
+      npc_charger_check();
                                 
       if (check_game_status() != "game over") {           //  if the counter < 10, call the loop function
         npcFight();             //  ..  again which will trigger another 
       }                       //  ..  setTimeout()
     }, 500)
   }
+
+  function readyPlayerOne(){
+    var one = document.querySelector("div.one_tagged_in");
+    return (one ? true:false);
+     
+  };
+
   
  
   
