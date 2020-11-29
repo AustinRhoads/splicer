@@ -226,6 +226,12 @@ function check_if_fainted() {
        if(document.querySelectorAll("div.onesy").length != 0){ 
         document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
         document.querySelector("div.one_tagged_in p#charger").textContent = 0;
+
+        var buttons = document.querySelectorAll(".one_tagged_in button");
+        buttons[0].classList.remove("hide_button");
+        buttons[0].addEventListener("click", useAttack);
+        charger_check();
+        
        };
     };
     if (two_hp <= 0 ){
@@ -341,7 +347,7 @@ function npcUseAttack(){
 
 
 function npcUseChargedAttack(){
-    if (check_game_status() == "game on"){
+    if (check_game_status() == "game on" && readyPlayerOne() == true){
     
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
@@ -355,6 +361,8 @@ function npcUseChargedAttack(){
     console.log("used charged attack");
     check_if_fainted();
     
+    } else if(check_game_status() == "game on" && readyPlayerOne() == false){
+        npcUseAttack();
     };
 };
 
