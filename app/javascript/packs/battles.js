@@ -75,6 +75,7 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
  console.log(winning_exp);
  set_players();
  charger_check();
+ npcFight();   
 };
 
 
@@ -99,18 +100,21 @@ function tagIn(){
 
       monsterBoxes.forEach(function(el){
           el.classList.remove("one_tagged_in");
+         
 
       });
 
      this.classList.add("one_tagged_in");
+
     
     var buttons = document.querySelectorAll(".one_tagged_in button");
 
-
+      if(buttons.length != 0){
       buttons[0].classList.remove("hide_button");
       buttons[0].addEventListener("click", useAttack);
-  
-    charger_check();
+      charger_check();
+    };
+     
  };
 
 
@@ -124,15 +128,17 @@ function tagIn(){
 
 
 function useAttack(){
+    
     if(check_game_status() != "game over"){
     set_players();
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
-        two_hp -=  player_one.fast_attack.damage_points;
+        two_hp -=  player_one.fast_attack.damage_points + player_one.monster.recoil;
         one_hp -=  player_two.monster.recoil;
         console.log("hit");
-        charger += 1
+        
+        charger += .5 + player_one.player.level/3;
     } else {
         console.log("miss");
     };
@@ -175,9 +181,8 @@ function useChargedAttack(){
 function charger_check(){
     var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
     var button = document.querySelector(".one_tagged_in button.charged");
-if (charge_meter >= 15){
    
-   console.log(button) 
+if (charge_meter >= (player_one.charged_attack.damage_points/6)){
     button.classList.remove("hide_button");
     button.addEventListener("click", useChargedAttack);
 };
@@ -215,11 +220,10 @@ function check_if_fainted() {
        let div = document.querySelector("div.one_tagged_in");
        div.parentNode.removeChild(div);
        
-        if (document.querySelectorAll("div.onesy").length != 0){
-       document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
-       document.querySelector("div.one_tagged_in p#charger").textContent = 0;
-        };
-       
+     /*  if(document.querySelectorAll("div.onesy").length != 0){ */
+        document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
+        document.querySelector("div.one_tagged_in p#charger").textContent = 0;
+        /*];*/ 
     };
     if (two_hp <= 0 ){
        let div =  document.querySelector("div.two_tagged_in");
@@ -229,7 +233,9 @@ function check_if_fainted() {
             document.querySelectorAll("div.twosy")[0].classList.add("two_tagged_in");
             document.querySelector("div.two_tagged_in p#charger").textContent = 0;
         };
+     
     };
+    document.querySelectorAll("div.onesy")[0].click();
     check_game_status();
 };
 
@@ -276,3 +282,107 @@ function declare_winner(){
     var get_exp = document.querySelector(".get_exp");
     get_exp.classList.remove("hide_button");
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* NPC BATTLE CODES */
+
+var npcCharger = 0;
+
+
+function npcUseAttack(){
+    
+    if(check_game_status() != "game over"){
+    
+    var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
+    var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
+    if( Math.floor(Math.random() * 21) + player_two.monster.attack >= 8 + player_one.monster.counter){
+        one_hp -=  player_two.fast_attack.damage_points + player_two.monster.recoil;
+        two_hp -=  player_one.monster.recoil;
+        console.log("hit");
+        
+        npcCharger += .5 + player_two.player.level/3;
+    } else {
+        console.log("miss");
+    };
+    document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("div.two_tagged_in p#charger").textContent = npcCharger;
+    npc_charger_check();
+    check_if_fainted();
+    
+};
+};
+
+
+
+
+function npcUseChargedAttack(){
+    if (check_game_status() != "game over"){
+    set_players();
+    var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
+    var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
+        one_hp -=  player_two.charged_attack.damage_points;
+        two_hp -=  player_one.monster.recoil;
+    npcCharger = 0;
+    document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("div.two_tagged_in p#charger").textContent = charger;
+ 
+    console.log("used charged attack");
+    check_if_fainted();
+    
+    };
+};
+
+                             
+
+
+
+
+
+
+
+
+function npc_charger_check(){
+    var npc_charge_meter =  document.querySelector("div.two_tagged_in p#charger").textContent;
+    var button = document.querySelector(".two_tagged_in button.charged");
+   
+if (npc_charge_meter >= (player_two.charged_attack.damage_points/6)){
+    button.classList.remove("hide_button");
+    button.addEventListener("click", npcUseChargedAttack);
+};
+};
+
+
+
+
+
+function npcFight() {         //  create a loop function
+    setTimeout(function() {   //  call a 3s setTimeout when the loop is called
+                               //  your code here
+      npcUseAttack();
+                                
+      if (check_game_status() != "game over") {           //  if the counter < 10, call the loop function
+        npcFight();             //  ..  again which will trigger another 
+      }                       //  ..  setTimeout()
+    }, 500)
+  }
+  
+ 
+  
