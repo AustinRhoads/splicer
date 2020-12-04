@@ -62,7 +62,9 @@ class Monster < ApplicationRecord
     end
 
     def set_hp
-       self.hp = (self.user.level * 100) + ((self.dexterity + self.counter) * 10) + (self.attack) + (5 * rand(1..20)) 
+        if self.hp == nil
+            self.hp = (self.user.level * 100) + ((self.dexterity + self.counter) * 10) + (self.attack) + (5 * rand(1..20)) 
+        end
     end
 
     def set_element

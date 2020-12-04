@@ -1,4 +1,5 @@
-<h1>Battle Party</h1>
+<h1 class = "headliner
+">Battle Party</h1>
 <table>
 <tr>
 <td>Name</td>
@@ -18,3 +19,27 @@
     <%= f.collection_check_boxes :monster_ids, current_user.monsters, :id, :name%><br>
     <%= f.submit "This is my battle party" %>
  <% end %>
+
+ <h2>Selected Battle Party</h2>
+ <div id = "selected_members"></div>
+
+ <h2>Your Entire Roster</h2>
+
+ <div class= "grid-wrapper">
+ <% current_user.monsters.each_with_index do |monster, index| %>
+ <div class = "grid member party_member_<%= index %>">
+ <%= monster.name %><br>
+ <%= monster.hp %><br>
+ <%= monster.element %><br>
+ <p hidden class = "data" id = "monster_<%= index %>"><%= monster.to_json %></p>
+ </div>
+ <% end %>
+</div>
+
+
+
+<p hidden id= "initial_battle_party"><%= @battle_party.monsters.to_json %></p>
+
+ <%= javascript_pack_tag 'battle_party.js' %>
+<%= stylesheet_link_tag "battle_party.css" %>
+

@@ -1,0 +1,44 @@
+.headliner{
+    background-color: darkcyan;
+}
+
+.grid-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    grid-auto-flow: row;
+    justify-content: center;
+}
+
+.member{
+    
+    text-align: center;
+}
+
+.selected{
+    background-color: rgb(7, 214, 0);
+}
+
+.swapable{
+    background-color: orangered;
+
+}
+
+#selected_members{
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-auto-flow: row;
+    justify-content: center;
+}
+
+.p_name{
+
+}
+
+.p_hp{
+
+}
+
+.p_element{
+
+}

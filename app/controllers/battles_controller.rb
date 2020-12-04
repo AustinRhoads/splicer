@@ -20,6 +20,7 @@ class BattlesController < ApplicationController
   def new
     @battle = Battle.new
     @user = current_user
+    @user.set_top_three_as_battle_party
     @battle_party = @user.battle_party
    battle_ready
   end

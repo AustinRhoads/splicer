@@ -20,7 +20,6 @@ class MonstersController < ApplicationController
   def create
     @monster = Monster.create(monster_params)
     if @monster.save
-      current_user.set_top_three_as_battle_party
       redirect_to monster_path(@monster)
     else
       redirect_to new_monster_path

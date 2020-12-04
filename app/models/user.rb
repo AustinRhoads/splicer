@@ -31,7 +31,10 @@ class User < ActiveRecord::Base
     end
 
     def set_top_three_as_battle_party
-        if self.monsters.count >= 3 && self.battle_party == nil
+        if self.monsters.count >= 3 
+                if self.battle_party != nil
+                    self.battle_party.delete
+                end
             battle_party = self.build_battle_party
             battle_party.monsters <<  self.monsters.sort_by {|monster| monster.hp}.reverse![0..2]
             battle_party.save

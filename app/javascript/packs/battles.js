@@ -1,51 +1,4 @@
-/*
-var playerOneMonsters = JSON.parse(document.querySelector("#playerOneMonsters").innerText);
 
-var playerOneMonsterOne = JSON.parse(document.querySelector("#playerOneMonsterOne").innerText);
-var playerOneMonsterOneSpecs = JSON.parse(document.querySelector("#playerOneMonsterOneSpecs").innerText);
-
-var playerOneMonsterOneFastAttack = JSON.parse(document.querySelector("#playerOneMonsterOneFastAttack").innerText);
-var playerOneMonsterOneChargedAttack = JSON.parse(document.querySelector("#playerOneMonsterOneChargedAttack").innerText);
-
-var playerOneMonsterTwo = JSON.parse(document.querySelector("#playerOneMonsterTwo").innerText);
-var playerOneMonsterTwoSpecs = JSON.parse(document.querySelector("#playerOneMonsterTwoSpecs").innerText);
-var playerOneMonsterTwoFastAttack = JSON.parse(document.querySelector("#playerOneMonsterTwoFastAttack").innerText);
-var playerOneMonsterTwoChargedAttack = JSON.parse(document.querySelector("#playerOneMonsterTwoChargedAttack").innerText);
-
-
-var playerOneMonsterThree = JSON.parse(document.querySelector("#playerOneMonsterThree").innerText);
-var playerOneMonsterThreeSpecs = JSON.parse(document.querySelector("#playerOneMonsterThreeSpecs").innerText);
-var playerOneMonsterThreeFastAttack = JSON.parse(document.querySelector("#playerOneMonsterThreeFastAttack").innerText);
-var playerOneMonsterThreeChargedAttack = JSON.parse(document.querySelector("#playerOneMonsterThreeChargedAttack").innerText);
-
-
-
-
-
-
-
-var playerTwoMonsters = JSON.parse(document.querySelector("#playerTwoMonsters").innerText);
-
-var playerTwoMonsterOne = JSON.parse(document.querySelector("#playerTwoMonsterOne").innerText);
-var playerTwoMonsterOneSpecs = JSON.parse(document.querySelector("#playerTwoMonsterOneSpecs").innerText);
-
-var playerTwoMonsterOneFastAttack = JSON.parse(document.querySelector("#playerTwoMonsterOneFastAttack").innerText);
-var playerTwoMonsterOneChargedAttack = JSON.parse(document.querySelector("#playerTwoMonsterOneChargedAttack").innerText);
-
-var playerTwoMonsterTwo = JSON.parse(document.querySelector("#playerTwoMonsterTwo").innerText);
-var playerTwoMonsterTwoSpecs = JSON.parse(document.querySelector("#playerTwoMonsterTwoSpecs").innerText);
-
-var playerTwoMonsterTwoFastAttack = JSON.parse(document.querySelector("#playerTwoMonsterTwoFastAttack").innerText);
-var playerTwoMonsterTwoChargedAttack = JSON.parse(document.querySelector("#playerTwoMonsterTwoChargedAttack").innerText);
-
-
-var playerTwoMonsterThree = JSON.parse(document.querySelector("#playerTwoMonsterThree").innerText);
-var playerTwoMonsterThreeSpecs = JSON.parse(document.querySelector("#playerTwoMonsterThreeSpecs").innerText);
-
-var playerTwoMonsterThreeFastAttack = JSON.parse(document.querySelector("#playerTwoMonsterThreeFastAttack").innerText);
-var playerTwoMonsterThreeChargedAttack = JSON.parse(document.querySelector("#playerTwoMonsterThreeChargedAttack").innerText);
-*/
- 
 window.onload = function(){
 var playerOneMonsterOneHp = JSON.parse(document.querySelector("#playerOneMonsterOneHp").innerText);
 var playerOneMonsterTwoHp = JSON.parse(document.querySelector("#playerOneMonsterTwoHp").innerText);
@@ -377,10 +330,8 @@ function npcUseChargedAttack(){
 
 function npc_charger_check(){
     var npc_charge_meter =  document.querySelector("div.two_tagged_in p#charger").textContent;
-   /* var button = document.querySelector(".two_tagged_in button.charged"); */
    
 if (npc_charge_meter >= (player_two.charged_attack.damage_points/6)){
-    
      npcUseChargedAttack();
 };
 };

@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 
 //=require battles.js
+//=require battle_party.js
 //= require jquery3
 //= require jquery_ujs
 //= require_tree 
