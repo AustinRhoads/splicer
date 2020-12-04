@@ -5,7 +5,8 @@ window.onload = function(){
     select_initial_battle_party();
     var div = document.querySelector("div#selected_members");
     div.lastChild.classList.add("swapable");
-
+    swapable_member();
+compile_div_names();
 };
 
 //defines all the members of your roster as the variable monsters
@@ -19,12 +20,18 @@ function select_member(){
     var div = document.querySelector("div#selected_members");
     var swap = document.querySelector("div#selected_members .swapable");
     var new_div = this.cloneNode(true);
-    new_div.classList.add("selected");
-    if(div.childElementCount < 3){
-    div.appendChild(new_div);
-    } else {
-     div.replaceChild(new_div, swap);
-     swapable_member();
+    var new_div_name = JSON.parse(new_div.querySelector("p.data").innerText)["name"];
+    console.log(new_div_name);
+    if(!compile_div_names().includes(new_div_name)){
+        new_div.classList.add("selected");
+        if(div.childElementCount < 3){
+        div.appendChild(new_div);
+        new_div.click();
+        } else {
+         div.replaceChild(new_div, swap);
+         swapable_member();
+         new_div.click();
+        };
     };
 };
 
@@ -76,3 +83,19 @@ function select_initial_battle_party(){
 //needs to show the current battle party up top
 //needs to select current battle party with one being 'changable'
 //selectmember must replace the swapable member
+
+
+function compile_div_names(){
+    var names = [];
+    var div_list = [];
+
+    var selects = document.querySelectorAll("div#selected_members div");
+    selects.forEach(el => div_list.push(JSON.parse(el.querySelector("p.data").innerText)));
+    
+    div_list.forEach(element => {
+        names.push(element["name"]); 
+    });
+    
+    return names;
+
+};

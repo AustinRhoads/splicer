@@ -17,6 +17,7 @@
 
 <%= form_for @battle_party, :url => "/users/#{current_user.id}/battle_parties/#{@battle_party.id}" do |f| %>
     <%= f.collection_check_boxes :monster_ids, current_user.monsters, :id, :name%><br>
+   
     <%= f.submit "This is my battle party" %>
  <% end %>
 
