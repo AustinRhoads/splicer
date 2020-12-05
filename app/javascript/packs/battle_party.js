@@ -1,27 +1,28 @@
 
 
-window.onload = function(){
 
+var monsters = document.querySelectorAll(".member");
     select_initial_battle_party();
     var div = document.querySelector("div#selected_members");
     div.lastChild.classList.add("swapable");
     swapable_member();
-compile_div_names();
-};
+
+
+
 
 //defines all the members of your roster as the variable monsters
 
-var monsters = document.querySelectorAll(".member");
 
 
-//redefines the div variable and swaps the swappable element with a clone of the selected element or builds
+
+//redefines the div variable, checks to see if selected is already on the list, and then swaps the swappable element with a clone of the selected element or builds the div up to three
 
 function select_member(){
     var div = document.querySelector("div#selected_members");
     var swap = document.querySelector("div#selected_members .swapable");
     var new_div = this.cloneNode(true);
+    new_div.querySelector("input").checked = true;
     var new_div_name = JSON.parse(new_div.querySelector("p.data").innerText)["name"];
-    console.log(new_div_name);
     if(!compile_div_names().includes(new_div_name)){
         new_div.classList.add("selected");
         if(div.childElementCount < 3){
@@ -48,24 +49,28 @@ function swapable_member(){
 
 };
 
-//reads the ruby objects set battle_party and parses it into a javascript object
 
-var initial_battle_party = JSON.parse(document.querySelector("#initial_battle_party").innerText);
 
 
 
 //creates an array of current users current battle party
-var names = [];
 
-initial_battle_party.forEach(element => {
-   names.push(element["name"]); 
-});
 
 
 //adds select_member as a click event
 //searches for the divs with the same name as the initial battle party
 
 function select_initial_battle_party(){
+
+//reads the ruby objects set battle_party and parses it into a javascript object
+
+var initial_battle_party = JSON.parse(document.querySelector("#initial_battle_party").innerText);
+
+    var names = [];
+
+initial_battle_party.forEach(element => {
+   names.push(element["name"]); 
+});
 
     for(let x = 0; x < monsters.length; x++ ){
         monsters[x].addEventListener("click", select_member)
@@ -85,6 +90,8 @@ function select_initial_battle_party(){
 //selectmember must replace the swapable member
 
 
+//creates an array of currently selected monsters names
+
 function compile_div_names(){
     var names = [];
     var div_list = [];
@@ -99,3 +106,8 @@ function compile_div_names(){
     return names;
 
 };
+
+
+
+
+// <!-- <%= f.collection_check_boxes :monster_ids, current_user.monsters, :id, :name%><br> -->

@@ -1,28 +1,20 @@
+<head>
+
+</head>
+
 <h1 class = "headliner
 ">Battle Party</h1>
-<table>
-<tr>
-<td>Name</td>
-<td>HP</td>
-<td>Element</td>
-</tr>
-    <% @battle_party.monsters.each do |m| %>
-        <tr>
-        <td><%= m.name %></td>
-        <td><%= m.hp %></td>
-        <td><%= m.element %></td>
-        </tr>
-    <% end %>
-</table>
+
 
 <%= form_for @battle_party, :url => "/users/#{current_user.id}/battle_parties/#{@battle_party.id}" do |f| %>
-    <%= f.collection_check_boxes :monster_ids, current_user.monsters, :id, :name%><br>
+
+    <h2>Selected Battle Party</h2>
+    <div id = "selected_members"></div>
    
     <%= f.submit "This is my battle party" %>
  <% end %>
 
- <h2>Selected Battle Party</h2>
- <div id = "selected_members"></div>
+
 
  <h2>Your Entire Roster</h2>
 
@@ -33,7 +25,10 @@
  <%= monster.hp %><br>
  <%= monster.element %><br>
  <p hidden class = "data" id = "monster_<%= index %>"><%= monster.to_json %></p>
+ 
+ <input type="checkbox" value=<%= monster.id %>  name="battle_party[monster_ids][]" id="battle_party_monster_ids_<%= monster.id %>" style="display:none;">
  </div>
+ 
  <% end %>
 </div>
 

@@ -8,11 +8,11 @@ class BattlePartiesController < ApplicationController
 
 
   def update
-
+    
         @battle_party = BattleParty.find_by(user_id: params[:user_id])
 
         @battle_party.update(battle_party_params)
-
+      
         if @battle_party.save
              redirect_to new_battle_path
         else
