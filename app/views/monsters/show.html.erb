@@ -1,13 +1,26 @@
-<h1><%= @monster.name.capitalize %></h1>
+<h1 class = "monster_name"><%= @monster.name.capitalize %></h1>
+<h3 class = "monster_element"><%= @monster.element %></h3>
 <h2>HP: <%= @monster.hp %></h2>
-<h2>Fast Attack: <%= @monster.fast_attack.name %> damage: <%= @monster.fast_attack.damage_points %> </h2>
-<h2>Charged Attack: <%= @monster.charged_attack.name %> damage: <%= @monster.charged_attack.damage_points %> </h2>
+
+
+<div id = "monster_stats">
 <% @monster.specs.each do |spec| %>
 <p><%= spec[0].capitalize %>: <%= spec[1] %></p>
 <% end %>
+</div>
 
+
+<div id = "fighting_stats">
+<h1 id = "section_head">Attacks</h1>
+<h3 id = "fa_title">Fast Attack:</h3>
+<h2 id = "fa_name"><%= @monster.fast_attack.name %></h2>
+<h2 id = "fa_damage"><%= @monster.fast_attack.damage_points %></h2>
+<h3 id = "ca_title">Charged Attack:</h3>
+<h2 id = "ca_name"><%= @monster.charged_attack.name %></h2>
+<h2 id = "ca_damage"><%= @monster.charged_attack.damage_points %></h2>
+</div>
 
 <%= link_to "Euthanize", "/monsters/#{@monster.id}/destroy", data: {confirm: "Are you sure you want to kill this creature whom you have frivolously given life to without concern for the moral implications?"} %>
 
-
+<%= stylesheet_link_tag "monster_show.css" %>
 

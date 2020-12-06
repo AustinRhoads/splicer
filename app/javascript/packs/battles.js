@@ -349,7 +349,7 @@ function npcFight() {         //  create a loop function
       if (check_game_status() != "game over") {           //  if the counter < 10, call the loop function
         npcFight();             //  ..  again which will trigger another 
       }                       //  ..  setTimeout()
-    }, 500)
+    }, 300)
   }
 
   function readyPlayerOne(){

@@ -6,6 +6,7 @@ class Monster < ApplicationRecord
     belongs_to :back
     belongs_to :fast_attack
     belongs_to :charged_attack
+    validates :name, :uniqueness => true
 
     before_save :specs
     before_save :set_hp
@@ -68,15 +69,16 @@ class Monster < ApplicationRecord
     end
 
     def set_element
-        self.element = self.head.element
+        parts = [self.head.element, self.arm.element, self.leg.element, self.back.element]
+        self.element = parts.max_by{|part| parts.count(part)} 
     end
 
     def set_fast_attack
-        self.fast_attack = FastAttack.find_by(:element => self.element )
+        self.fast_attack = FastAttack.all.select {|fa| fa.element == self.element}.sample
     end
 
     def set_charged_attack
-        self.charged_attack = ChargedAttack.find_by(:element => self.element )
+        self.charged_attack = ChargedAttack.all.select {|ca| ca.element == self.element}.sample
     end
     
 

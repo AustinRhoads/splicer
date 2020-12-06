@@ -1,0 +1,74 @@
+.monster_name{
+    text-align: center;
+}
+
+.monster_element{
+    text-align: center;
+}
+
+#monster_stats{
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-auto-flow: row;
+}
+
+#fighting_stats{
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#fighting_stats #section_head{
+    grid-column: 1/4;
+    grid-row: 1;
+    text-align: center;
+    
+}
+
+
+#fa_title{
+    grid-column: 1/4;
+    grid-row: 2;
+    text-align: left;
+}
+
+#fa_name{
+    grid-column: 1/4;
+    grid-row: 3;
+    text-align: left;
+    background-color: rgba(255, 68, 0, 0.459);
+
+}
+
+
+#fa_damage{
+    grid-column: 1/4;
+    grid-row: 3;
+    text-align: right;
+   
+
+}
+
+#ca_title{
+    grid-column: 1/4;
+    grid-row: 4;
+    text-align: left;
+
+}
+
+#ca_name{
+    grid-column: 1/4;
+    grid-row: 5;
+    text-align: left;
+    background-color: rgba(255, 68, 0, 0.459);
+
+}
+
+#ca_damage{
+    grid-column: 1/4;
+    grid-row: 5;
+    text-align: right;
+    
+
+}
+

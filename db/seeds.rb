@@ -54,18 +54,42 @@
 
 FAST_ATTACKS = [
 {:name => "Acid Rain", :damage_points => 5, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Water Jet", :damage_points => 6, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Bubble Pop", :damage_points => 12, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Dissolution", :damage_points => 7, :element => "water", :weakness_element => "air", :strength_element => "fire" },
 {:name => "Fire Ball", :damage_points => 5, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Plasma Cut", :damage_points => 8, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Volcanic Rift", :damage_points => 14, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Flamthrower", :damage_points => 10, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
 {:name => "Tackle", :damage_points => 5, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
-{:name => "Air Cut", :damage_points => 5, :element => "air", :weakness_element => "earth", :strength_element => "water" }
+{:name => "Stomp", :damage_points => 11, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Take The Grasshoper From My Hand", :damage_points => 12, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Dirt Slap", :damage_points => 6, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Air Cut", :damage_points => 5, :element => "air", :weakness_element => "earth", :strength_element => "water" },
+{:name => "Sky Dive", :damage_points => 7, :element => "air", :weakness_element => "earth", :strength_element => "water" },
+{:name => "Feather Fist", :damage_points => 14, :element => "air", :weakness_element => "earth", :strength_element => "water" },
+{:name => "Wind Tunnel", :damage_points => 7, :element => "air", :weakness_element => "earth", :strength_element => "water" }
 ]
 
 FAST_ATTACKS.each {|fast_a| FastAttack.create(fast_a).save} 
 
 CHARGED_ATTACKS = [
 {:name => "Tsunami Wall", :damage_points =>  99, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Vaporize", :damage_points =>  112, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Aqua Slap", :damage_points =>  110, :element => "water", :weakness_element => "air", :strength_element => "fire" },
+{:name => "Splash Back", :damage_points =>  111, :element => "water", :weakness_element => "air", :strength_element => "fire" },
 {:name => "Calcination", :damage_points => 89, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
-{:name => "Ground Quake", :damage_points => 88, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
-{:name => "Hurri-Pain", :damage_points => 75, :element => "air", :weakness_element => "earth", :strength_element => "water" }
+{:name => "Red Mercury", :damage_points => 111, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Oxyacetylene", :damage_points => 105, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Spontanious Combustion", :damage_points => 100, :element => "fire", :weakness_element => "water", :strength_element => "earth" },
+{:name => "Ground Quake", :damage_points => 108, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Body Slam", :damage_points => 115, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "CHA CHA CHA CHIA", :damage_points => 115, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Monolith of Doom", :damage_points => 100, :element => "earth", :weakness_element => "fire", :strength_element => "air" },
+{:name => "Hurri-Pain", :damage_points => 75, :element => "air", :weakness_element => "earth", :strength_element => "water" },
+{:name => "F-5", :damage_points => 99, :element => "air", :weakness_element => "earth", :strength_element => "water" },
+{:name => "Sonic Boom", :damage_points => 109, :element => "air", :weakness_element => "earth", :strength_element => "water" },
+{:name => "Smoke and Feathers", :damage_points => 107, :element => "air", :weakness_element => "earth", :strength_element => "water" }
 
 ]
 
