@@ -20,7 +20,7 @@ class BattlesController < ApplicationController
   def new
     @battle = Battle.new
     @user = current_user
-    if @user.battle_party == nil
+    if @user.battle_party == nil || @user.battle_party.monsters.count != 3 
       @user.set_top_three_as_battle_party
     end
     @battle_party = @user.battle_party

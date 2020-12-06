@@ -45,7 +45,14 @@ class MonstersController < ApplicationController
 
   def destroy
     @monster = Monster.find(params[:id])
+    if current_user.battle_party.monsters.include?(@monster)
+      @monster.destroy
+      current_user.set_top_three_as_battle_party
+    else
     @monster.destroy
+
+    end
+
     redirect_to user_path(current_user), notice: "#{@monster.name} has been euthinized"
   end
 

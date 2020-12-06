@@ -89,7 +89,7 @@ function useAttack(){
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
-        two_hp -=  player_one.fast_attack.damage_points + player_one.monster.recoil;
+        two_hp -=  player_one.fast_attack.damage_points + player_one.monster.recoil + (player_one.player.level/3);
         one_hp -=  player_two.monster.recoil;
         console.log("hit");
         
@@ -114,7 +114,7 @@ function useChargedAttack(){
     set_players();
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
-        two_hp -=  player_one.charged_attack.damage_points;
+        two_hp -=  player_one.charged_attack.damage_points + player_one.player.level;
         one_hp -=  player_two.monster.recoil;
     charger = 0;
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
@@ -277,7 +277,7 @@ function npcUseAttack(){
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if( Math.floor(Math.random() * 21) + player_two.monster.attack >= 8 + player_one.monster.counter){
-        one_hp -=  player_two.fast_attack.damage_points + player_two.monster.recoil;
+        one_hp -=  player_two.fast_attack.damage_points + player_two.monster.recoil + (player_two.player.level/3);
         two_hp -=  player_one.monster.recoil;
         console.log("hit");
         
@@ -304,7 +304,7 @@ function npcUseChargedAttack(){
     
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
-        one_hp -=  player_two.charged_attack.damage_points;
+        one_hp -=  player_two.charged_attack.damage_points + player_two.player.level;
         two_hp -=  player_one.monster.recoil;
     npcCharger = 0;
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;

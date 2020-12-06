@@ -4,6 +4,7 @@ class BattlePartiesController < ApplicationController
 
   def edit
     @battle_party = BattleParty.find_by(user_id: params[:user_id])
+    
   end
 
 
