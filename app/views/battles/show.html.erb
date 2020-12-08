@@ -16,6 +16,9 @@
             <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button><br>
             <button type = "button" class = "charged attack hide_button" ><%= monster.charged_attack.name %></button>
             <p hidden id = "charger"></p>
+            <div id = "my_progress">
+            <div id = "my_bar"></div>
+        </div>
         </div>
     <% else %>
 
@@ -28,6 +31,9 @@
              <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button><br>
              <button type = "button" class = "charged attack hide_button" ><%= monster.charged_attack.name %></button>
              <p hidden id = "charger"></p>
+             <div id = "my_progress">
+             <div id = "my_bar"></div>
+         </div>
         </div>
     <% end %>
 <% end %>
@@ -43,6 +49,7 @@
             <button type = "button" class = "quick attack " ><%= monster.fast_attack.name %></button><br>
             <button type = "button" class = "charged attack hide_button" ><%= monster.charged_attack.name %></button>
             <p hidden id = "charger"></p>
+         
         </div>
 
     <% else %>

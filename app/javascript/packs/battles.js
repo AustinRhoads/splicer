@@ -89,10 +89,9 @@ function useAttack(){
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if( Math.floor(Math.random() * 21) + player_one.monster.attack >= 8 + player_two.monster.counter){
-        two_hp -=  player_one.fast_attack.damage_points + player_one.monster.recoil + (player_one.player.level/3);
+        two_hp -=  player_one.fast_attack.damage_points + player_one.monster.recoil + Math.floor(player_one.player.level/3);
         one_hp -=  player_two.monster.recoil;
         console.log("hit");
-        
         charger += .5 + player_one.player.level/3;
     } else {
         console.log("miss");
@@ -136,7 +135,15 @@ function useChargedAttack(){
 function charger_check(){
     var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
     var button = document.querySelector(".one_tagged_in button.charged");
-   
+    var elem = document.getElementById("my_bar");
+    var width = Math.floor((charge_meter * 100)/(player_one.charged_attack.damage_points/6));
+    if (width <= 100){
+    elem.style.width = width + "%"
+    elem.innerText = width + "%";
+    };
+
+
+
 if (charge_meter >= (player_one.charged_attack.damage_points/6)){
     button.classList.remove("hide_button");
     button.addEventListener("click", useChargedAttack);
@@ -277,7 +284,7 @@ function npcUseAttack(){
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if( Math.floor(Math.random() * 21) + player_two.monster.attack >= 8 + player_one.monster.counter){
-        one_hp -=  player_two.fast_attack.damage_points + player_two.monster.recoil + (player_two.player.level/3);
+        one_hp -=  player_two.fast_attack.damage_points + player_two.monster.recoil + Math.floor(player_two.player.level/3);
         two_hp -=  player_one.monster.recoil;
         console.log("hit");
         
@@ -349,7 +356,7 @@ function npcFight() {         //  create a loop function
       if (check_game_status() != "game over") {           //  if the counter < 10, call the loop function
         npcFight();             //  ..  again which will trigger another 
       }                       //  ..  setTimeout()
-    }, 300)
+    }, 270)
   }
 
   function readyPlayerOne(){

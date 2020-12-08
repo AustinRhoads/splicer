@@ -6,7 +6,8 @@ class Monster < ApplicationRecord
     belongs_to :back
     belongs_to :fast_attack
     belongs_to :charged_attack
-    validates :name, :uniqueness => true
+    validates :name, :uniqueness => { message: "The name %{value} is already taken. Try being original."}
+    validates :name, :presence => { message: "Name you beast."}
 
     before_save :specs
     before_save :set_hp

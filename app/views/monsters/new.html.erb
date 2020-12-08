@@ -1,3 +1,18 @@
 <h1>Welcome to the gene splicing lab! Muahahaha</h1>
+<% if flash[:alert] %>
+
+<p class = "flash_alert" ><%= flash[:alert] %></p>
+<% end %>
+
+<% if @monster.errors.any? %>
+<% binding.pry %>
+    <h2>Bad Batch Of Genes</h2>
+    <ul>
+        <% @monster.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+    </ul>
+<% end %>
 
 <%= render 'form' %>
+<%= stylesheet_link_tag "monster_new.css" %>

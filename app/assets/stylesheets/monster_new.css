@@ -1,0 +1,6 @@
+.flash_alert{
+    background-color: pink;
+    color: red;
+    border-radius: 25px;
+    display:inline-block;
+}

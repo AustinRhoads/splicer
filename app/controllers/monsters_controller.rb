@@ -1,5 +1,6 @@
 class MonstersController < ApplicationController
   before_action :check_login
+  
   def index
     @monsters = Monster.all
   end
@@ -18,10 +19,18 @@ class MonstersController < ApplicationController
   end
 
   def create
-    @monster = Monster.create(monster_params)
+    @@errors = ""
+    @monster = Monster.new(monster_params)
     if @monster.save
       redirect_to monster_path(@monster)
     else
+      @monster.errors.full_messages.each do |msg|
+        msg = msg.split(" ")
+        msg.shift()
+        msg = msg.join(" ")
+        flash[:alert] = "   " + msg + "   "
+      end
+
       redirect_to new_monster_path
     end
   end
