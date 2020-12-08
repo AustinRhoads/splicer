@@ -11,6 +11,7 @@ class Monster < ApplicationRecord
 
     validates :name, :uniqueness => { message: "The name %{value} is already taken. Try being original."}
     validates :name, :presence => { message: "Name you beast."}
+    #validates :image, :presence => true
 
     before_save :specs
     before_save :set_hp
@@ -34,29 +35,7 @@ class Monster < ApplicationRecord
       self.recoil = self.head.recoil + self.arm.recoil + self.leg.recoil + self.back.recoil
       {:dexterity => self.dexterity, :attack => self.attack, :defense => self.counter, :speed => self.speed, :recoil => self.recoil}
     end
-
-
-
-    def use_fast_attack(opponent)
-        if rand(1..20) + self.attack >= 10 + opponent.counter 
-            opponent.current_hp -= self.fast_attack.damage_points
-            self.current_hp -= opponent.recoil
-        else
-            self.current_hp -= opponent.recoil
-        end
-        self.charger += 1
-    end
-
-    def use_charged_attack(opponent)
-        if (rand(1..20) + self.attack >= 10 + opponent.counter ) && self.charged? == true
-            opponent.current_hp -= self.charged_attack.damage_points
-            self.current_hp -= opponent.recoil
-        else
-            opponent.current_hp -= (self.charged_attack.damage_points * 0.5)
-            self.current_hp -= opponent.recoil
-        end
-        self.charger = 0
-    end
+    
 
     def charged?
         if self.charger >= 15
@@ -87,3 +66,34 @@ class Monster < ApplicationRecord
     
 
 end
+
+
+
+
+
+
+
+
+
+#notes
+
+#    def use_fast_attack(opponent)
+#        if rand(1..20) + self.attack >= 10 + opponent.counter 
+#            opponent.current_hp -= self.fast_attack.damage_points
+#            self.current_hp -= opponent.recoil
+#        else
+#            self.current_hp -= opponent.recoil
+#        end
+#        self.charger += 1
+#    end
+#
+#    def use_charged_attack(opponent)
+#        if (rand(1..20) + self.attack >= 10 + opponent.counter ) && self.charged? == true
+#            opponent.current_hp -= self.charged_attack.damage_points
+#            self.current_hp -= opponent.recoil
+#        else
+#            opponent.current_hp -= (self.charged_attack.damage_points * 0.5)
+#            self.current_hp -= opponent.recoil
+#        end
+#        self.charger = 0
+#    end

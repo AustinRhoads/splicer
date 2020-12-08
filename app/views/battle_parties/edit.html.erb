@@ -2,16 +2,16 @@
 
 </head>
 
-<h1 class = "headliner
-">Battle Party</h1>
+<h1 class = "headliner">Battle Party</h1>
 
 
 <%= form_for @battle_party, :url => "/users/#{current_user.id}/battle_parties/#{@battle_party.id}" do |f| %>
 
     <h2>Selected Battle Party</h2>
     <div id = "selected_members"></div>
-   
-    <%= f.submit "This is my battle party" %>
+   <div class = "button_holder">
+    <%= f.submit "This is my battle party", :class => "pretty_button" %>
+    </div>
  <% end %>
 
 
@@ -20,12 +20,15 @@
 
  <div class= "grid-wrapper">
  <% current_user.monsters.each_with_index do |monster, index| %>
- <div class = "grid member party_member_<%= index %>">
+ <div class = "grid member party_member_<%= index %>"  >
+ <% if monster.image.attached? %>
+<%= image_tag(monster.image, :class => "roster_image")%>
+<% end %>
  <%= monster.name %><br>
  <%= monster.hp %><br>
  <%= monster.element %><br>
  <p hidden class = "data" id = "monster_<%= index %>"><%= monster.to_json %></p>
- 
+
  <input type="checkbox" value=<%= monster.id %>  name="battle_party[monster_ids][]" id="battle_party_monster_ids_<%= monster.id %>" style="display:none;">
  </div>
  
