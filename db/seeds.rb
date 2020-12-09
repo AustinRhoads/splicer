@@ -24,6 +24,24 @@
 
     HEADS.each {|head| Head.create(head)}
 
+
+    ta_head = Head.find_by(:name => "Taurac Head")
+    ta_head.image.attach(
+        io: File.open("app/assets/images/tauracs_head.png"),
+        filename: "nw.png"
+    )
+    ta_head.save
+
+    tr_head = Head.find_by(:name => "Trogbyte Head")
+    tr_head.image.attach(
+        io: File.open("app/assets/images/Trog_head.png"),
+        filename: "nw.png"
+    )
+    tr_head.save
+
+  
+
+
     ARMS = [
         {:name => "Dactys Claws", :element => "air", :dexterity => 2, :attack => 0, :counter => 0, :recoil => 0, :speed => 2},
         {:name => "Taurac Stompers", :element => "earth", :dexterity => 1, :attack => 3, :counter => 2, :recoil => 0, :speed => 1},
@@ -33,6 +51,23 @@
 
     ARMS.each {|arm| Arm.create(arm)}
 
+    ta_arms = Arm.find_by(:name => "Taurac Stompers")
+    ta_arms.image.attach(
+        io: File.open("app/assets/images/taurac_arms.png"),
+        filename: "nw.png"
+    )
+    ta_arms.save
+
+    tr_arms = Arm.find_by(:name => "Trogbyte Hooks")
+    tr_arms.image.attach(
+        io: File.open("app/assets/images/trog_arms.png"),
+        filename: "nw.png"
+    )
+    tr_arms.save
+
+    
+    #, :image => "taurac_arms.png"
+#, :image => "trog_arms.png"
     LEGS = [
         {:name => "Dactys Talons", :element => "air", :dexterity => 2, :attack => 2, :counter => 1, :recoil => 0, :speed => 2},
         {:name => "Taurac Stompers", :element => "earth", :dexterity => 1, :attack => 3, :counter => 1, :recoil => 0, :speed => 1},
@@ -42,6 +77,23 @@
 
     LEGS.each  {|leg| Leg.create(leg)}
 
+    ta_legs = Leg.find_by(:name => "Taurac Stompers")
+    ta_legs.image.attach(
+        io: File.open("app/assets/images/tauracs_legs.png"),
+        filename: "nw.png"
+    )
+    ta_legs.save
+
+    tr_legs = Leg.find_by(:name => "Trogbyte Crawlers")
+    tr_legs.image.attach(
+        io: File.open("app/assets/images/trog_legs.png"),
+        filename: "nw.png"
+    )
+    tr_legs.save
+
+#, :image => "tauracs_legs.png"
+    #, :image => "trog_legs.png"
+
     BACKS = [
         {:name => "Dactys wings", :element => "air", :dexterity => 2, :attack => 1, :counter => 0, :recoil => 0, :speed => 1},
         {:name => "shell", :element => "earth", :dexterity => 1, :attack => 1, :counter => 2, :recoil => 0, :speed => 0},
@@ -50,6 +102,24 @@
     ]
 
     BACKS.each {|back| Back.create(back)}
+
+    ta_back = Back.find_by(:name => "shell")
+    ta_back.image.attach(
+        io: File.open("app/assets/images/tauracs_back.png"),
+        filename: "nw.png"
+    )
+    ta_back.save
+
+    tr_back = Back.find_by(:name => "spikes")
+    tr_back.image.attach(
+        io: File.open("app/assets/images/trog_back.png"),
+        filename: "nw.png"
+    )
+    tr_back.save
+
+#, :image => "tauracs_back.png"
+#, :image => "trog_back.png"
+
 
 
 FAST_ATTACKS = [

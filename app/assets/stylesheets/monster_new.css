@@ -4,3 +4,90 @@
     border-radius: 25px;
     display:inline-block;
 }
+
+.avatar_grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.avatar_form{
+    grid-column: 1;
+    grid-row: 1/4;
+    text-align: center;
+}
+
+.avatar_show{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    text-align: center;
+    justify-content: center;
+ 
+}
+
+.avatar_head_2{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+    z-index: 100;
+}
+.avatar_head_3{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+    z-index: 100;
+}
+
+
+
+.avatar_arms_2{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+}
+.avatar_arms_3{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+}
+
+.avatar_legs_2{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+}
+.avatar_legs_3{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+}
+
+.avatar_back_2{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+    z-index: -1;
+}
+.avatar_back_3{
+    grid-column: 2/4;
+    grid-row: 1/2;
+    max-width:100%;
+    max-height:100%;
+    z-index: -1;
+}
+
+img{
+    width: 100%;
+    height: auto;
+}
+
+.hide_img{
+    display: none;
+}

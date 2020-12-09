@@ -1,5 +1,6 @@
 .headliner{
     background-color: darkcyan;
+
 }
 
 .grid-wrapper{
@@ -52,8 +53,8 @@ input.pretty_button{
     justify-content: center;
     text-align: center;
     font-size: 18px;
-    color: rgb(43, 62, 233);
-    text-shadow: 1px 1px rgb(173, 214, 250);
+    color: rgb(232, 234, 248);
+   
     border: solid rgb(43, 62, 233) 3px;
     background-color: rgb(59, 173, 145);
     cursor: pointer;
