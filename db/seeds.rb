@@ -31,8 +31,6 @@
     )
     da_head.save
 
-
-
     ta_head = Head.find_by(:name => "Taurac Head")
     ta_head.image.attach(
         io: File.open("app/assets/images/tauracs_head.png"),

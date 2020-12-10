@@ -54,7 +54,7 @@ class MonstersController < ApplicationController
 
   def destroy
     @monster = Monster.find(params[:id])
-    if current_user.battle_party.monsters.include?(@monster)
+    if current_user.battle_party && current_user.battle_party.monsters.include?(@monster)
       @monster.destroy
       current_user.set_top_three_as_battle_party
     else

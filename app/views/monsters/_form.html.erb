@@ -10,24 +10,24 @@
 
 <div class = "field" >
 <p>Choose the creature's head</p>
-    <%= f.collection_select :head_id, @heads, :id, :name %>
+    <%= f.collection_select :head_id, @heads, :id, :name,{include_blank: 'Select a gene sequence'}%>
 </div>
 
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 <div class = "field" >
 <p>Choose the creature's arms</p>
-    <%= f.collection_select :arm_id, @arms, :id, :name %>
+    <%= f.collection_select :arm_id, @arms, :id, :name,{include_blank: 'Select a gene sequence'} %>
 </div>
 
 <div class = "field" >
 <p>Choose the creature's legs</p>
-    <%= f.collection_select :leg_id, @legs, :id, :name %>
+    <%= f.collection_select :leg_id, @legs, :id, :name,{include_blank: 'Select a gene sequence'} %>
 </div>
 
 <div class = "field" >
 <p>Choose the creature's backside</p>
-    <%= f.collection_select :back_id, @backs, :id, :name %>
+    <%= f.collection_select :back_id, @backs, :id, :name,{include_blank: 'Select a gene sequence'} %>
 </div>
 <br>
 
