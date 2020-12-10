@@ -24,6 +24,14 @@
 
     HEADS.each {|head| Head.create(head)}
 
+    da_head = Head.find_by(:name => "Dactys Head")
+    da_head.image.attach(
+        io: File.open("app/assets/images/dactys_head.png"),
+        filename: "nw.png"
+    )
+    da_head.save
+
+
 
     ta_head = Head.find_by(:name => "Taurac Head")
     ta_head.image.attach(
@@ -51,6 +59,13 @@
 
     ARMS.each {|arm| Arm.create(arm)}
 
+    da_arms = Arm.find_by(:name => "Dactys Claws")
+    da_arms.image.attach(
+        io: File.open("app/assets/images/dactys_arms.png"),
+        filename: "nw.png"
+    )
+    da_arms.save
+
     ta_arms = Arm.find_by(:name => "Taurac Stompers")
     ta_arms.image.attach(
         io: File.open("app/assets/images/taurac_arms.png"),
@@ -77,6 +92,13 @@
 
     LEGS.each  {|leg| Leg.create(leg)}
 
+    da_legs = Leg.find_by(:name => "Dactys Talons")
+    da_legs.image.attach(
+        io: File.open("app/assets/images/dactys_legs.png"),
+        filename: "nw.png"
+    )
+    da_legs.save
+
     ta_legs = Leg.find_by(:name => "Taurac Stompers")
     ta_legs.image.attach(
         io: File.open("app/assets/images/tauracs_legs.png"),
@@ -102,6 +124,13 @@
     ]
 
     BACKS.each {|back| Back.create(back)}
+
+    da_back = Back.find_by(:name =>  "Dactys wings")
+    da_back.image.attach(
+        io: File.open("app/assets/images/dactys_back.png"),
+        filename: "nw.png"
+    )
+    da_back.save
 
     ta_back = Back.find_by(:name => "shell")
     ta_back.image.attach(
