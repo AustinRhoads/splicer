@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_08_042830) do
+ActiveRecord::Schema.define(version: 2020_12_10_201123) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 2020_12_08_042830) do
     t.integer "battle_party_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "image"
     t.index ["arm_id"], name: "index_monsters_on_arm_id"
     t.index ["back_id"], name: "index_monsters_on_back_id"
     t.index ["charged_attack_id"], name: "index_monsters_on_charged_attack_id"

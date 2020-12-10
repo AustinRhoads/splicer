@@ -96,14 +96,15 @@ function show_back(){
 
 };
 
-const new_button = document.querySelector("#new_btn");
+
 var my_canvas = document.querySelector("#my_canvas");
 var ctx = my_canvas.getContext("2d");
 const grid = document.querySelector(".avatar_grid");
 var other_canvas = document.querySelector("#other_canvas");
 var ctx_2 = other_canvas.getContext("2d");
 
-new_button.addEventListener("click", crisper());
+
+
 
 function crisper(){
     ctx.clearRect(0, 0, my_canvas.width, my_canvas.height);
@@ -146,7 +147,7 @@ function hi_res_draw(img){
         my_canvas.height = c1.height/2;
    //     ctx.drawImage(images_back,0,0,250,167);
     ctx.drawImage(c1, 0,0, c1.width, c1.height, 0, 0,  my_canvas.width, my_canvas.height);
-console.log(img);
+
 };
 
 
@@ -161,6 +162,29 @@ function scaleIt(source,scaleFactor){
   ctx.drawImage(source,0,0,w,h);
   return(c);
 }
+
+var new_button = document.querySelector("#new_btn");
+new_button.addEventListener("click", image_printer);
+document.getElementById('create-drawing').addEventListener('click', image_printer);
+
+
+function image_printer(){
+    const dataURI = other_canvas.toDataURL("image/png");
+    var dataImg = document.createElement('img');
+    dataImg.src = dataURI;
+ //   console.log(dataURI);
+    
+    var drawingField = document.createElement('div');
+    drawingField.innerHTML = "<input type='hidden' name='monster[image]' id='monster_image' value='" + dataImg.src + "'>" ;
+    document.getElementById('monster_image').value = dataURI;
+  // var mi = document.getElementById('monster_image').value = dataURI;
+
+    
+};
+
+
+
+
 
 
 

@@ -1,4 +1,6 @@
 class Monster < ApplicationRecord
+
+    attr_accessor :remote_image_url
     belongs_to :user
     belongs_to :head
     belongs_to :arm
@@ -7,7 +9,7 @@ class Monster < ApplicationRecord
     belongs_to :fast_attack
     belongs_to :charged_attack
     has_one_attached :image
-
+    mount_base64_uploader :image, ImageUploader
 
     validates :name, :uniqueness => { message: "The name %{value} is already taken. Try being original."}
     validates :name, :presence => { message: "Name you beast."}
@@ -58,10 +60,12 @@ class Monster < ApplicationRecord
 
     def set_fast_attack
         self.fast_attack = FastAttack.all.select {|fa| fa.element == self.element}.sample
+        
     end
 
     def set_charged_attack
         self.charged_attack = ChargedAttack.all.select {|ca| ca.element == self.element}.sample
+        
     end
     
 

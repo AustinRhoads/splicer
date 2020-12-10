@@ -1,9 +1,11 @@
 <h1 class = "monster_name"><%= @monster.name.capitalize %></h1>
 <h3 class = "monster_element"><%= @monster.element %></h3>
+<div class = "monster_display">
+    <%  if @monster.image? %>
+     <%= image_tag @monster.image_url(:large), :class => "monster_image" %>
+    <% end %>
+</div>
 
-<% if @monster.image.attached? %>
-<%= image_tag(@monster.image) %>
-<% end %>
 
 <h2>HP: <%= @monster.hp %></h2>
 
