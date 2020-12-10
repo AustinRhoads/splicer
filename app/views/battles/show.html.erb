@@ -7,7 +7,7 @@
 <h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 <% @player_one.battle_party.monsters.each_with_index do |monster, index| %>
     <% if index == 0 %>
-        <div class = "onesy grid item_<%= index + 2 %> one_tagged_in" >
+        <div class = "onesy grid item_<%= index + 2 %> one_tagged_in" style="background-image: url(<% monster.image_url(:medium) %>);">
             <p hidden id = "monster" ><%= monster.to_json %></p>
             <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
             <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>

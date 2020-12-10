@@ -19,7 +19,6 @@ class MonstersController < ApplicationController
   end
 
   def create
-    binding.pry
     @@errors = ""
     @monster = Monster.new(monster_params)
     if @monster.save

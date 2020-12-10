@@ -21,8 +21,8 @@
  <div class= "grid-wrapper">
  <% current_user.monsters.each_with_index do |monster, index| %>
  <div class = "grid member party_member_<%= index %>"  >
- <% if monster.image.attached? %>
-<%= image_tag(monster.image, :class => "roster_image")%>
+ <% if monster.image? %>
+<%= image_tag(monster.image_url(:thumb), :class => "roster_image")%>
 <% end %>
  <%= monster.name %><br>
  <%= monster.hp %><br>
