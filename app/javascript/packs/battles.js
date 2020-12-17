@@ -25,12 +25,27 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
  two_two_hp.textContent = playerTwoMonsterTwoHp; 
  two_three_hp.textContent = playerTwoMonsterThreeHp; 
  var winning_exp = Math.ceil(((playerTwoMonsterOneHp + playerTwoMonsterTwoHp + playerTwoMonsterThreeHp)/9) * playerTwo["level"]);
- console.log(winning_exp);
+ 
+
+ var monsterBoxes = document.querySelectorAll("div.grid");
+
+ for(let x = 0; x < 3; x++){
+      monsterBoxes[x].addEventListener("click", tagIn);
+ };
+
+
+var goodGuys = document.querySelectorAll("div.onesy");
+
+
+ var elem = goodGuys[0];
+ console.log(elem);
+ elem.click();
+
  set_players();
  charger_check();
- npcFight();   
-};
+ //npcFight();   
 
+};
 
 
 
@@ -38,35 +53,67 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
 
 var monsterBoxes = document.querySelectorAll("div.grid");
 
-for(let x = 0; x < 3; x++){
-     monsterBoxes[x].addEventListener("click", tagIn);
-};
-
-
 
 function tagIn(){
-    var buttons = document.querySelectorAll(".one_tagged_in button");
+    var old_div = document.querySelector(".one_tagged_in");
+
+    if(old_div){
+     old_div.parentElement.removeChild(old_div);
+    }
+
+    var arena = document.querySelector("div.arena");
+    var new_div = this.cloneNode(true);
     
-        buttons.forEach(function(el){
-            el.classList.add("hide_button");
-        });
-
-      monsterBoxes.forEach(function(el){
-          el.classList.remove("one_tagged_in");
-         
-
-      });
-
-     this.classList.add("one_tagged_in");
+    new_div.classList.remove("onesy");
+    new_div.style.height = "400px";
+    new_div.classList.add("in_the_ring");
+    new_div.classList.add("one_tagged_in");
+    new_div.querySelector(".monster_image").classList.remove("hide_button");
+    new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
+    arena.appendChild(new_div);
 
     
     var buttons = document.querySelectorAll(".one_tagged_in button");
-
-      if(buttons.length != 0){
-      buttons[0].classList.remove("hide_button");
-      buttons[0].addEventListener("click", useAttack);
-      charger_check();
-    };
+//    var images = document.querySelectorAll(".monster_image");
+//    var thumb_images = document.querySelectorAll(".monster_image_thumb");
+//
+//
+//    thumb_images.forEach(function(el){
+//        el.classList.remove("hide_button");
+//    });
+//        buttons.forEach(function(el){
+ //           el.classList.add("hide_button");
+//       });
+//
+//    
+//
+//        images.forEach(function(el){
+//            el.classList.add("hide_button");
+//        });
+//
+//      monsterBoxes.forEach(function(el){
+//          el.classList.remove("one_tagged_in");
+ //     });
+//
+//    this.classList.add("one_tagged_in");
+//
+//    
+//    var buttons = document.querySelectorAll(".one_tagged_in button");
+//
+//    var main_image = document.querySelector(".one_tagged_in img.monster_image");
+//   
+//    var thumb_img = document.querySelector(".one_tagged_in img.monster_image_thumb");
+//    
+//    
+//      if(buttons.length != 0){
+//      buttons[0].classList.remove("hide_button");
+//      main_image.classList.remove("hide_button");
+//      thumb_img.classList.add("hide_button");
+//      buttons[0].addEventListener("click", useAttack);
+//     
+//      charger_check();
+//      
+//    };
 
     
      
@@ -102,6 +149,11 @@ function useAttack(){
     charger_check();
     check_if_fainted();
     
+      var d=document.createElement("div");
+      d.className="clickEffect";
+      d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
+      document.body.appendChild(d);
+      d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this));
 };
 };
 
@@ -135,13 +187,31 @@ function useChargedAttack(){
 function charger_check(){
     var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
     var button = document.querySelector(".one_tagged_in button.charged");
-    var elem = document.getElementById("my_bar");
-    var width = Math.floor((charge_meter * 100)/(player_one.charged_attack.damage_points/6));
-    if (width <= 100){
+    var elem = document.querySelector(".one_tagged_in div#my_bar");
+    var width = Math.ceil((charge_meter * 100)/(player_one.charged_attack.damage_points/6));
+    if (width >=100){
+        width = 100;
+        elem.style.width = width + "%"
+        elem.innerText = width + "%";
+        elem.style.backgroundColor = "#4CAF50";
+    };
+    if (width <= 99){
     elem.style.width = width + "%"
     elem.innerText = width + "%";
+    elem.style.backgroundColor = "orangered";
     };
-
+    if (width < 80){
+        elem.style.width = width + "%"
+        elem.innerText = width + "%";
+        elem.style.backgroundColor = "#fbff29";
+        };
+    if (width < 30){
+        elem.style.width = width + "%"
+        elem.innerText = width + "%";
+        elem.style.backgroundColor =  "rgb(19, 219, 233)";
+        
+        };
+    
 
 
 if (charge_meter >= (player_one.charged_attack.damage_points/6)){
@@ -187,8 +257,16 @@ function check_if_fainted() {
         document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
         document.querySelector("div.one_tagged_in p#charger").textContent = 0;
 
+        
+       
+
         var buttons = document.querySelectorAll(".one_tagged_in button");
+        var image = document.querySelector(".one_tagged_in img.monster_image");
+        var thumb_img = document.querySelector(".one_tagged_in img.monster_image_thumb");
         buttons[0].classList.remove("hide_button");
+        image.classList.remove("hide_button");
+        thumb_img.classList.add("hide_button");
+        
         buttons[0].addEventListener("click", useAttack);
         charger_check();
         
@@ -365,6 +443,65 @@ function npcFight() {         //  create a loop function
      
   };
 
+
+
+
+
+
+
+  ///////my click effect
+//  var arena = document.querySelector("div.arena");
+ 
+//  arena.addEventListener('click', function(e) {
+      
+//    explode(e.pageX, e.pageY);
+//  });
+  
+  // explosion construction
+  function explode(x, y) {
+    var particles = 15,
+      // explosion container and its reference to be able to delete it on animation end
+ //     explosion = ('<div class="explosion"></div>');
+      explosion = document.createElement('div');
+      explosion.classList.add("explosion");
+  
+    // put the explosion container into the body to be able to get it's size
+    arena.appendChild(explosion);
+    
+    // position the container to be centered on click
+   // explosion.style.('left', x - explosion.offsetWidth / 2);
+    explosion.style.left = x;
+  //  explosion.css('top', y - explosion.offsetHeight / 2);
+    explosion.style.top = y;
+    for (var i = 0; i < particles; i++) {
+      // positioning x,y of the particle on the circle (little randomized radius)
+      var x = (explosion.offsetWidth / 2) + rand(80, 150) * Math.cos(2 * Math.PI * i / rand(particles - 10, particles + 10)),
+        y = (explosion.offsetHeight / 2) + rand(80, 150) * Math.sin(2 * Math.PI * i / rand(particles - 10, particles + 10)),
+        color = rand(0, 255) + ', ' + rand(0, 255) + ', ' + rand(0, 255), // randomize the color rgb
+          // particle element creation (could be anything other than div)
+   //     elm = document.createElement('<div class="particle" style="' +
+   //       'background-color: rgb(' + color + ') ;' +
+   //       'top: ' + y + 'px; ' +
+   //       'left: ' + x + 'px"></div>');
+
+    elm = document.createElement("p");
+   elm.classList.add("particle");
+   elm.style.backgroundColor = "rgb(" + color + ")";
+   elm.style.top =  x+"px";
+   elm.style.left = y+"px"; 
   
  
+      if (i == 0) { // no need to add the listener on all generated elements
+        // css3 animation end detection
+        elm.addEventListener('webkitAnimationEnd', function(e) {
+          explosion.parentElement.removeChild(explosion); // remove this explosion container when animation ended
+        });
+      }
+      explosion.appendChild(elm);
+    }
+  }
   
+  // get random number between min and max value
+  function rand(min, max) {
+    return Math.floor(Math.random() * (max + 1)) + min;
+  };

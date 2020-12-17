@@ -45,6 +45,13 @@
     )
     tr_head.save
 
+    ph_head = Head.find_by(:name => "Pheonix Head")
+    ph_head.image.attach(
+        io: File.open("app/assets/images/pheonix_head.png"),
+        filename: "nw.png"
+    )
+    ph_head.save
+
   
 
 
@@ -77,6 +84,13 @@
         filename: "nw.png"
     )
     tr_arms.save
+
+    ph_arms = Arm.find_by(:name => "Pheonix Claws")
+    ph_arms.image.attach(
+        io: File.open("app/assets/images/pheonix_arms.png"),
+        filename: "nw.png"
+    )
+    ph_arms.save
 
     
     #, :image => "taurac_arms.png"
@@ -111,6 +125,14 @@
     )
     tr_legs.save
 
+    ph_legs = Leg.find_by(:name => "Pheonix Clutches")
+    ph_legs.image.attach(
+        io: File.open("app/assets/images/pheonix_legs.png"),
+        filename: "nw.png"
+    )
+    ph_legs.save
+
+
 #, :image => "tauracs_legs.png"
     #, :image => "trog_legs.png"
 
@@ -144,6 +166,12 @@
     )
     tr_back.save
 
+    ph_back = Back.find_by(:name => "Pheonix wings")
+    ph_back.image.attach(
+        io: File.open("app/assets/images/pheonix_wings.png"),
+        filename: "nw.png"
+    )
+    ph_back.save
 #, :image => "tauracs_back.png"
 #, :image => "trog_back.png"
 
