@@ -2,4 +2,9 @@
 <% @monsters.each do |monster| %>
     <h2>Name: <%= monster.name %> </h2>
     <h3>HP: <%= monster.hp %> </h3>
+
+<% if monster.image? %>
+<%= image_tag monster.image_url(:large) %>
+<% end %>
+
 <% end %>

@@ -1,6 +1,7 @@
 
 <body class = "battles_show">
 <h1>Fight</h1>
+<h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 
 
 <div class = "arena">
@@ -11,18 +12,19 @@
         <% @player_one.battle_party.monsters.each_with_index do |monster, index| %>
         
     
-                <div class = "onesy grid item_<%= index + 2 %>" >
+                <div class = "onesy grid item_<%= index + 2 %> available" >
                 <p class = "hide_button"><%= monster.name %></p>
+                <h1 class = "hp monster_<%= index + 1 %> "></h1>
                      <%= image_tag monster.image_url(:large), :class => "monster_image hide_button" %>
                      <%= image_tag monster.image_url(:thumb), :class => "monster_image_thumb" %>
                      <p hidden id = "monster" ><%= monster.to_json %></p>
                      <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
                      <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
-                     <h1 class = "hp monster_<%= index + 1 %> hide_button"></h1>
+                     
                      
                     
                
-                     <div hidden id = "charger"></div>
+                     <p hidden id = "charger"></p>
                      <div id = "my_progress">
                         <div id = "my_bar"></div>
                      </div>
@@ -30,30 +32,46 @@
     
         <% end %>
     </div>
+
+
+
+
+
+
 </div>
 
-<div class = "grid-container">
-<h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 
-
-
-<div id = "roster_two" class ="hide_button">
+<div id = "roster_two" class = "hide_button">
     <% @player_two.battle_party.monsters.each_with_index do |monster, index| %>
 
-            <div class = "twosy grid item_<%= index + 5 %>">
+ 
+
+            <div class = "twosy grid item_<%= index + 5 %> available">
+                <h1 class = "hp monster_<%= index + 4 %>"></h1>
+                <%= image_tag monster.image_url(:large), :class => "monster_image" %>
+                
+               
                  <p hidden id = "monster" ><%= monster.to_json %></p>
                  <p hidden id = "fast_attack" ><%= monster.fast_attack.to_json %></p>
                  <p hidden id = "charged_attack" ><%= monster.charged_attack.to_json %></p>
-                 <h1 class = "hp monster_<%= index + 4 %>"></h1>
-                <p><%= monster.name %></p>
+                 
+                <p hidden><%= monster.name %></p>
                 <button type = "button" class = "quick attack hide_button" ><%= monster.fast_attack.name %></button><br>
                 <button type = "button" class = "charged attack hide_button" ><%= monster.charged_attack.name %></button>
                 <p hidden id = "charger"></p>
             </div>
 
+            
+
             <% end %>
     </div>
-</div>
+
+
+
+
+
+
+
 
 <%= link_to "Leave Battle", "/battles/#{@battle.id}/destroy", class: "destroy" %>
 

@@ -24,7 +24,7 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
  two_one_hp.textContent = playerTwoMonsterOneHp; 
  two_two_hp.textContent = playerTwoMonsterTwoHp; 
  two_three_hp.textContent = playerTwoMonsterThreeHp; 
- var winning_exp = Math.ceil(((playerTwoMonsterOneHp + playerTwoMonsterTwoHp + playerTwoMonsterThreeHp)/9) * playerTwo["level"]);
+
  
 
  var monsterBoxes = document.querySelectorAll("div.grid");
@@ -35,15 +35,22 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
 
 
 var goodGuys = document.querySelectorAll("div.onesy");
+npc_tagIn();
+
+
 
 
  var elem = goodGuys[0];
- console.log(elem);
+ 
  elem.click();
+
 
  set_players();
  charger_check();
- //npcFight();   
+ 
+ npcFight(); 
+ 
+ 
 
 };
 
@@ -55,42 +62,58 @@ var monsterBoxes = document.querySelectorAll("div.grid");
 
 
 function tagIn(){
+
+    if(this.classList.contains("available")){
+
+    var last = document.querySelector("#roster_one div.in_the_ring");
+
+    if(last){
+        last.classList.remove("in_the_ring");
+    };
+   
     var old_div = document.querySelector(".one_tagged_in");
 
     if(old_div){
      old_div.parentElement.removeChild(old_div);
-    }
+    };
 
+
+    this.classList.add("in_the_ring");
     var arena = document.querySelector("div.arena");
     var new_div = this.cloneNode(true);
     
     new_div.classList.remove("onesy");
     new_div.style.height = "400px";
-    new_div.classList.add("in_the_ring");
+   // new_div.classList.add("in_the_ring");
     new_div.classList.add("one_tagged_in");
-    new_div.querySelector(".monster_image").classList.remove("hide_button");
-    new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
-    arena.appendChild(new_div);
+
+ //   var all_divs = document.querySelectorAll("div.onesy");
+ //  
+ //   all_divs.querySelector(".monster_image").classList.add("hide_button");
+ //   all_divs.querySelector(".monster_image_thumb").classList.remove("hide_button");
+
+   
 
     
     var buttons = document.querySelectorAll(".one_tagged_in button");
-//    var images = document.querySelectorAll(".monster_image");
-//    var thumb_images = document.querySelectorAll(".monster_image_thumb");
+    var images = document.querySelectorAll(".onesy img.monster_image");
+    var thumb_images = document.querySelectorAll(".onesy img.monster_image_thumb");
 //
 //
-//    thumb_images.forEach(function(el){
-//        el.classList.remove("hide_button");
-//    });
-//        buttons.forEach(function(el){
- //           el.classList.add("hide_button");
-//       });
-//
-//    
-//
-//        images.forEach(function(el){
-//            el.classList.add("hide_button");
-//        });
-//
+   thumb_images.forEach(function(el){
+       el.classList.remove("hide_button");
+   });
+       buttons.forEach(function(el){
+           el.classList.add("hide_button");
+      });
+   
+       images.forEach(function(el){
+           el.classList.add("hide_button");
+       });
+
+new_div.querySelector(".monster_image").classList.remove("hide_button");
+new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
+arena.appendChild(new_div);
 //      monsterBoxes.forEach(function(el){
 //          el.classList.remove("one_tagged_in");
  //     });
@@ -114,9 +137,10 @@ function tagIn(){
 //      charger_check();
 //      
 //    };
-
+    var baddy = document.querySelector(".two_tagged_in");
+    baddy.addEventListener("click", useAttack);
     
-     
+    };
  };
 
 
@@ -144,17 +168,16 @@ function useAttack(){
         console.log("miss");
     };
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("#roster_one .in_the_ring h1.hp").textContent = one_hp;
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("#roster_two .in_the_ring h1.hp").textContent = two_hp;
     document.querySelector("div.one_tagged_in p#charger").textContent = charger;
+    document.querySelector("#roster_one .in_the_ring p#charger").textContent = charger;
     charger_check();
     check_if_fainted();
     
-      var d=document.createElement("div");
-      d.className="clickEffect";
-      d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
-      document.body.appendChild(d);
-      d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this));
-};
+
+    };
 };
 
 
@@ -169,10 +192,11 @@ function useChargedAttack(){
         one_hp -=  player_two.monster.recoil;
     charger = 0;
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("#roster_one .in_the_ring h1.hp").textContent = one_hp;
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("#roster_two .in_the_ring h1.hp").textContent = two_hp;
     document.querySelector("div.one_tagged_in p#charger").textContent = charger;
-    var button = document.querySelector(".one_tagged_in button.charged");
-    button.classList.add("hide_button");
+    
     
     check_if_fainted();
     
@@ -185,6 +209,7 @@ function useChargedAttack(){
 
 
 function charger_check(){
+
     var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
     var button = document.querySelector(".one_tagged_in button.charged");
     var elem = document.querySelector(".one_tagged_in div#my_bar");
@@ -215,8 +240,22 @@ function charger_check(){
 
 
 if (charge_meter >= (player_one.charged_attack.damage_points/6)){
-    button.classList.remove("hide_button");
-    button.addEventListener("click", useChargedAttack);
+ //   button.classList.remove("hide_button");
+ //   button.addEventListener("click", useChargedAttack);
+
+ window.addEventListener("keypress", event => {
+     if(event.keyCode === 32){
+         useChargedAttack();
+     }
+ });
+
+
+} else {
+    window.removeEventListener("keypress", event => {
+        if(event.keyCode === 32){
+            useChargedAttack();
+        }
+    });
 };
 };
 
@@ -252,9 +291,13 @@ function check_if_fainted() {
     if (one_hp <= 0 ){
        let div = document.querySelector("div.one_tagged_in");
        div.parentNode.removeChild(div);
+       let dead_div = document.querySelector("#roster_one div.in_the_ring");
+       dead_div.classList.remove("available");
+       dead_div.classList.add("unavailable");
        
-       if(document.querySelectorAll("div.onesy").length != 0){ 
-        document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
+       if(document.querySelectorAll("#roster_one div.available").length != 0){ 
+ //       document.querySelectorAll("div.onesy")[0].classList.add("one_tagged_in");
+        document.querySelectorAll("#roster_one div.available")[0].click();
         document.querySelector("div.one_tagged_in p#charger").textContent = 0;
 
         
@@ -263,21 +306,26 @@ function check_if_fainted() {
         var buttons = document.querySelectorAll(".one_tagged_in button");
         var image = document.querySelector(".one_tagged_in img.monster_image");
         var thumb_img = document.querySelector(".one_tagged_in img.monster_image_thumb");
-        buttons[0].classList.remove("hide_button");
+  //      buttons[0].classList.remove("hide_button");
         image.classList.remove("hide_button");
         thumb_img.classList.add("hide_button");
         
-        buttons[0].addEventListener("click", useAttack);
+ //       buttons[0].addEventListener("click", useAttack);
         charger_check();
         
        };
     };
     if (two_hp <= 0 ){
-       let div =  document.querySelector("div.two_tagged_in");
-       div.parentNode.removeChild(div);
+        let div = document.querySelector("#roster_two .in_the_ring");
+        div.classList.remove("available");
+        div.classList.add("unavailable");
+        var fight_div = document.querySelector("div.two_tagged_in");
+        fight_div.parentNode.removeChild(fight_div);
+   //     let dead_div = document.querySelector("#roster_two div.in_the_ring");
        
-        if(document.querySelectorAll("div.twosy").length != 0){
-            document.querySelectorAll("div.twosy")[0].classList.add("two_tagged_in");
+        if(document.querySelectorAll("#roster_two div.available").length != 0){
+        //    document.querySelectorAll("div.twosy")[0].classList.add("two_tagged_in");
+        npc_tagIn(document.querySelectorAll("#roster_two div.available")[0]);
             document.querySelector("div.two_tagged_in p#charger").textContent = 0;
         };
      
@@ -291,8 +339,8 @@ function check_if_fainted() {
 
 
 function check_game_status(){
-        let ones = document.querySelectorAll("div.onesy").length;
-        let twos = document.querySelectorAll("div.twosy").length;
+        let ones = document.querySelectorAll("#roster_one .available").length;
+        let twos = document.querySelectorAll("#roster_two .available").length;
     if(ones == 0 || twos == 0){
         declare_winner();
     return "game over";
@@ -303,8 +351,8 @@ function check_game_status(){
 };
 
 function declare_winner(){
-    let ones = document.querySelectorAll("div.onesy").length;
-    let twos = document.querySelectorAll("div.twosy").length;
+    let ones = document.querySelectorAll("#roster_one .available").length;
+    let twos = document.querySelectorAll("#roster_two .available").length;
 
     div = Math.max(ones, twos);
     
@@ -364,17 +412,20 @@ function npcUseAttack(){
     if( Math.floor(Math.random() * 21) + player_two.monster.attack >= 8 + player_one.monster.counter){
         one_hp -=  player_two.fast_attack.damage_points + player_two.monster.recoil + Math.floor(player_two.player.level/3);
         two_hp -=  player_one.monster.recoil;
-        console.log("hit");
+        
         
         npcCharger += .5 + player_two.player.level/3;
     } else if (check_game_status() == "game on" && readyPlayerOne() == false){
         npcUseAttack();
     } else {
-        console.log("miss");
+        
     };
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("#roster_one .in_the_ring h1.hp").textContent = one_hp;
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("#roster_two .in_the_ring h1.hp").textContent = two_hp;
     document.querySelector("div.two_tagged_in p#charger").textContent = npcCharger;
+    document.querySelector("#roster_two .in_the_ring p#charger").textContent = npcCharger;
     npc_charger_check();
     check_if_fainted();
     
@@ -393,7 +444,9 @@ function npcUseChargedAttack(){
         two_hp -=  player_one.monster.recoil;
     npcCharger = 0;
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
+    document.querySelector("#roster_one .in_the_ring h1.hp").textContent = one_hp;
     document.querySelector("div.two_tagged_in h1.hp").textContent = two_hp;
+    document.querySelector("#roster_two .in_the_ring h1.hp").textContent = two_hp;
     document.querySelector("div.two_tagged_in p#charger").textContent = charger;
  
     console.log("used charged attack");
@@ -442,6 +495,143 @@ function npcFight() {         //  create a loop function
     return (one ? true:false);
      
   };
+
+
+
+//  function npc_tagIn(){
+//
+//    var badGuys = document.querySelectorAll("div.twosy");
+// //   badGuys.forEach(function(el){
+// //       el.classList.remove("two_in_the_ring")
+// //   });
+//   
+//    var old_div = document.querySelector(".two_tagged_in");
+//
+//    if(old_div){
+//     old_div.parentElement.removeChild(old_div);
+//    }
+//    badGuys[0].classList.add("two_in_the_ring");
+//    var arena = document.querySelector("div.arena");
+//    var new_div = this.cloneNode(true);
+//    
+//    new_div.classList.remove("twosy");
+//    new_div.style.height = "400px";
+//   // new_div.classList.add("in_the_ring");
+//    new_div.classList.add("two_tagged_in");
+//
+// //   var all_divs = document.querySelectorAll("div.onesy");
+// //  
+// //   all_divs.querySelector(".monster_image").classList.add("hide_button");
+// //   all_divs.querySelector(".monster_image_thumb").classList.remove("hide_button");
+//
+//   
+//
+//    
+//    var buttons = document.querySelectorAll(".two_tagged_in button");
+//    var images = document.querySelectorAll(".twosy img.monster_image");
+//    var thumb_images = document.querySelectorAll(".twosy img.monster_image_thumb");
+////
+////
+//   thumb_images.forEach(function(el){
+//       el.classList.remove("hide_button");
+//   });
+//       buttons.forEach(function(el){
+//           el.classList.add("hide_button");
+//      });
+//   
+//       images.forEach(function(el){
+//           el.classList.add("hide_button");
+//       });
+//
+//new_div.querySelector(".monster_image").classList.remove("hide_button");
+//new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
+//arena.appendChild(new_div);
+////      monsterBoxes.forEach(function(el){
+////          el.classList.remove("one_tagged_in");
+// //     });
+////
+////    this.classList.add("one_tagged_in");
+////
+////    
+////    var buttons = document.querySelectorAll(".one_tagged_in button");
+////
+////    var main_image = document.querySelector(".one_tagged_in img.monster_image");
+////   
+////    var thumb_img = document.querySelector(".one_tagged_in img.monster_image_thumb");
+////    
+////    
+////      if(buttons.length != 0){
+////      buttons[0].classList.remove("hide_button");
+////      main_image.classList.remove("hide_button");
+////      thumb_img.classList.add("hide_button");
+////      buttons[0].addEventListener("click", useAttack);
+////     
+////      charger_check();
+////      
+////    };
+//         
+ //   };
+
+    function npc_tagIn(){
+
+        
+    var last = document.querySelector("#roster_two div.in_the_ring");
+
+    if(last){
+        last.classList.remove("in_the_ring");
+    };
+
+        var badGuys = document.querySelectorAll("#roster_two div.available");
+        console.log(badGuys[0]);
+        var next = badGuys[0];
+    console.log(next);
+       next.classList.add("in_the_ring");
+   
+    var arena = document.querySelector("div.arena");
+
+      var new_div = next.cloneNode(true);
+      new_div.classList.add("two_tagged_in");
+      arena.appendChild(new_div);
+      new_div.addEventListener("click", useAttack);
+      var img = new_div.querySelector("img.monster_image");
+      img.classList.remove("hide_button");
+      
+      
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

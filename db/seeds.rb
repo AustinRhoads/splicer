@@ -220,6 +220,10 @@ CHARGED_ATTACKS = [
 
 CHARGED_ATTACKS.each {|charged_a| ChargedAttack.create(charged_a).save}
 
+# 1 dactys
+# 2 tauracs
+# 3 trogbyte
+# 4 pheonix
 
 
 
@@ -234,9 +238,9 @@ MONSTER_MASH = [
 
     {:name => "chad", :user_id => 3, :head => Head.find(4), :arm => Arm.find(1), :leg => Leg.find(1), :back => Back.find(1) },
     {:name => "cleo", :user_id => 3, :head => Head.find(2), :arm => Arm.find(2), :leg => Leg.find(2), :back => Back.find(4) },
-    {:name => "Monkey boy", :user_id => 3, :head => Head.find(1), :arm => Arm.find(4), :leg => Leg.find(4), :back => Back.find(3) },
+    {:name => "Monkey-boy", :user_id => 3, :head => Head.find(1), :arm => Arm.find(4), :leg => Leg.find(4), :back => Back.find(3) },
 
-    {:name => "Dolphin face", :user_id => 4, :head => Head.find(4), :arm => Arm.find(3), :leg => Leg.find(2), :back => Back.find(2) },
+    {:name => "Dolphin-face", :user_id => 4, :head => Head.find(4), :arm => Arm.find(3), :leg => Leg.find(2), :back => Back.find(2) },
     {:name => "chraklin", :user_id => 4, :head => Head.find(2), :arm => Arm.find(4), :leg => Leg.find(1), :back => Back.find(4) },
     {:name => "Clopskinburger", :user_id => 4, :head => Head.find(3), :arm => Arm.find(2), :leg => Leg.find(3), :back => Back.find(1) },
 
@@ -248,13 +252,37 @@ MONSTER_MASH = [
     {:name => "beatrice", :user_id => 6, :head => Head.find(3), :arm => Arm.find(4), :leg => Leg.find(1), :back => Back.find(3) },
     {:name => "cassidy", :user_id => 6, :head => Head.find(4), :arm => Arm.find(2), :leg => Leg.find(3), :back => Back.find(1) },
 
-    {:name => "Momochi Sandayu", :user_id => 7, :head => Head.find(2), :arm => Arm.find(1), :leg => Leg.find(1), :back => Back.find(1) },
-    {:name => "Ishikawa Goemon", :user_id => 7, :head => Head.find(4), :arm => Arm.find(4), :leg => Leg.find(2), :back => Back.find(2) },
-    {:name => "Hattori Hanzo", :user_id => 7, :head => Head.find(3), :arm => Arm.find(3), :leg => Leg.find(4), :back => Back.find(4) },
+    {:name => "Momochi-Sandayu", :user_id => 7, :head => Head.find(2), :arm => Arm.find(1), :leg => Leg.find(1), :back => Back.find(1) },
+    {:name => "Ishikawa-Goemon", :user_id => 7, :head => Head.find(4), :arm => Arm.find(4), :leg => Leg.find(2), :back => Back.find(2) },
+    {:name => "Hattori-Hanzo", :user_id => 7, :head => Head.find(3), :arm => Arm.find(3), :leg => Leg.find(4), :back => Back.find(4) },
     
     {:name => "Tao", :user_id => 8, :head => Head.find(1), :arm => Arm.find(4), :leg => Leg.find(2), :back => Back.find(2) },
-    {:name => "Dr. pol", :user_id => 8, :head => Head.find(2), :arm => Arm.find(1), :leg => Leg.find(4), :back => Back.find(3) },
-    {:name => "Uma Thurman", :user_id => 8, :head => Head.find(4), :arm => Arm.find(2), :leg => Leg.find(3), :back => Back.find(4) }
+    {:name => "Dr.Pol", :user_id => 8, :head => Head.find(2), :arm => Arm.find(1), :leg => Leg.find(4), :back => Back.find(3) },
+    {:name => "Uma", :user_id => 8, :head => Head.find(4), :arm => Arm.find(2), :leg => Leg.find(3), :back => Back.find(4) }
 ]
 
+# 1 dactys
+# 2 tauracs
+# 3 trogbyte
+# 4 pheonix
+
+
+
+
 MONSTER_MASH.each {|monster| Monster.create(monster).save}
+
+
+Monster.all.each do |monster|
+  
+    monster.image = File.open("app/assets/images/#{monster.name}_image.png")
+    monster.save
+end
+
+
+#= Monster.find()
+#.image.attach(
+#    io: File.open("app/assets/images/.png"),
+#    filename: "nw.png"
+#)
+#.save
+

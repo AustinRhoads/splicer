@@ -191,6 +191,8 @@ display:inline-block;
 position: relative;
 z-index: 33;
 margin-top: 52%;
+
+
 }
 
      
@@ -199,6 +201,7 @@ margin-top: 52%;
 }
 
 .battles_show .onesy{
+  
   width: 200px;
   height: 200px;
   background-color: #38a05f;
@@ -207,7 +210,7 @@ margin-top: 52%;
   justify-content: center;
   display: table-cell;
   vertical-align: middle;
-  
+  transition: top ease 0.5s;
   
  
 
@@ -236,6 +239,17 @@ margin-top: 52%;
   position: relative;
 
 }
+
+
+.battles_show .in_the_ring{
+  border: solid floralwhite 4px;
+}
+
+.battles_show div.onesy.in_the_ring:hover{
+  border: solid floralwhite 4px;
+}
+
+
 
 
 
@@ -272,12 +286,45 @@ margin-top: 52%;
   z-index: 33;
   margin-top: 5%;
   left: 10%;
+  img.monster_image{
+   
+    top: -35px;
+  }
+
+  h1.hp{
+    display:inline-block;
+    position: absolute;
+    
+    
+    color: seashell;
+  }
 }
 
-.battles_show div.onesy.in_the_ring:hover{
-border: none;
-}
 
+.battles_show .two_tagged_in{
+  width: 33%;
+  height: auto;
+  border: none;
+  background-color: transparent;
+  
+  display:inline-block;
+  position: absolute;
+  z-index: 33;
+  margin-top: 5%;
+  left: 55%;
+  img{
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    top: -35px;
+  }
+
+  h1.hp{
+    display:inline-block;
+    position: absolute;
+    
+    color: seashell;
+  }
+}
 
 
 
@@ -323,4 +370,8 @@ border: none;
     left: 50%;
     opacity: 1;
   }
+}
+
+.battles_show .unavailable{
+  background-color: red;
 }
