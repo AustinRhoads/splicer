@@ -6,6 +6,10 @@
 <%= f.hidden_field :user_won %>
 <%= f.submit "Claim Experience Points" %>
 <% end %>
+<%= image_tag("countdown_3", :class => "countdown countdown_3 hide_button ") %>
+<%= image_tag("countdown_2", :class => "countdown countdown_2 hide_button ") %>
+<%= image_tag("countdown_1", :class => "countdown countdown_1 hide_button ") %>
+<%= image_tag("countdown_fight", :class => "countdown countdown_fight hide_button") %>
 
 
 <div class = "arena">
@@ -24,7 +28,17 @@
                 <div class = "onesy grid item_<%= index + 2 %> available" >
                      <p class = "hide_button"><%= monster.name %></p>
 
-                     <h1 class = "hp monster_<%= index + 1 %> "></h1>
+                     <h1 hidden class = "hp monster_<%= index + 1 %> hide_button"></h1>
+
+                     <div id = "my_health">
+                        <p id = "my_health_bar"></p>
+                     </div>
+
+                     <p hidden id = "charger">0</p>
+                     <div id = "my_progress">
+                        <p id = "my_bar"></p>
+                        <%= image_tag("scifi_beaker.png", :class => "power_flask hide_button") %>
+                     </div>
 
                           <%= image_tag monster.image_url(:large), :class => "monster_image hide_button" %>
                           <%= image_tag monster.image_url(:thumb), :class => "monster_image_thumb" %>
@@ -36,11 +50,7 @@
 
 
 
-                          <p hidden id = "charger"></p>
-                          <div id = "my_progress">
-                             <p id = "my_bar"></p>
-                             <%= image_tag("scifi_beaker.png", :class => "power_flask hide_button") %>
-                          </div>
+                        
                           
                 </div>
     
@@ -59,9 +69,13 @@
     <% @player_two.battle_party.monsters.each_with_index do |monster, index| %>
 
  
-
+ 
             <div class = "twosy grid item_<%= index + 5 %> available">
-                <h1 class = "hp monster_<%= index + 4 %>"></h1>
+                <h1 class = "hp monster_<%= index + 4 %> hide_button"></h1>
+                <div id = "bad_health">
+                    <p id = "bad_health_bar"></p>
+                 </div>
+            
                 <%= image_tag monster.image_url(:large), :class => "monster_image" %>
                 
                

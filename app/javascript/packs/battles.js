@@ -32,22 +32,70 @@ var two_three_hp = document.querySelector("h1.hp.monster_6");
  };
 
 
-var goodGuys = document.querySelectorAll("div.onesy");
-npc_tagIn();
 
 
 
 
-goodGuys[0].click();
+
+countdown();
 
 
- set_players();
- charger_check();
- 
- npcFight(); 
- 
- 
+};
 
+
+function countdown(){
+
+            var all = document.querySelectorAll(".countdown");
+        var one = document.querySelector("img.countdown_1");
+        var two = document.querySelector("img.countdown_2");
+        var three = document.querySelector("img.countdown_3");
+        var fight = document.querySelector("img.countdown_fight");
+        
+
+        setTimeout(function(){ 
+            all.forEach(function(el){
+                el.classList.add("hide_button");
+            });
+            three.classList.remove("hide_button");
+        }, 1000);
+
+
+        setTimeout(function(){ 
+            all.forEach(function(el){
+                el.classList.add("hide_button");
+            });
+            two.classList.remove("hide_button");
+        }, 2000);
+
+        setTimeout(function(){ 
+            all.forEach(function(el){
+                el.classList.add("hide_button");
+            });
+            one.classList.remove("hide_button");
+        }, 3000);
+
+
+        setTimeout(function(){ 
+            all.forEach(function(el){
+                el.classList.add("hide_button");
+            });
+            fight.classList.remove("hide_button");
+        }, 4000);
+
+        setTimeout(function(){ 
+            all.forEach(function(el){
+                el.classList.add("hide_button");
+            });
+            var goodGuys = document.querySelectorAll("div.onesy");
+            goodGuys[0].click();
+            npc_tagIn();
+            set_players();
+             npcFight(); 
+            
+        }, 5000);
+
+       
+  
 };
 
 
@@ -59,67 +107,69 @@ var monsterBoxes = document.querySelectorAll("div.grid");
 
 function tagIn(){
 
-    if(this.classList.contains("available")){
 
-    var last = document.querySelector("#roster_one div.in_the_ring");
+            if(this.classList.contains("available")){
+            
+            var last = document.querySelector("#roster_one div.in_the_ring");
+            
+            if(last){
+                last.classList.remove("in_the_ring");
+            };
+        
+            var old_div = document.querySelector(".one_tagged_in");
+        
+            if(old_div){
+             old_div.parentElement.removeChild(old_div);
+            };
+        
+        
+            this.classList.add("in_the_ring");
+            var arena = document.querySelector("div.arena");
+            var new_div = this.cloneNode(true);
 
-    if(last){
-        last.classList.remove("in_the_ring");
-    };
-   
-    var old_div = document.querySelector(".one_tagged_in");
+            new_div.classList.remove("onesy");
+            new_div.style.height = "400px";
+           // new_div.classList.add("in_the_ring");
+            new_div.classList.add("one_tagged_in");
+        
+         //   var all_divs = document.querySelectorAll("div.onesy");
+         //  
+         //   all_divs.querySelector(".monster_image").classList.add("hide_button");
+         //   all_divs.querySelector(".monster_image_thumb").classList.remove("hide_button");
+        
+        
+        
+        
+            var images = document.querySelectorAll(".onesy img.monster_image");
+            var thumb_images = document.querySelectorAll(".onesy img.monster_image_thumb");
+        //
+        //
+        
+        
+        
+        
+           thumb_images.forEach(function(el){
+               el.classList.remove("hide_button");
+           });
+       
 
-    if(old_div){
-     old_div.parentElement.removeChild(old_div);
-    };
-
-
-    this.classList.add("in_the_ring");
-    var arena = document.querySelector("div.arena");
-    var new_div = this.cloneNode(true);
-    
-    new_div.classList.remove("onesy");
-    new_div.style.height = "400px";
-   // new_div.classList.add("in_the_ring");
-    new_div.classList.add("one_tagged_in");
-
- //   var all_divs = document.querySelectorAll("div.onesy");
- //  
- //   all_divs.querySelector(".monster_image").classList.add("hide_button");
- //   all_divs.querySelector(".monster_image_thumb").classList.remove("hide_button");
-
-   
-
-
-    var images = document.querySelectorAll(".onesy img.monster_image");
-    var thumb_images = document.querySelectorAll(".onesy img.monster_image_thumb");
-//
-//
-
-
-
-
-   thumb_images.forEach(function(el){
-       el.classList.remove("hide_button");
-   });
-
-   
-       images.forEach(function(el){
-           el.classList.add("hide_button");
-       });
-
-
-
-new_div.querySelector(".monster_image").classList.remove("hide_button");
-new_div.querySelector("img.power_flask").classList.remove("hide_button");
-new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
-arena.appendChild(new_div);
-
-    var baddy = document.querySelector(".two_tagged_in");
-    if(baddy){
-    baddy.addEventListener("click", useAttack);
-    };
- };
+               images.forEach(function(el){
+                   el.classList.add("hide_button");
+               });
+           
+           
+           
+        new_div.querySelector(".monster_image").classList.remove("hide_button");
+        new_div.querySelector("img.power_flask").classList.remove("hide_button");
+        new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
+        arena.appendChild(new_div);
+           
+            var baddy = document.querySelector(".two_tagged_in");
+            if(baddy){
+            baddy.addEventListener("click", useAttack);
+            };
+         };
+      charger_check();
 };
 
 
@@ -127,14 +177,16 @@ arena.appendChild(new_div);
  var player_two = {};
  var one_tagged_in_hp = document.querySelector("div.one_tagged_in h1.hp");
  var two_tagged_in_hp = document.querySelector("div.two_tagged_in h1.hp");
+ 
  var charger = 0;
 
 
 
-
 function useAttack(){
+    charger = parseInt(document.querySelector("div.one_tagged_in p#charger").textContent);
     
     if(check_game_status() != "game over"){
+
     set_players();
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
@@ -143,6 +195,7 @@ function useAttack(){
         one_hp -=  player_two.monster.recoil;
         console.log("hit");
         charger += .5 + player_one.player.level/3;
+        
     } else {
         console.log("miss");
     };
@@ -153,14 +206,16 @@ function useAttack(){
     document.querySelector("#roster_two .in_the_ring h1.hp").textContent = two_hp;
     
     
-    document.querySelector("#roster_one .in_the_ring p#charger").textContent = charger;
-    document.querySelector("div.one_tagged_in p#charger").textContent = charger;
+   
     
-    charger_check();
+    
     check_if_fainted();
     
 
     };
+    document.querySelector("#roster_one .in_the_ring p#charger").textContent = charger;
+        document.querySelector("div.one_tagged_in p#charger").textContent = charger;
+    charger_check();
 };
 
 
@@ -195,7 +250,7 @@ function useChargedAttack(){
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
         two_hp -=  player_one.charged_attack.damage_points + player_one.player.level;
         one_hp -=  player_two.monster.recoil;
-    charger = 0;
+    
     document.querySelector("div.one_tagged_in h1.hp").textContent = one_hp;
  //   document.querySelector("#roster_one .in_the_ring h1.hp").textContent = one_hp;
 
@@ -225,7 +280,7 @@ function charger_check(){
 
     var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
     var elem = document.querySelector(".one_tagged_in p#my_bar");
-    var width = Math.ceil((charge_meter * 100)/(player_one.charged_attack.damage_points/6));
+    var width = Math.floor((charge_meter * 100)/(player_one.charged_attack.damage_points/6));
     if (width >=100){
         width = 100;
         elem.style.width = width + "%"
@@ -245,7 +300,7 @@ function charger_check(){
     if (width < 80){
         elem.style.width = width + "%"
         elem.innerText = width + "%";
-        elem.style.backgroundColor = "#fbff29";
+        elem.style.backgroundColor = "orangered";
         };
     if (width < 30){
         elem.style.width = width + "%"
@@ -253,24 +308,14 @@ function charger_check(){
         elem.style.backgroundColor =  "rgb(19, 219, 233)";
         
         };
+
+
+
+   set_health_bar();
     
 
-
-if (charge_meter >= (player_one.charged_attack.damage_points/6)){
-        
-}; 
 };
 
-function make_charge(event){
-    
-    if(event.key === "x"){
-        useChargedAttack();
-        
-};
-};
-
-
-/**/ 
 
 function set_players(){
     if (check_game_status() != "game over"){
@@ -297,7 +342,11 @@ function check_if_fainted() {
     var one_hp = document.querySelector("div.one_tagged_in h1.hp").innerText;
     var two_hp = document.querySelector("div.two_tagged_in h1.hp").innerText;
     if (one_hp <= 0 ){
+       // charger = 0;
+         document.querySelector("div.in_the_ring p#charger").textContent = 0;
+        
         document.querySelector("#roster_one .in_the_ring h1.hp").textContent = 0;
+        
        let div = document.querySelector("div.one_tagged_in");
        div.parentNode.removeChild(div);
        let dead_div = document.querySelector("#roster_one div.in_the_ring");
@@ -344,9 +393,11 @@ function check_if_fainted() {
         };
      
     };
+    charger_check
 };
   
     check_game_status();
+
 };
 
 
@@ -401,7 +452,68 @@ function declare_winner(){
 
 
 
+function set_health_bar(){
 
+    var health_meter =  document.querySelector("div.one_tagged_in h1.hp").textContent;
+    var elem = document.querySelector(".one_tagged_in p#my_health_bar");
+    var width = (health_meter/player_one.monster.hp) * 100;
+    var show_health = Math.ceil(health_meter);
+    
+    if (width >=100){
+        width = 100;
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_one.monster.hp;
+        elem.style.backgroundColor = "#4CAF50";
+
+    };
+    if (width <= 99){
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_one.monster.hp;
+        elem.style.backgroundColor = "#4CAF50";
+    };
+    if (width < 80){
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_one.monster.hp;
+        elem.style.backgroundColor = "#4CAF50";
+        };
+    if (width < 30){
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_one.monster.hp;
+        elem.style.backgroundColor =  "rgb(255, 000, 000)";
+        
+        };
+
+        
+    var health_meter =  document.querySelector("div.two_tagged_in h1.hp").textContent;
+    var elem = document.querySelector(".two_tagged_in p#bad_health_bar");
+    
+    var width = (health_meter/player_two.monster.hp) * 100;
+    var show_health = Math.ceil(health_meter);
+    
+    if (width >=100){
+        width = 100;
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_two.monster.hp;
+        elem.style.backgroundColor = "#4CAF50";
+
+    };
+    if (width <= 99){
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_two.monster.hp;
+        elem.style.backgroundColor = "#4CAF50";
+    };
+    if (width < 80){
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_two.monster.hp;
+        elem.style.backgroundColor = "#4CAF50";
+        };
+    if (width < 30){
+        elem.style.width = width + "%"
+        elem.innerText =  show_health + "/" + player_two.monster.hp;
+        elem.style.backgroundColor =  "rgb(255, 000, 000)";
+        
+        };
+}
 
 
 
@@ -468,7 +580,7 @@ function npcUseChargedAttack(){
     document.querySelector("#roster_two .in_the_ring h1.hp").textContent = two_hp;
     
     
-    document.querySelector("div.two_tagged_in p#charger").textContent = charger;
+    document.querySelector("div.two_tagged_in p#charger").textContent = npcCharger;
     
  
     console.log("used charged attack");
@@ -477,6 +589,7 @@ function npcUseChargedAttack(){
     } else if(check_game_status() == "game on" && readyPlayerOne() == false){
         npcUseAttack();
     };
+    set_health_bar();
 };
 
                              
@@ -494,6 +607,9 @@ function npc_charger_check(){
 if (npc_charge_meter >= (player_two.charged_attack.damage_points/6)){
      npcUseChargedAttack();
 };
+
+
+set_health_bar();
 };
 
 
@@ -501,6 +617,7 @@ if (npc_charge_meter >= (player_two.charged_attack.damage_points/6)){
 
 
 function npcFight() {         //  create a loop function
+    
     setTimeout(function() {   //  call a 3s setTimeout when the loop is called
                                //  your code here
       npcUseAttack();
@@ -509,7 +626,7 @@ function npcFight() {         //  create a loop function
       if (check_game_status() != "game over") {           //  if the counter < 10, call the loop function
         npcFight();             //  ..  again which will trigger another 
       }                       //  ..  setTimeout()
-    }, 270)
+    }, 330)
   }
 
   function readyPlayerOne(){
@@ -520,79 +637,6 @@ function npcFight() {         //  create a loop function
 
 
 
-//  function npc_tagIn(){
-//
-//    var badGuys = document.querySelectorAll("div.twosy");
-// //   badGuys.forEach(function(el){
-// //       el.classList.remove("two_in_the_ring")
-// //   });
-//   
-//    var old_div = document.querySelector(".two_tagged_in");
-//
-//    if(old_div){
-//     old_div.parentElement.removeChild(old_div);
-//    }
-//    badGuys[0].classList.add("two_in_the_ring");
-//    var arena = document.querySelector("div.arena");
-//    var new_div = this.cloneNode(true);
-//    
-//    new_div.classList.remove("twosy");
-//    new_div.style.height = "400px";
-//   // new_div.classList.add("in_the_ring");
-//    new_div.classList.add("two_tagged_in");
-//
-// //   var all_divs = document.querySelectorAll("div.onesy");
-// //  
-// //   all_divs.querySelector(".monster_image").classList.add("hide_button");
-// //   all_divs.querySelector(".monster_image_thumb").classList.remove("hide_button");
-//
-//   
-//
-//    
-//    var buttons = document.querySelectorAll(".two_tagged_in button");
-//    var images = document.querySelectorAll(".twosy img.monster_image");
-//    var thumb_images = document.querySelectorAll(".twosy img.monster_image_thumb");
-////
-////
-//   thumb_images.forEach(function(el){
-//       el.classList.remove("hide_button");
-//   });
-//       buttons.forEach(function(el){
-//           el.classList.add("hide_button");
-//      });
-//   
-//       images.forEach(function(el){
-//           el.classList.add("hide_button");
-//       });
-//
-//new_div.querySelector(".monster_image").classList.remove("hide_button");
-//new_div.querySelector(".monster_image_thumb").classList.add("hide_button");
-//arena.appendChild(new_div);
-////      monsterBoxes.forEach(function(el){
-////          el.classList.remove("one_tagged_in");
-// //     });
-////
-////    this.classList.add("one_tagged_in");
-////
-////    
-////    var buttons = document.querySelectorAll(".one_tagged_in button");
-////
-////    var main_image = document.querySelector(".one_tagged_in img.monster_image");
-////   
-////    var thumb_img = document.querySelector(".one_tagged_in img.monster_image_thumb");
-////    
-////    
-////      if(buttons.length != 0){
-////      buttons[0].classList.remove("hide_button");
-////      main_image.classList.remove("hide_button");
-////      thumb_img.classList.add("hide_button");
-////      buttons[0].addEventListener("click", useAttack);
-////     
-////      charger_check();
-////      
-////    };
-//         
- //   };
 
     function npc_tagIn(){
 
@@ -606,7 +650,7 @@ function npcFight() {         //  create a loop function
         var badGuys = document.querySelectorAll("#roster_two div.available");
         
         var next = badGuys[0];
-    console.log(next);
+    
        next.classList.add("in_the_ring");
    
     var arena = document.querySelector("div.arena");
@@ -655,65 +699,3 @@ function npcFight() {         //  create a loop function
 
 
 
-
-
-
-
-
-
-  ///////my click effect
-//  var arena = document.querySelector("div.arena");
- 
-//  arena.addEventListener('click', function(e) {
-      
-//    explode(e.pageX, e.pageY);
-//  });
-  
-  // explosion construction
-  function explode(x, y) {
-    var particles = 15,
-      // explosion container and its reference to be able to delete it on animation end
- //     explosion = ('<div class="explosion"></div>');
-      explosion = document.createElement('div');
-      explosion.classList.add("explosion");
-  
-    // put the explosion container into the body to be able to get it's size
-    arena.appendChild(explosion);
-    
-    // position the container to be centered on click
-   // explosion.style.('left', x - explosion.offsetWidth / 2);
-    explosion.style.left = x;
-  //  explosion.css('top', y - explosion.offsetHeight / 2);
-    explosion.style.top = y;
-    for (var i = 0; i < particles; i++) {
-      // positioning x,y of the particle on the circle (little randomized radius)
-      var x = (explosion.offsetWidth / 2) + rand(80, 150) * Math.cos(2 * Math.PI * i / rand(particles - 10, particles + 10)),
-        y = (explosion.offsetHeight / 2) + rand(80, 150) * Math.sin(2 * Math.PI * i / rand(particles - 10, particles + 10)),
-        color = rand(0, 255) + ', ' + rand(0, 255) + ', ' + rand(0, 255), // randomize the color rgb
-          // particle element creation (could be anything other than div)
-   //     elm = document.createElement('<div class="particle" style="' +
-   //       'background-color: rgb(' + color + ') ;' +
-   //       'top: ' + y + 'px; ' +
-   //       'left: ' + x + 'px"></div>');
-
-    elm = document.createElement("p");
-   elm.classList.add("particle");
-   elm.style.backgroundColor = "rgb(" + color + ")";
-   elm.style.top =  x+"px";
-   elm.style.left = y+"px"; 
-  
- 
-      if (i == 0) { // no need to add the listener on all generated elements
-        // css3 animation end detection
-        elm.addEventListener('webkitAnimationEnd', function(e) {
-          explosion.parentElement.removeChild(explosion); // remove this explosion container when animation ended
-        });
-      }
-      explosion.appendChild(elm);
-    }
-  }
-  
-  // get random number between min and max value
-  function rand(min, max) {
-    return Math.floor(Math.random() * (max + 1)) + min;
-  };
