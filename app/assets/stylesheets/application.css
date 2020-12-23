@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+ .logout {
+    float: right;
+}
+
+
+
+*{
+    font-family: 'karmatic-arcade' ;
+   
+}
+
+a:hover{
+    color: rgb(249, 250, 243);
+}
+
+
+#monsters_index div, #monsters_index h1, #monsters_index h2, #monsters_index h3, #monsters_index p, #monsters_index a, #monsters_index img{
+    text-align: center;
+
+}

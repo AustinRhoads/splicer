@@ -1,10 +1,17 @@
+
+<main id = "monsters_index" >
 <h1>Meet the freaks</h1>
+
 <% @monsters.each do |monster| %>
+    
+    <div>
+
     <h2>Name: <%= link_to monster.name, monster_path(monster) %> </h2>
     <h3>HP: <%= monster.hp %> </h3>
+    <%= image_tag monster.image_url(:thumb), style: "width: 200px; height: 200px;" %>
 
-
-<%= image_tag monster.image_url(:thumb), style: "width: 200px; height: 200px;" %>
-
+    </div>
 
 <% end %>
+
+</main>
