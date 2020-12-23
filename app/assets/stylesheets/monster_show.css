@@ -1,27 +1,28 @@
-*{
+#monster_show_page *{
   justify-content: center;  
+  text-align: center;
 }
-.monster_name{
+#monster_show_page .monster_name{
     text-align: center;
 }
 
-.monster_element{
+#monster_show_page .monster_element{
     text-align: center;
 }
 
-#monster_stats{
+#monster_show_page #monster_stats{
     display: grid;
     grid-template-columns: repeat(3, 33%);
     grid-auto-flow: row;
 }
 
-#fighting_stats{
+#monster_show_page #fighting_stats{
     display: grid;
     grid-template-columns: repeat(3, 33%);
     grid-template-rows: repeat(5, 1fr);
 }
 
-#fighting_stats #section_head{
+#monster_show_page #fighting_stats #section_head{
     grid-column: 1/4;
     grid-row: 1;
     text-align: center;
@@ -29,13 +30,13 @@
 }
 
 
-#fa_title{
+#monster_show_page #fa_title{
     grid-column: 1/4;
     grid-row: 2;
     text-align: left;
 }
 
-#fa_name{
+#monster_show_page #fa_name{
     grid-column: 1/4;
     grid-row: 3;
     text-align: left;
@@ -44,7 +45,7 @@
 }
 
 
-#fa_damage{
+#monster_show_page #fa_damage{
     grid-column: 1/4;
     grid-row: 3;
     text-align: right;
@@ -52,14 +53,14 @@
 
 }
 
-#ca_title{
+#monster_show_page #ca_title{
     grid-column: 1/4;
     grid-row: 4;
     text-align: left;
 
 }
 
-#ca_name{
+#monster_show_page #ca_name{
     grid-column: 1/4;
     grid-row: 5;
     text-align: left;
@@ -67,7 +68,7 @@
 
 }
 
-#ca_damage{
+#monster_show_page #ca_damage{
     grid-column: 1/4;
     grid-row: 5;
     text-align: right;
@@ -75,7 +76,7 @@
 
 }
 
-.monster_display{
+#monster_show_page .monster_display{
     height: 606px;
     width: 444px;
    
@@ -86,7 +87,7 @@
     justify-content: center;
     
 }
-.monster_display > img{
+#monster_show_page .monster_display > img{
     display: block;
   position: relative;
   top: 50%;
@@ -95,4 +96,5 @@
   min-width: 100%;
   transform: translate(-50%, -50%);
 }
+
 

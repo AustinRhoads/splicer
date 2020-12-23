@@ -7,6 +7,7 @@ class MonstersController < ApplicationController
 
   def show
     @monster = Monster.find(params[:id])
+    @user = @monster.user
   end
 
   def new
@@ -35,34 +36,43 @@ class MonstersController < ApplicationController
     end
   end
 
-  def edit
-    @monster = Monster.find(params[:id])
-    @heads = Head.all
-    @arms = Arm.all
-    @legs =Leg.all
-    @backs = Back.all
-    
-  end
+  #def edit
+  #  @monster = Monster.find(params[:id])
+  #  @heads = Head.all
+  #  @arms = Arm.all
+  #  @legs =Leg.all
+  #  @backs = Back.all
+  #  
+  #end
 
-  def update
-    @monster = Monster.find(params[:id])
-    @monster.update(monster_params)
-    @monster.save
-    redirect_to monster_path(@monster)
-  end
+ # def update
+ #   @monster = Monster.find(params[:id])
+ #   @monster.update(monster_params)
+ #   @monster.save
+ #   redirect_to monster_path(@monster)
+ # end
 
 
   def destroy
     @monster = Monster.find(params[:id])
-    if current_user.battle_party && current_user.battle_party.monsters.include?(@monster)
+
+    if @monster.user == current_user
+
+      if current_user.battle_party && current_user.battle_party.monsters.include?(@monster)
+        @monster.destroy
+        current_user.set_top_three_as_battle_party
+      else
       @monster.destroy
-      current_user.set_top_three_as_battle_party
+
+      end
+
+      redirect_to user_path(current_user), notice: "#{@monster.name} has been euthinized"
+
     else
-    @monster.destroy
+      redirect_to monster_path(@monster)
 
     end
 
-    redirect_to user_path(current_user), notice: "#{@monster.name} has been euthinized"
   end
 
   def monster_params

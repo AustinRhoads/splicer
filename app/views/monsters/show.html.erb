@@ -1,3 +1,4 @@
+<main id = "monster_show_page">
 <h1 class = "monster_name"><%= @monster.name.capitalize %></h1>
 <h3 class = "monster_element"><%= @monster.element %></h3>
 <div class = "monster_display">
@@ -15,7 +16,7 @@
 <p><%= spec[0].capitalize %>: <%= spec[1] %></p>
 <% end %>
 </div>
-
+<h2>created by <%= link_to @monster.user.name, user_path(@monster.user) %></h2>
 
 <div id = "fighting_stats">
 <h1 id = "section_head">Attacks</h1>
@@ -27,7 +28,14 @@
 <h2 id = "ca_damage"><%= @monster.charged_attack.damage_points %></h2>
 </div>
 
+<% if user_is_self %>
 <%= link_to "Euthanize", "/monsters/#{@monster.id}/destroy", data: {confirm: "Are you sure you want to kill this creature whom you have frivolously given life to without concern for the moral implications?"} %>
+<% end %>
 
+
+
+
+<footer style = "height: 33px;"></footer>
 <%= stylesheet_link_tag "monster_show.css" %>
+</main>
 
