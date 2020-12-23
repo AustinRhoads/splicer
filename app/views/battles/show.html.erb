@@ -1,5 +1,5 @@
 
-<body class = "battles_show">
+<main id = "battles_show">
 <h1>Fight</h1>
 <h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 <%= form_for @battle, :url => { :action => "update" },  html: {class: "get_exp hide_button"}  do |f| %>
@@ -153,4 +153,4 @@
 <%= javascript_pack_tag 'battles.js' %>
 <%= stylesheet_link_tag "battles.css" %>
 <script></script>
-</body>
+</main>

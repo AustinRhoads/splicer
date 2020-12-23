@@ -1,10 +1,10 @@
-body.battles_show{
-  background-color: rgb(68, 115, 255);
+main#battles_show{
+  background-color: #38a05f;
 }
   
 
 
-.battles_show div.arena{
+#battles_show div.arena{
   margin-right: 0%;
 
 width: 100%;
@@ -14,7 +14,7 @@ position: relative;
 
 }
 
-.battles_show div.arena img.arena_location{
+#battles_show div.arena img.arena_location{
   position: absolute;
   top: 0;
   left: 0;
@@ -22,17 +22,17 @@ z-index: 1;
 }
 
 
-.battles_show div.one_tagged_in {
+#battles_show div.one_tagged_in {
  
  
 }
 
-.battles_show .item_1{
+#battles_show .item_1{
   text-align: center;
   border: 3px solid green;
 }
 
-.battles_show div#roster_one{
+#battles_show div#roster_one{
   border-radius: 25px;
 background-color: rgba(0, 0, 0, 0.829);
 display:inline-block;
@@ -44,11 +44,11 @@ margin-top: 52%;
 }
 
      
-.battles_show #roster_two{
+#battles_show #roster_two{
 
 }
 
-.battles_show .onesy{
+#battles_show .onesy{
   
   width: 200px;
   height: 200px;
@@ -64,12 +64,12 @@ margin-top: 52%;
 
 }
 
-.battles_show div.onesy:hover{
+#battles_show div.onesy:hover{
 
   border: solid rgb(189, 64, 15) 4px;
 }
  
-.battles_show .twosy{
+#battles_show .twosy{
   width: 30%;
   height: auto;
   background-color: #9658ce;
@@ -79,7 +79,7 @@ margin-top: 52%;
 
 
 
-.battles_show .monster_image_thumb{
+#battles_show .monster_image_thumb{
   width: 200px;
   height: 200px;
   object-fit: contain;
@@ -89,16 +89,16 @@ margin-top: 52%;
 }
 
 
-.battles_show .in_the_ring{
+#battles_show .in_the_ring{
   border: solid floralwhite 4px;
 }
 
-.battles_show div.onesy.in_the_ring:hover{
+#battles_show div.onesy.in_the_ring:hover{
   border: solid floralwhite 4px;
 }
 
 
-.battles_show .dead_head_1{
+#battles_show .dead_head_1{
   display:inline-block;
   position: absolute;
   width: 80px;
@@ -107,7 +107,7 @@ margin-top: 52%;
   right: 15%;
 }
 
-.battles_show .dead_head_2{
+#battles_show .dead_head_2{
   display:inline-block;
   position: absolute;
   width: 80px;
@@ -116,7 +116,7 @@ margin-top: 52%;
   right: 10%;
 }
 
-.battles_show .dead_head_3{
+#battles_show .dead_head_3{
   display:inline-block;
   position: absolute;
   width: 80px;
@@ -124,7 +124,7 @@ margin-top: 52%;
   z-index: 33;
   right: 5%;
 }
-.battles_show .countdown{
+#battles_show .countdown{
   display:inline-block;
   position: absolute;
   width: 200px;
@@ -132,7 +132,7 @@ margin-top: 52%;
   z-index: 66;
   right: 39%;
 }
-.battles_show .countdown_fight{
+#battles_show .countdown_fight{
   display:inline-block;
   position: absolute;
   width: 800px;
@@ -145,7 +145,7 @@ margin-top: 52%;
 
 
 
-.battles_show .get_exp input{
+#battles_show .get_exp input{
   display:inline-block;
   position: absolute;
   z-index: 39;
@@ -158,6 +158,7 @@ border-radius: 25px;
 border-width: 3px;
 border-color: #5213e9;
 font-size: 33px;
+text-shadow: 1px 1px #eeebeb;
 
 }
 
@@ -167,7 +168,7 @@ font-size: 33px;
 
 
 
-//.battles_show .in_the_ring{
+//#battles_show .in_the_ring{
 //  width: 33%;
 //  height: auto;
 //  border: none;
@@ -180,12 +181,12 @@ font-size: 33px;
 //  left: 10%;
 //}
 //
-//.battles_show div.onesy.in_the_ring:hover{
+//#battles_show div.onesy.in_the_ring:hover{
 //border: none;
 //}
 
 
-.battles_show .one_tagged_in{
+#battles_show .one_tagged_in{
   width: 33%;
   height: auto;
   border: none;
@@ -256,7 +257,7 @@ font-size: 33px;
 }
 
 
-.battles_show .two_tagged_in{
+#battles_show .two_tagged_in{
   width: 33%;
   height: auto;
   border: none;
@@ -303,7 +304,7 @@ font-size: 33px;
 
 
 
-.battles_show .unavailable{
+#battles_show .unavailable{
   background-color: red;
 }
 
@@ -316,7 +317,7 @@ font-size: 33px;
         
       }
 
-      .battles_show div#roster_one{
+      #battles_show div#roster_one{
         width: 210px;
         height: 630px;
         border-radius: 25px;
@@ -331,7 +332,7 @@ font-size: 33px;
       
       }
 
-      .battles_show .onesy{
+      #battles_show .onesy{
 
         width: 200px;
         height: 200px;
@@ -358,7 +359,7 @@ font-size: 33px;
         left: 0%;
       }
 
-      .battles_show .get_exp input{
+      #battles_show .get_exp input{
         display:inline-block;
         position: absolute;
         z-index: 39;
@@ -374,7 +375,7 @@ font-size: 33px;
       
       }
 
-      .battles_show .countdown_fight{
+      #battles_show .countdown_fight{
         display:inline-block;
         position: absolute;
         width: 800px;
@@ -391,10 +392,12 @@ font-size: 33px;
 
 
 
+#battles_show .input{
+  text-shadow: 2px 2px #eeebeb;
+}
 
 
 
-
-.battles_show .hide_button{
+#battles_show .hide_button{
   display: none;
 }
