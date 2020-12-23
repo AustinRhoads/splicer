@@ -10,15 +10,18 @@
   </head>
 
   <body>
+  <div>
   <%= link_to "Home", root_path %>
     <% if logged_in? %>
    
       <%= link_to current_user.name, user_path(current_user) %>
-      <p><%= link_to 'Logout', logout_path %></p>
+      <%= link_to 'Logout', logout_path, :class => "logout" %>
+      
     <% else %>
       <%= link_to "Login", login_path %>
       <%= link_to "Sign up", new_identity_path %>
     <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>

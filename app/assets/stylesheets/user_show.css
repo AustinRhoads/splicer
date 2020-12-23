@@ -1,0 +1,40 @@
+ 
+@font-face {
+    font-family: 'karmatic-arcade';
+    src: url('/assets/ka1.ttf') format('truetype')
+}
+
+ 
+ #users_show h1, #users_show h2, #users_show  h3, #users_show  p, #users_show  div{
+
+    text-align: center;
+   
+}
+#users_show a{
+    padding-left: 10px;
+}
+
+#users_show  img{
+    align-content: center;
+}
+
+#users_show body{
+    background-color: #38a05f;
+}
+
+
+
+
+
+/*everything else*/
+
+.logout {
+    float: right;
+}
+
+
+
+*{
+    font-family: 'karmatic-arcade' ;
+   
+}
