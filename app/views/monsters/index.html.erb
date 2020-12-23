@@ -3,8 +3,8 @@
     <h2>Name: <%= monster.name %> </h2>
     <h3>HP: <%= monster.hp %> </h3>
 
-<% if monster.image? %>
-<%= image_tag monster.image_url(:large) %>
-<% end %>
+
+<%= image_tag monster.image_url(:thumb), style: "width: 200px; height: 200px;" %>
+
 
 <% end %>
