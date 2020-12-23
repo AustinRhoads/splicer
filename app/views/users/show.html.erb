@@ -1,20 +1,49 @@
 <main id = "users_show">
 
-<h1><%= @user.name %></h1>
-<h2>Level: <%= @user.level %></h2>
-<h2>EXP: <%= @user.experience_points %></h2>
 
-<% if flash[:alert] %>
-<p><%= flash[:alert] %></p>
+
+
+
+
+<% if user_is_self %>
+
+    <h1><%= @user.name %></h1>
+    <h2>Level: <%= @user.level %></h2>
+    <h2>EXP: <%= @user.experience_points %></h2>
+
+
+    <% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+    <% end %>
+
+
+
+    <p>Splice some genes in the <%= link_to "Lab",  new_monster_path %></p>
+    <% @user.monsters.each do |monster| %>
+    <div><%= link_to monster.name.capitalize, monster_path(monster) %> HP: <%= monster.hp %></div>
+    <% end %>
+    <br>
+
+
+
+    <%= link_to "BATTLE", new_battle_path %>
+
+<% else %>
+
+
+    <h1><%= @user.name %></h1>
+    <h2>Level: <%= @user.level %></h2>
+
+    <% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+    <% end %>
+
+
+
+    <% @user.monsters.each do |monster| %>
+    <div><%= link_to monster.name.capitalize, monster_path(monster) %> HP: <%= monster.hp %></div>
+    <% end %>
+
+
 <% end %>
-
-<p><%= link_to "Splice some Genes",  new_monster_path %></p>
-<% @user.monsters.each do |monster| %>
-<div><%= link_to monster.name.capitalize, monster_path(monster) %> HP: <%= monster.hp %></div>
-<% end %>
-<br>
-
-
-
-<%= link_to "BATTLE", new_battle_path %>
 </main>
