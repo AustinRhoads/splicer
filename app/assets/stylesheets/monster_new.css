@@ -10,7 +10,7 @@
 
 .avatar_grid{
     display: grid;
-    grid-template-columns: repeat(3, 222px);
+    grid-template-columns: repeat(3, 261px);
     grid-template-rows: repeat(3, 303px);
     
 }
@@ -19,6 +19,7 @@
     grid-column: 1;
     grid-row: 1/4;
     text-align: center;
+    z-index: 33;
    
 }
 

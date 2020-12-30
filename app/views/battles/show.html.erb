@@ -101,7 +101,7 @@
 
 
 
-<%= link_to "Leave Battle", "/battles/#{@battle.id}/destroy", class: "destroy" %>
+<%= link_to "Leave Battle", "/users/#{current_user.id}/battles/#{@battle.id}/destroy", class: "destroy" %>
 
 
 

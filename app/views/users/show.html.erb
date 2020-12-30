@@ -23,10 +23,12 @@
     <div><%= link_to monster.name.capitalize, monster_path(monster) %> HP: <%= monster.hp %></div>
     <% end %>
     <br>
+    
+    <p>Battles won <%= @user.battles_won.count %></p>
 
 
 
-    <%= link_to "BATTLE", new_battle_path %>
+    <%= link_to "BATTLE", new_user_battle_path(current_user) %>
 
 <% else %>
 

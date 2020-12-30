@@ -4,9 +4,7 @@ class BattlesController < ApplicationController
   include ActionController::Live
 
 
-  def index
-    @battles = Battle.all
-  end
+  
 
 
   def show
@@ -41,9 +39,9 @@ class BattlesController < ApplicationController
       @player_one = BattleUser.create(:user_id => current_user.id, :battle_id => @battle.id)
       @player_two = BattleUser.create(:user_id => @npc.id, :battle_id => @battle.id)
       @battle.save
-      redirect_to battle_path(@battle)
+      redirect_to "/users/#{current_user.id}/battles/#{@battle.id}"
     else
-      redirect_to new_battle_path
+      redirect_to new_user_battle_path
     end
 
   end

@@ -12,15 +12,16 @@ class Monster < ApplicationRecord
     mount_base64_uploader :image, ImageUploader
 
     validates :name, :uniqueness => { message: "The name %{value} is already taken. Try being original."}
-    validates :name, :presence => { message: "Name you beast."}
+    validates :name, :presence => { message: "Name ya beast."}
+    validates :head, :presence => { message: "Where's ya head?"}
+    validates :arm, :presence => { message: "Give your monster a hand... or two."}
+    validates :leg, :presence => { message: "Your creature doesn't have a leg to stand on."}
+    validates :back, :presence => { message: "Your missing a bit aren't ya?"}
     #validates :image, :presence => true
 
-    before_save :specs
-    before_save :set_hp
-    before_save :set_to_full_hp
-    before_validation :set_element
-    before_validation :set_fast_attack
-    before_validation :set_charged_attack
+    before_save :set_specs_and_hp
+
+    before_validation :set_element_and_attacks
    
 
     def set_to_full_hp
@@ -48,14 +49,17 @@ class Monster < ApplicationRecord
     end
 
     def set_hp
+        
         if self.hp == nil
             self.hp = (self.user.level * 100) + ((self.dexterity + self.counter) * 10) + (self.attack) + (5 * rand(1..20)) 
         end
     end
 
     def set_element
-        parts = [self.head.element, self.arm.element, self.leg.element, self.back.element]
-        self.element = parts.max_by{|part| parts.count(part)} 
+        
+            parts = [self.head.element, self.arm.element, self.leg.element, self.back.element]
+            self.element = parts.max_by{|part| parts.count(part)} 
+        
     end
 
     def set_fast_attack
@@ -67,6 +71,26 @@ class Monster < ApplicationRecord
         self.charged_attack = ChargedAttack.all.select {|ca| ca.element == self.element}.sample
         
     end
+
+    def has_all_parts
+        (self.head && self.arm && self.leg && self.back) ? true:false
+    end
+
+    def set_specs_and_hp
+        if self.has_all_parts
+            self.specs
+            self.set_hp
+            self.set_to_full_hp
+        end
+    end
+
+    def set_element_and_attacks
+        if self.has_all_parts
+            self.set_element
+            self.set_fast_attack
+            self.set_charged_attack
+        end
+    end
     
 
 end
@@ -74,30 +98,3 @@ end
 
 
 
-
-
-
-
-
-#notes
-
-#    def use_fast_attack(opponent)
-#        if rand(1..20) + self.attack >= 10 + opponent.counter 
-#            opponent.current_hp -= self.fast_attack.damage_points
-#            self.current_hp -= opponent.recoil
-#        else
-#            self.current_hp -= opponent.recoil
-#        end
-#        self.charger += 1
-#    end
-#
-#    def use_charged_attack(opponent)
-#        if (rand(1..20) + self.attack >= 10 + opponent.counter ) && self.charged? == true
-#            opponent.current_hp -= self.charged_attack.damage_points
-#            self.current_hp -= opponent.recoil
-#        else
-#            opponent.current_hp -= (self.charged_attack.damage_points * 0.5)
-#            self.current_hp -= opponent.recoil
-#        end
-#        self.charger = 0
-#    end

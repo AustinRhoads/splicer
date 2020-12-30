@@ -1,7 +1,9 @@
 <h1>Welcome to the gene splicing lab! Muahahaha</h1>
 <% if flash[:alert] %>
-
-<p class = "flash_alert" ><%= flash[:alert] %></p>
+    <% flash[:alert].each do |msg| %>
+     <p class = "flash_alert" ><%= msg %></p>
+     <br>
+    <% end %>
 <% end %>
 
 <% if @monster.errors.any? %>
@@ -10,6 +12,7 @@
     <ul>
         <% @monster.errors.full_messages.each do |message| %>
             <li><%= message %></li>
+            
         <% end %>
     </ul>
 <% end %>
@@ -68,7 +71,7 @@
 
 <div>
 <canvas hidden id = "other_canvas" height = "1212" width = "888" style="border: 1px solid green;" ></canvas><br>
-<button type = "button" id = "new_btn">new button</button>
+<button hidden type = "button" id = "new_btn">new button</button>
 </div>
 <%= javascript_pack_tag 'monster_new.js' %>
 <%= stylesheet_link_tag "monster_new.css" %>

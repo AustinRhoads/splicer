@@ -25,32 +25,19 @@ class MonstersController < ApplicationController
     if @monster.save
       redirect_to monster_path(@monster)
     else
+      flash[:alert] = []
       @monster.errors.full_messages.each do |msg|
+       next if msg.include? "must exist"
         msg = msg.split(" ")
         msg.shift()
         msg = msg.join(" ")
-        flash[:alert] = "   " + msg + "   "
+        flash[:alert] << "   " + msg + "   "
+        
       end
 
       redirect_to new_monster_path
     end
   end
-
-  #def edit
-  #  @monster = Monster.find(params[:id])
-  #  @heads = Head.all
-  #  @arms = Arm.all
-  #  @legs =Leg.all
-  #  @backs = Back.all
-  #  
-  #end
-
- # def update
- #   @monster = Monster.find(params[:id])
- #   @monster.update(monster_params)
- #   @monster.save
- #   redirect_to monster_path(@monster)
- # end
 
 
   def destroy
@@ -79,3 +66,24 @@ class MonstersController < ApplicationController
     params.require(:monster).permit(:name, :user_id, :head_id, :arm_id, :leg_id, :back_id, :image)
   end
 end
+
+
+
+
+
+#  def edit
+#    @monster = Monster.find(params[:id])
+  #  @heads = Head.all
+  #  @arms = Arm.all
+  #  @legs =Leg.all
+  #  @backs = Back.all
+  #  
+#  redirect_back(fallback_location: monster_path(@monster))
+#  end
+
+ # def update
+ #   @monster = Monster.find(params[:id])
+ #   @monster.update(monster_params)
+ #   @monster.save
+ #   redirect_to monster_path(@monster)
+ # end

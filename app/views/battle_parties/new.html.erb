@@ -1,0 +1,28 @@
+
+
+
+ <h2>Your Entire Roster</h2>
+
+ <div class= "grid-wrapper">
+ <% current_user.monsters.each_with_index do |monster, index| %>
+ <div class = "grid member party_member_<%= index %>"  >
+ <% if monster.image? %>
+<%= image_tag(monster.image_url(:thumb), :class => "roster_image")%>
+<% end %>
+ <%= monster.name %><br>
+ <%= monster.hp %><br>
+ <%= monster.element %><br>
+ <p hidden class = "data" id = "monster_<%= index %>"><%= monster.to_json %></p>
+
+ <input type="checkbox" value=<%= monster.id %>  name="battle_party[monster_ids][]" id="battle_party_monster_ids_<%= monster.id %>" style="display:none;">
+ </div>
+ 
+ <% end %>
+</div>
+
+
+
+<p hidden id= "initial_battle_party"><%= @battle_party.monsters.to_json %></p>
+
+ 
+<%= stylesheet_link_tag "battle_party.css" %>

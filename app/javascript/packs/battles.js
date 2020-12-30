@@ -90,7 +90,9 @@ function countdown(){
             goodGuys[0].click();
             npc_tagIn();
             set_players();
-             npcFight(); 
+
+         // set_the_board();
+          npcFight(); 
             
         }, 5000);
 
@@ -178,13 +180,13 @@ function tagIn(){
  var one_tagged_in_hp = document.querySelector("div.one_tagged_in h1.hp");
  var two_tagged_in_hp = document.querySelector("div.two_tagged_in h1.hp");
  
- var charger = 0;
+ //var charger = 0;
 
 
 
 function useAttack(){
-    charger = parseInt(document.querySelector("div.one_tagged_in p#charger").textContent);
-    
+ var charger = parseFloat(document.querySelector("div.one_tagged_in p#charger").textContent);
+    console.log(charger + "init");
     if(check_game_status() != "game over"){
 
     set_players();
@@ -194,8 +196,9 @@ function useAttack(){
         two_hp -=  player_one.fast_attack.damage_points + player_one.monster.recoil + Math.floor(player_one.player.level/3);
         one_hp -=  player_two.monster.recoil;
         console.log("hit");
+        console.log(charger + "before");
         charger += .5 + player_one.player.level/3;
-        
+        console.log(charger + "after");
     } else {
         console.log("miss");
     };
@@ -280,6 +283,7 @@ function charger_check(){
 
     var charge_meter =  document.querySelector("div.one_tagged_in p#charger").textContent;
     var elem = document.querySelector(".one_tagged_in p#my_bar");
+    
     var width = Math.floor((charge_meter * 100)/(player_one.charged_attack.damage_points/6));
     if (width >=100){
         width = 100;
@@ -671,7 +675,16 @@ function npcFight() {         //  create a loop function
 
 
 
+function set_the_board() {
+    var goodGuys = document.querySelectorAll("div.onesy");
+    var new_div = goodGuys[0].cloneNode(true);
+    new_div.classList.add("one_tagged_in");
 
+    
+    npc_tagIn();
+    set_players();
+    goodGuys[0].click();
+}
 
 
 

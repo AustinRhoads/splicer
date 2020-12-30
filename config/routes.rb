@@ -15,14 +15,17 @@ root 'welcome#home'
   get "/logout" => "sessions#destroy", :as => :logout
   get "/auth/failure" => "sessions#failure"
 
-  resources :battles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  
   get '/battles/:id/destroy' => 'battles#destroy'
   resources :identities
   resources :monsters, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
+
   get '/monsters/:id/destroy' => 'monsters#destroy' 
 resources :users, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
-  resources :battle_parties
+  resources :battle_parties, only: [:new, :create, :edit, :update]
+  resources :battles, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+ 
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

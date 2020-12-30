@@ -2,6 +2,21 @@ class BattlePartiesController < ApplicationController
   before_action :check_login
   
 
+def new
+@battle_party = BattleParty.new
+end
+
+def create
+  @battle_party = BattleParty.create(battle_party_params)
+  if @battle_party.save
+    redirect_to user_path(current_user)
+  else
+    redirect_to new_user_battle_party_path(current_user)
+  end
+
+end
+
+
   def edit
     @battle_party = BattleParty.find_by(user_id: params[:user_id])
     
@@ -15,7 +30,7 @@ class BattlePartiesController < ApplicationController
         @battle_party.update(battle_party_params)
       
         if @battle_party.save
-             redirect_to new_battle_path
+             redirect_to new_user_battle_path(current_user)
         else
              redirect_to edit_user_battle_party_path(current_user)
         end
