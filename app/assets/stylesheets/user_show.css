@@ -4,6 +4,10 @@
     src: url('/assets/ka1.ttf') format('truetype')
 }
 
+@font-face {
+    font-family: 'Draconian-Typewriter';
+    src: url('/assets/DraconianTypewritter001.ttf') format('truetype')
+}
  
  #users_show h1, #users_show h2, #users_show  h3, #users_show  p, #users_show  div{
 
@@ -28,3 +32,14 @@
 
 /*everything else*/
 
+.welcome_text p.quote{
+    font-family: 'Draconian-Typewriter';
+    margin-top: 33px;
+    font-size: 23px;
+    text-align: center;
+    text-shadow: 2px, 2px, white;
+}
+.welcome_text p.open{
+    font-size: 33px;
+    text-align: center;
+}

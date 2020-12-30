@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     has_many :battle_users
     has_many :battles, through: :battle_users
     has_one :battle_party  
+    has_many :charged_attacks, -> { distinct }, through: :monsters
   
    
 

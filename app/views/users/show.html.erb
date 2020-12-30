@@ -48,4 +48,10 @@
 
 
 <% end %>
+<h2>Charged attacks</h2>
+<ul>
+<% @user.charged_attacks.each do |ca| %>
+<li><%= ca.name %>.........<%= ca.damage_points %></li>
+<% end %>
+</ul>
 </main>

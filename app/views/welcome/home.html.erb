@@ -3,9 +3,24 @@
 <% if current_user == nil %>
 
          <%= link_to 'Log in with Google', '/auth/google_oauth2' %>
+         <br>
          <%= link_to 'Log in with Facebook', '/auth/facebook' %>
-<div>or</div>
+<div>
+<br>
+or
+<br>
+</div>
          <p><%= link_to 'Signup', new_identity_path %></p>
+         
          <p><%= link_to 'Login', login_path %></p>
 
 <% end %>
+
+<div class = "welcome_text"><p class = "quote">“If I cannot inspire love, I will cause fear!”<br><br>
+~Mary Shelly, Frankenstein
+</p>
+<br>
+<br>
+<p class = "open">
+Bring your creatures to life in your gene splicing lab and battle other mad scientists for glory.</p>
+</div>
