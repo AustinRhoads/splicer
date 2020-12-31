@@ -152,6 +152,8 @@ function hi_res_draw(img){
 
 
 
+
+
 function scaleIt(source,scaleFactor){
   var c = document.createElement('canvas');
   var ctx = c.getContext('2d');
