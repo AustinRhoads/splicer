@@ -17,12 +17,13 @@ function show_head(){
     var head_select = document.getElementById("monster_head_id");
 
     if(head_select.value){
+
     var head_image = document.querySelector("img.avatar_head_" + head_select.value);
+
     var all_head_images = document.querySelectorAll("img.head");
    
-//   all_head_images.forEach(el => el.classList.add("hide_img"));
    all_head_images.forEach(el => el.classList.remove("selected"));
-//    head_image.classList.remove("hide_img");
+   
     head_image.classList.add("selected");
    
     };
@@ -42,9 +43,7 @@ function show_arms(){
     var arms_image = document.querySelector("img.avatar_arms_" + arms_select.value);
     var all_arm_images = document.querySelectorAll("img.arms");
    
- //  all_arm_images.forEach(el => el.classList.add("hide_img"));
    all_arm_images.forEach(el => el.classList.remove("selected"));
- //   arms_image.classList.remove("hide_img");
     arms_image.classList.add("selected");
     
     };
@@ -61,12 +60,13 @@ function show_legs(){
     var legs_select = document.getElementById("monster_leg_id");
 
     if(legs_select.value){
+
     var legs_image = document.querySelector("img.avatar_legs_" + legs_select.value);
+
     var all_leg_images = document.querySelectorAll("img.legs");
    
- //  all_leg_images.forEach(el => el.classList.add("hide_img"));
    all_leg_images.forEach(el => el.classList.remove("selected"));
- //   legs_image.classList.remove("hide_img");
+
     legs_image.classList.add("selected");
     
     };
@@ -83,12 +83,13 @@ function show_back(){
     var back_select = document.getElementById("monster_back_id");
 
     if( back_select.value){
+
     var back_image = document.querySelector("img.avatar_back_" + back_select.value);
+
     var all_back_images = document.querySelectorAll("img.back");
    
-//   all_back_images.forEach(el => el.classList.add("hide_img"));
    all_back_images.forEach(el => el.classList.remove("selected"));
-//    back_image.classList.remove("hide_img");
+
     back_image.classList.add("selected");
 
     };
@@ -119,8 +120,6 @@ function crisper(){
         var filtered = images_array.filter(function (el) {
             return el != null;
         });
-          
-      //  filtered.forEach(el => hi_res_draw(el));
 
         filtered.forEach(img => ctx_2.drawImage(img, 0,0));
         hi_res_draw(other_canvas);
@@ -132,9 +131,6 @@ function crisper(){
   
 
   // scale the 500x335 canvas in half to 250x167 onto the main canvas
-//  canvas.width=c1.width/2;
-//  canvas.height=c1.height/2;
-//  ctx.drawImage(c1,0,0,250,167);
 
 function hi_res_draw(img){
     
@@ -145,7 +141,6 @@ function hi_res_draw(img){
 
         my_canvas.width = c1.width/2;
         my_canvas.height = c1.height/2;
-   //     ctx.drawImage(images_back,0,0,250,167);
     ctx.drawImage(c1, 0,0, c1.width, c1.height, 0, 0,  my_canvas.width, my_canvas.height);
 
 };
@@ -165,21 +160,23 @@ function scaleIt(source,scaleFactor){
   return(c);
 }
 
-var new_button = document.querySelector("#new_btn");
-new_button.addEventListener("click", image_printer);
 document.getElementById('create-drawing').addEventListener('click', image_printer);
 
 
 function image_printer(){
+
     const dataURI = other_canvas.toDataURL("image/png");
+
     var dataImg = document.createElement('img');
+
     dataImg.src = dataURI;
- //   console.log(dataURI);
-    
+
     var drawingField = document.createElement('div');
+
     drawingField.innerHTML = "<input type='hidden' name='monster[image]' id='monster_image' value='" + dataImg.src + "'>" ;
+
     document.getElementById('monster_image').value = dataURI;
-  // var mi = document.getElementById('monster_image').value = dataURI;
+ 
 
     
 };
