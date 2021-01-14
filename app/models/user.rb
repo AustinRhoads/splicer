@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+    validates :email, :uniqueness => true
+    has_secure_password
+
+    
     has_many :monsters
     has_many :battle_users
     has_many :battles, through: :battle_users

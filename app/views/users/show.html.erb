@@ -27,9 +27,9 @@
     <p>Battles won <%= @user.battles_won.count %></p>
 
 
-
+<div class = "battle_button">
     <%= link_to "BATTLE", new_user_battle_path(current_user) %>
-
+</div>
 <% else %>
 
 

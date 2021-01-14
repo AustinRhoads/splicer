@@ -43,3 +43,11 @@
     font-size: 33px;
     text-align: center;
 }
+
+div.battle_button{
+    text-align: center;
+}
+
+input#email{
+    font-family: sans-serif;
+}

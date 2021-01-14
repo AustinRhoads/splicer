@@ -2,7 +2,7 @@ class UsersController < ApplicationController
  
   before_action :set_user, only: [:show]
   before_action :check_login
-  skip_before_action :check_login, :only => :create
+  skip_before_action :check_login, :only => [:create, :new]
 
 
   def index
@@ -15,12 +15,21 @@ class UsersController < ApplicationController
 
   def create
     
-     @user = User.create(user_params)
-     if @user
+     @user = User.new(user_params)
+     
+     if @user.save
       session[:user_id] = @user.id
       redirect_to user_path(@user) 
      else
-      redirect_to "/"
+      flash[:alert] = []
+      @user.errors.full_messages.each do |msg|
+       
+   #     msg = msg.split(" ")
+   #     msg.shift()
+   #     msg = msg.join(" ")
+        flash[:alert] << "   " + msg + "   "
+      end
+      redirect_to new_user_path
      end
   end
 
@@ -46,6 +55,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :height, :happiness, :nausea, :tickets, :admin, :password, :npc)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :npc)
   end
 end
