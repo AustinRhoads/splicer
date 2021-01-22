@@ -2,6 +2,12 @@
 <main id = "monsters_index" >
 <h1>Meet the freaks</h1>
 
+<%= form_tag(monsters_path, method: :get) do |form| %>
+<%= text_field_tag :query %>
+<%= submit_tag "search" %>
+    <% end %>
+
+
 <% @monsters.each do |monster| %>
     
     <div>

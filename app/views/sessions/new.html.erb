@@ -1,8 +1,8 @@
 <% if flash[:alert] %>
-<p><%= flash[:alert] %></p>
+<p class = "flash_alert"><%= flash[:alert] %></p>
 <% end %>
 
-<%= form_tag '/auth/identity/callback' do %>
+<%= form_tag '/login' do %>
     <div class = "field" >
     <%= label_tag :auth_key, "Email" %><br>
     <%= text_field_tag :auth_key %>

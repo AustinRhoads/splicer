@@ -4,6 +4,7 @@
 <h2 class = "item_1"><%= @player_one.name %> VS. <%= @player_two.name %></h2>
 <%= form_for @battle, :url => { :action => "update" },  html: {class: "get_exp hide_button"}  do |f| %>
 <%= f.hidden_field :user_won %>
+<%= f.hidden_field :game_over, :value => true %>
 <%= f.submit "Claim Experience Points" %>
 <% end %>
 <%= image_tag("countdown_3", :class => "countdown countdown_3 hide_button ") %>

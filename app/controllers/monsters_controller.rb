@@ -1,8 +1,12 @@
 class MonstersController < ApplicationController
   before_action :check_login
+ 
   
   def index
-    @monsters = Monster.all
+    @monsters = monster_query(params["query"])
+    if @monsters == nil || @monsters.empty? 
+      @monsters = Monster.all
+    end
   end
 
   def show
@@ -62,28 +66,21 @@ class MonstersController < ApplicationController
 
   end
 
+  
+  def monster_query(str)
+
+      if str == nil 
+            @monsters = Monster.all
+      else
+           str = params["query"].split(" ").map {|x| x =  x.capitalize }.join(" ")
+            @monsters = Monster.where('name LIKE ?', str + '%').all  
+      end
+  end
+
+
+
   def monster_params
     params.require(:monster).permit(:name, :user_id, :head_id, :arm_id, :leg_id, :back_id, :image)
   end
 end
 
-
-
-
-
-#  def edit
-#    @monster = Monster.find(params[:id])
-  #  @heads = Head.all
-  #  @arms = Arm.all
-  #  @legs =Leg.all
-  #  @backs = Back.all
-  #  
-#  redirect_back(fallback_location: monster_path(@monster))
-#  end
-
- # def update
- #   @monster = Monster.find(params[:id])
- #   @monster.update(monster_params)
- #   @monster.save
- #   redirect_to monster_path(@monster)
- # end

@@ -6,14 +6,14 @@
 ##   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 ##   Character.create(name: 'Luke', movie: movies.first)
 #
-    aush = User.create(:name => "Austinz", :npc => true, :level => 1)
-    klause = User.create(:name => "Klause Vadenstratta", :npc => true, :level => 1)
-    mari = User.create(:name => "Marilyn", :npc => true, :level => 2)
-    varuuka = User.create(:name => "V. Saltz", :npc => true, :level => 2)
-    sid = User.create(:name => "Sidney", :npc => true, :level => 3)
-    candyman = User.create(:name => "Zee CandyManCan", :npc => true, :level => 3)
-    dr = User.create(:name => "Dr. funkenstien", :npc => true, :level => 4)
-    bootsy = User.create(:name => "Bootsy Collins", :npc => true, :level => 5)
+    aush = User.create(:name => "Austinz", :npc => true, :level => 1, :password => "test", :email => "test01@test.com")
+    klause = User.create(:name => "Klause Vadenstratta", :npc => true, :level => 1, :password => "test", :email => "test02@test.com")
+    mari = User.create(:name => "Marilyn", :npc => true, :level => 2, :password => "test", :email => "test03@test.com")
+    varuuka = User.create(:name => "V. Saltz", :npc => true, :level => 2, :password => "test", :email => "test04@test.com")
+    sid = User.create(:name => "Sidney", :npc => true, :level => 3, :password => "test", :email => "test05@test.com")
+    candyman = User.create(:name => "Zee CandyManCan", :npc => true, :level => 3, :password => "test", :email => "test06@test.com")
+    dr = User.create(:name => "Dr. funkenstien", :npc => true, :level => 4, :password => "test", :email => "test07@test.com")
+    bootsy = User.create(:name => "Bootsy Collins", :npc => true, :level => 5, :password => "test", :email => "test08@test.com")
 #
     HEADS = [
         {:name => "Dactys Head", :element => "air", :dexterity => 2, :attack => 1, :counter => 0, :recoil => 1, :speed => 2},

@@ -1,6 +1,7 @@
 class BattlesController < ApplicationController
   before_action :check_login
   before_action :set_battle, only: [:show, :edit, :update, :destroy]
+  before_action :old_game, only: [:show]
   include ActionController::Live
 
 
@@ -8,10 +9,11 @@ class BattlesController < ApplicationController
 
 
   def show
-    @player_one = @battle.player_one
-    @player_two = @battle.player_two
-    player_one_check
-
+    
+       @player_one = @battle.player_one
+       @player_two = @battle.player_two
+       player_one_check
+   
   end
 
 
@@ -86,8 +88,15 @@ class BattlesController < ApplicationController
       end
     end
 
+    def old_game
+      if @battle.game_over == true
+        flash[:alert] = ["Sneaky sneaky."]
+        redirect_to user_path(current_user)
+      end
+    end
+
   
     def battle_params
-      params.require(:battle).permit(:level, :user_won)
+      params.require(:battle).permit(:level, :user_won, :game_over)
     end
 end

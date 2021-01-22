@@ -7,7 +7,7 @@ root 'welcome#home'
 
   get '/auth/google_oauth2/callback' => 'sessions#create'
   get '/auth/facebook/callback' => 'sessions#create'
-  post "/auth/:provider/callback" => "sessions#create"
+
 
   get "/login" => "sessions#new", :as => :login
   post '/login' => "sessions#create"
@@ -17,8 +17,8 @@ root 'welcome#home'
 
   
   get '/battles/:id/destroy' => 'battles#destroy'
-  resources :identities
-  resources :monsters, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+ # resources :identities
+  resources :monsters, only: [:index, :show, :new, :create, :destroy]
 
 
   get '/monsters/:id/destroy' => 'monsters#destroy' 
