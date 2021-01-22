@@ -24,7 +24,7 @@
     <% end %>
     <br>
     
-    <p>Battles won <%= @user.battles_won.count %></p>
+    <p>Battles won <%= @user.battles_won %></p>
 
 
 <div class = "battle_button">
@@ -54,4 +54,7 @@
 <li><%= ca.name %>.........<%= ca.damage_points %></li>
 <% end %>
 </ul>
+
+<p>current winner is <%= link_to winner.name, user_path(winner) %> with <%= link_to winner.battles_won, user_path(winner) %>  wins.</p>
+
 </main>

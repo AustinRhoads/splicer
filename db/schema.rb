@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_01_14_192409) do
   create_table "battles", force: :cascade do |t|
     t.integer "level"
     t.boolean "user_won", default: false
+    t.boolean "game_over", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

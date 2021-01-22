@@ -18,7 +18,7 @@ root 'welcome#home'
   
   get '/battles/:id/destroy' => 'battles#destroy'
  # resources :identities
-  resources :monsters, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :monsters, only: [:index, :show, :new, :create, :destroy]
 
 
   get '/monsters/:id/destroy' => 'monsters#destroy' 

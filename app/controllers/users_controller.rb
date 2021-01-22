@@ -23,10 +23,6 @@ class UsersController < ApplicationController
      else
       flash[:alert] = []
       @user.errors.full_messages.each do |msg|
-       
-   #     msg = msg.split(" ")
-   #     msg.shift()
-   #     msg = msg.join(" ")
         flash[:alert] << "   " + msg + "   "
       end
       redirect_to new_user_path

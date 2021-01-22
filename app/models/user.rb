@@ -47,7 +47,14 @@ class User < ActiveRecord::Base
     end
 
     def battles_won
-        self.battles.select {|battle| battle.user_won == true}
+       # self.battles.select {|battle| battle.user_won == true}
+        battles.where(user_won: true).count
+    
+    end
+
+    def self.most_battles_won
+        highest = User.all.sort_by {|u| u.battles_won}.reverse[0]
+     #  order(:battles_won)
     end
 
     EXP_LEVELS = [0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000, 120000, 140000, 165000, 195000, 225000, 265000, 305000, 355000]

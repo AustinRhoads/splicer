@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Splicer</title>
+    <%= favicon_link_tag "dead_head.png" %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -24,6 +25,7 @@
       <%= link_to "Sign up", new_user_path %>
     <% end %>
     </div>
+    
     <%= yield %>
   </body>
 </html>
